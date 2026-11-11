@@ -1,0 +1,59 @@
+name: Camp Data Fetch
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        code: [TR, DE, FR, IT, ES, AT, CH, NL, BE, GR, HR, PT, NO, SE, GCC, JO, EG, MA, RU, US_WEST, US_SOUTH, US_MIDWEST, US_NORTHEAST, US_PACIFIC]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bagimliliklar
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y osmium-tool
+          pip install requests
+
+      - name: Veriyi cek
+        run: python camp_fetch.py ${{ matrix.code }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: camp-${{ matrix.code }}
+          path: out/${{ matrix.code }}.json
+          retention-days: 7
+
+  commit:
+    needs: fetch
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: camp-*
+          path: data
+          merge-multiple: true
+
+      - name: Depoya commit et
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "Update camp data"
+          git push
