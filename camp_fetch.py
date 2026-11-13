@@ -3,6 +3,7 @@ import requests
 
 GF = "https://download.geofabrik.de"
 REGIONS = {
+    # Mevcut ülkeler
     "TR": "europe/turkey", "DE": "europe/germany", "FR": "europe/france",
     "IT": "europe/italy", "ES": "europe/spain", "AT": "europe/austria",
     "CH": "europe/switzerland", "NL": "europe/netherlands", "BE": "europe/belgium",
@@ -14,7 +15,32 @@ REGIONS = {
     "US_MIDWEST": "north-america/us-midwest",
     "US_NORTHEAST": "north-america/us-northeast",
     "US_PACIFIC": "north-america/us-pacific",
+    
+    # Eklenen ülkeler (Geofabrik dosya adlandırmasına göre uygun yollar)
+    "OM": "asia/oman",
+    "CZ": "europe/czech-republic",
+    "IE": "europe/ireland-and-northern-ireland",
+    "BH": "asia/gcc-states", # Geofabrik'te Bahreyn GCC içinde geçer
+    "AE": "asia/gcc-states", # Geofabrik'te BAE GCC içinde geçer
+    "GB": "europe/great-britain",
+    "DZ": "africa/algeria",
+    "DK": "europe/denmark",
+    "FI": "europe/finland",
+    "QA": "asia/gcc-states", # Geofabrik'te Katar GCC içinde geçer
+    "KW": "asia/gcc-states", # Geofabrik'te Kuveyt GCC içinde geçer
+    "LU": "europe/luxembourg",
+    "PL": "europe/poland",
+    "SA": "asia/gcc-states", # Geofabrik'te Suudi Arabistan GCC içinde geçer
+    "TN": "africa/tunisia"
 }
+
+# Not: GCC (Körfez Ülkeleri - Suudi Arabistan, BAE, Umman, Kuveyt, Katar, Bahreyn vb.) 
+# Geofabrik üzerinde tek bir dosya olarak (asia/gcc-states.osm.pbf) sunulduğu için,
+# Bu ülkeler tek tek değil, mevcut GCC bölgesi (asia/gcc-states) indirilerek işlenebilir.
+# Umman'ın "asia/oman" adında ayrı dosyası da olsa da, genellikle bölge bazlı
+# indirme tercih edilir. Mevcut kodda GCC zaten tanımlı, bu yüzden GCC indirildiğinde
+# SA, AE, QA, BH, KW ülkelerinin verileri de gelecektir.
+
 WORK, OUT = "work", "out"
 os.makedirs(WORK, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 
@@ -144,7 +170,35 @@ def process(code, path):
 
 if __name__ == "__main__":
     todo = sys.argv[1:] or list(REGIONS)
+    
+    # Körfez ülkeleri GCC'de birleşiktir. Gereksiz indirmeleri engellemek için GCC listede varsa, alt ülkelerini todo'dan çıkar
+    if "GCC" in todo:
+        for gcc_country in ["BH", "AE", "QA", "KW", "SA"]:
+            if gcc_country in todo:
+                todo.remove(gcc_country)
+                print(f"[{gcc_country}] GCC bölgesine dahil olduğu için atlanıyor (asia/gcc-states)")
+
     for code in todo:
         if os.path.exists(f"{OUT}/{code}.json"):
-            print(f"[{code}] zaten var, atlaniyor"); continue
-        process(code, REGIONS[code])
+            print(f"[{code}] zaten var, atlaniyor")
+            continue
+        
+        try:
+            process(code, REGIONS[code])
+        except Exception as e:
+            print(f"[{code}] islenirken hata olustu: {e}")
+
+    # Otomatik Git Push İşlemi
+    try:
+        print("\nGit depoya push işlemi başlatılıyor...")
+        subprocess.run(["git", "add", f"{OUT}/*.json"], check=True)
+        # Commit mesajı, değişiklik yoksa hata vermemesi için kontrol edilir
+        status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        if status.stdout.strip():
+            subprocess.run(["git", "commit", "-m", "Yeni kamp alanlari verileri eklendi"], check=True)
+            subprocess.run(["git", "push"], check=True)
+            print("Git Push işlemi başarıyla tamamlandı.")
+        else:
+            print("Değişiklik yok, push işlemi atlandı.")
+    except subprocess.CalledProcessError as e:
+        print(f"Git işlemi sırasında bir hata oluştu: {e}")
