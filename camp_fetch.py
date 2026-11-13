@@ -3,7 +3,6 @@ import requests
 
 GF = "https://download.geofabrik.de"
 REGIONS = {
-    # Mevcut ülkeler
     "TR": "europe/turkey", "DE": "europe/germany", "FR": "europe/france",
     "IT": "europe/italy", "ES": "europe/spain", "AT": "europe/austria",
     "CH": "europe/switzerland", "NL": "europe/netherlands", "BE": "europe/belgium",
@@ -16,36 +15,28 @@ REGIONS = {
     "US_NORTHEAST": "north-america/us-northeast",
     "US_PACIFIC": "north-america/us-pacific",
     
-    # Eklenen ülkeler (Geofabrik dosya adlandırmasına göre uygun yollar)
+    # Eklenen yeni ülkeler
     "OM": "asia/oman",
     "CZ": "europe/czech-republic",
     "IE": "europe/ireland-and-northern-ireland",
-    "BH": "asia/gcc-states", # Geofabrik'te Bahreyn GCC içinde geçer
-    "AE": "asia/gcc-states", # Geofabrik'te BAE GCC içinde geçer
+    "BH": "asia/gcc-states", 
+    "AE": "asia/gcc-states", 
     "GB": "europe/great-britain",
     "DZ": "africa/algeria",
     "DK": "europe/denmark",
     "FI": "europe/finland",
-    "QA": "asia/gcc-states", # Geofabrik'te Katar GCC içinde geçer
-    "KW": "asia/gcc-states", # Geofabrik'te Kuveyt GCC içinde geçer
+    "QA": "asia/gcc-states", 
+    "KW": "asia/gcc-states", 
     "LU": "europe/luxembourg",
     "PL": "europe/poland",
-    "SA": "asia/gcc-states", # Geofabrik'te Suudi Arabistan GCC içinde geçer
+    "SA": "asia/gcc-states", 
     "TN": "africa/tunisia"
 }
-
-# Not: GCC (Körfez Ülkeleri - Suudi Arabistan, BAE, Umman, Kuveyt, Katar, Bahreyn vb.) 
-# Geofabrik üzerinde tek bir dosya olarak (asia/gcc-states.osm.pbf) sunulduğu için,
-# Bu ülkeler tek tek değil, mevcut GCC bölgesi (asia/gcc-states) indirilerek işlenebilir.
-# Umman'ın "asia/oman" adında ayrı dosyası da olsa da, genellikle bölge bazlı
-# indirme tercih edilir. Mevcut kodda GCC zaten tanımlı, bu yüzden GCC indirildiğinde
-# SA, AE, QA, BH, KW ülkelerinin verileri de gelecektir.
 
 WORK, OUT = "work", "out"
 os.makedirs(WORK, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 
 def download(url, dest, retries=50):
-    """Kaldigi yerden devam eden indirme. 404 olursa hemen durur."""
     for attempt in range(retries):
         try:
             have = os.path.getsize(dest) if os.path.exists(dest) else 0
@@ -53,7 +44,7 @@ def download(url, dest, retries=50):
             with requests.get(url, headers=h, stream=True, timeout=60) as r:
                 if r.status_code == 404:
                     raise FileNotFoundError("404 adres yanlis: " + url)
-                if r.status_code == 416:
+                if r.status_code == 416: # Dosya zaten tam inmişse
                     return
                 r.raise_for_status()
                 mode = "ab" if r.status_code == 206 else "wb"
@@ -83,8 +74,7 @@ def verify_md5(pbf, url):
         time.sleep(10 * (i + 1))
     if expected is None:
         print("  md5 hic alinamadi, osmium ile dosya kontrol ediliyor")
-        return subprocess.run(["osmium", "fileinfo", pbf],
-                              capture_output=True).returncode == 0
+        return subprocess.run(["osmium", "fileinfo", pbf], capture_output=True).returncode == 0
     h = hashlib.md5()
     with open(pbf, "rb") as f:
         for b in iter(lambda: f.read(1 << 24), b""):
@@ -129,12 +119,16 @@ def centroid(geom):
     return sum(p[1] for p in pts) / len(pts), sum(p[0] for p in pts) / len(pts)
 
 def process(code, path):
-    pbf = f"{WORK}/{code}.osm.pbf"
+    # İndirme ismini bölge yoluna göre yaparak aynı dosyanın tekrar tekrar inmesini engelliyoruz.
+    safe_path = path.replace("/", "_")
+    pbf = f"{WORK}/{safe_path}.osm.pbf"
     filt = f"{WORK}/{code}.camp.osm.pbf"
     gj = f"{WORK}/{code}.geojson"
     url = f"{GF}/{path}-latest.osm.pbf"
 
-    print(f"[{code}] indiriliyor: {url}")
+    print(f"[{code}] isleniyor (Kaynak: {url})")
+    
+    # Dosya zaten inmişse download fonksiyonu 416 Range Not Satisfiable alıp hızlıca geçecektir.
     download(url, pbf)
     if not verify_md5(pbf, url):
         os.remove(pbf); raise RuntimeError(f"{code}: dosya dogrulanamadi, tekrar calistirin")
@@ -166,39 +160,31 @@ def process(code, path):
     with open(f"{OUT}/{code}.json", "w", encoding="utf-8") as f:
         json.dump(rows, f, ensure_ascii=False, separators=(",", ":"))
     print(f"[{code}] {len(rows)} nokta -> {OUT}/{code}.json")
-    for p in (pbf, filt, gj): os.remove(p)
+    
+    # Filtre ve GeoJSON silinir ama ana PBF silinmez (diğer ülkeler kullanabilsin diye)
+    for p in (filt, gj): os.remove(p)
 
 if __name__ == "__main__":
     todo = sys.argv[1:] or list(REGIONS)
     
-    # Körfez ülkeleri GCC'de birleşiktir. Gereksiz indirmeleri engellemek için GCC listede varsa, alt ülkelerini todo'dan çıkar
-    if "GCC" in todo:
-        for gcc_country in ["BH", "AE", "QA", "KW", "SA"]:
-            if gcc_country in todo:
-                todo.remove(gcc_country)
-                print(f"[{gcc_country}] GCC bölgesine dahil olduğu için atlanıyor (asia/gcc-states)")
-
     for code in todo:
         if os.path.exists(f"{OUT}/{code}.json"):
             print(f"[{code}] zaten var, atlaniyor")
             continue
-        
         try:
             process(code, REGIONS[code])
         except Exception as e:
             print(f"[{code}] islenirken hata olustu: {e}")
 
-    # Otomatik Git Push İşlemi
     try:
-        print("\nGit depoya push işlemi başlatılıyor...")
+        print("\nGit depoya push islemi baslatiliyor...")
         subprocess.run(["git", "add", f"{OUT}/*.json"], check=True)
-        # Commit mesajı, değişiklik yoksa hata vermemesi için kontrol edilir
         status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
         if status.stdout.strip():
-            subprocess.run(["git", "commit", "-m", "Yeni kamp alanlari verileri eklendi"], check=True)
+            subprocess.run(["git", "commit", "-m", "Yeni ulkelerin kamp alanlari eklendi"], check=True)
             subprocess.run(["git", "push"], check=True)
-            print("Git Push işlemi başarıyla tamamlandı.")
+            print("Git Push islemi basariyla tamamlandi.")
         else:
-            print("Değişiklik yok, push işlemi atlandı.")
+            print("Degisiklik yok, push islemi atlandi.")
     except subprocess.CalledProcessError as e:
-        print(f"Git işlemi sırasında bir hata oluştu: {e}")
+        print(f"Git islemi sirasinda bir hata olustu: {e}")
