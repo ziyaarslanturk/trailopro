@@ -15,7 +15,6 @@ REGIONS = {
     "US_NORTHEAST": "north-america/us-northeast",
     "US_PACIFIC": "north-america/us-pacific",
     
-    # Eklenen yeni ülkeler
     "OM": "asia/oman",
     "CZ": "europe/czech-republic",
     "IE": "europe/ireland-and-northern-ireland",
@@ -33,7 +32,8 @@ REGIONS = {
     "TN": "africa/tunisia"
 }
 
-WORK, OUT = "work", "out"
+# Klasör yolu 'out' yerine deponuzdaki gibi 'data' olarak düzeltildi
+WORK, OUT = "work", "data"
 os.makedirs(WORK, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 
 def download(url, dest, retries=50):
@@ -44,7 +44,7 @@ def download(url, dest, retries=50):
             with requests.get(url, headers=h, stream=True, timeout=60) as r:
                 if r.status_code == 404:
                     raise FileNotFoundError("404 adres yanlis: " + url)
-                if r.status_code == 416: # Dosya zaten tam inmişse
+                if r.status_code == 416: 
                     return
                 r.raise_for_status()
                 mode = "ab" if r.status_code == 206 else "wb"
@@ -119,7 +119,6 @@ def centroid(geom):
     return sum(p[1] for p in pts) / len(pts), sum(p[0] for p in pts) / len(pts)
 
 def process(code, path):
-    # İndirme ismini bölge yoluna göre yaparak aynı dosyanın tekrar tekrar inmesini engelliyoruz.
     safe_path = path.replace("/", "_")
     pbf = f"{WORK}/{safe_path}.osm.pbf"
     filt = f"{WORK}/{code}.camp.osm.pbf"
@@ -128,7 +127,6 @@ def process(code, path):
 
     print(f"[{code}] isleniyor (Kaynak: {url})")
     
-    # Dosya zaten inmişse download fonksiyonu 416 Range Not Satisfiable alıp hızlıca geçecektir.
     download(url, pbf)
     if not verify_md5(pbf, url):
         os.remove(pbf); raise RuntimeError(f"{code}: dosya dogrulanamadi, tekrar calistirin")
@@ -161,12 +159,17 @@ def process(code, path):
         json.dump(rows, f, ensure_ascii=False, separators=(",", ":"))
     print(f"[{code}] {len(rows)} nokta -> {OUT}/{code}.json")
     
-    # Filtre ve GeoJSON silinir ama ana PBF silinmez (diğer ülkeler kullanabilsin diye)
     for p in (filt, gj): os.remove(p)
 
 if __name__ == "__main__":
     todo = sys.argv[1:] or list(REGIONS)
     
+    if "GCC" in todo:
+        for gcc_country in ["BH", "AE", "QA", "KW", "SA"]:
+            if gcc_country in todo:
+                todo.remove(gcc_country)
+                print(f"[{gcc_country}] GCC bölgesine dahil olduğu için atlanıyor (asia/gcc-states)")
+
     for code in todo:
         if os.path.exists(f"{OUT}/{code}.json"):
             print(f"[{code}] zaten var, atlaniyor")
@@ -178,13 +181,20 @@ if __name__ == "__main__":
 
     try:
         print("\nGit depoya push islemi baslatiliyor...")
+        
+        # Git kimlik ayarları (Hatanın çözümü)
+        subprocess.run(["git", "config", "--global", "user.email", "actions@github.com"], check=True)
+        subprocess.run(["git", "config", "--global", "user.name", "GitHub Actions"], check=True)
+        
         subprocess.run(["git", "add", f"{OUT}/*.json"], check=True)
         status = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        
         if status.stdout.strip():
             subprocess.run(["git", "commit", "-m", "Yeni ulkelerin kamp alanlari eklendi"], check=True)
             subprocess.run(["git", "push"], check=True)
             print("Git Push islemi basariyla tamamlandi.")
         else:
             print("Degisiklik yok, push islemi atlandi.")
+            
     except subprocess.CalledProcessError as e:
         print(f"Git islemi sirasinda bir hata olustu: {e}")
