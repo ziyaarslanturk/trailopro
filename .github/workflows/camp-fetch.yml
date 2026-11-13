@@ -1,0 +1,109 @@
+name: Camp Data Fetch
+
+on:
+  schedule:
+    - cron: "0 4 * * *"    # 07:00 Turkiye saati
+    - cron: "0 10 * * *"   # 13:00 Turkiye saati (yedek tur)
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Bos = sadece degisenler | ALL = hepsi | veya kodlar: TR OM GB"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: camp-data
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      any: ${{ steps.chk.outputs.any }}
+      matrix: ${{ steps.chk.outputs.matrix }}
+      md5s: ${{ steps.chk.outputs.md5s }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Degisen bolgeleri bul
+        id: chk
+        env:
+          FORCE: ${{ github.event.inputs.force }}
+        run: python check_updates.py $FORCE
+
+  fetch:
+    needs: check
+    if: needs.check.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.check.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bagimliliklar
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y osmium-tool
+          pip install requests numpy "shapely>=2.0"
+
+      - name: Veriyi cek
+        run: python camp_fetch.py ${{ matrix.code }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: camp-${{ matrix.code }}
+          path: out/
+          if-no-files-found: error
+          retention-days: 3
+
+  commit:
+    needs: [check, fetch]
+    if: always() && needs.check.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: camp-*
+          path: incoming
+
+      - name: Birlestir ve data/ uret
+        env:
+          MD5S: ${{ needs.check.outputs.md5s }}
+        run: |
+          python merge_incoming.py
+          python build_data.py
+
+      - name: Commit ve push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add osm data state
+          git diff --cached --quiet || git commit -m "Update camp data"
+          git pull --rebase
+          git push
