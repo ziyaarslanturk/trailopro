@@ -1,0 +1,482 @@
+{
+ "schema": 1,
+ "categories": {
+  "camping": [
+   "Camping",
+   "Tent",
+   "Backpacking (hiking)",
+   "Hiking",
+   "Bushcraft",
+   "Leave No Trace",
+   "Campfire",
+   "Sleeping bag",
+   "Sleeping pad",
+   "Portable stove",
+   "Hammock",
+   "Tarpaulin",
+   "Backpack",
+   "Campsite",
+   "Wild camping",
+   "Glamping",
+   "Recreational vehicle",
+   "Firewood",
+   "Charcoal",
+   "Pocketknife",
+   "Axe",
+   "Trekking pole",
+   "Hiking equipment",
+   "Mountaineering"
+  ],
+  "navigation": [
+   "Compass",
+   "Orienteering",
+   "Topographic map",
+   "Global Positioning System",
+   "Celestial navigation",
+   "Dead reckoning",
+   "Navigation",
+   "Map",
+   "Magnetic declination",
+   "Contour line",
+   "Cardinal direction",
+   "True north",
+   "Latitude",
+   "Longitude",
+   "Geographic coordinate system",
+   "Universal Transverse Mercator coordinate system",
+   "Cairn",
+   "Altimeter",
+   "Barometer",
+   "Trail"
+  ],
+  "survival": [
+   "Survival skills",
+   "Wilderness",
+   "Water purification",
+   "Solar still",
+   "Tinder",
+   "Kindling",
+   "Ferrocerium",
+   "Flint",
+   "Fire triangle",
+   "Knot",
+   "Bowline",
+   "Clove hitch",
+   "Reef knot",
+   "Taut-line hitch",
+   "Sheet bend",
+   "Figure-eight knot",
+   "Rope",
+   "Paracord",
+   "Signal mirror",
+   "Distress signal",
+   "Mayday",
+   "Whistle",
+   "Search and rescue",
+   "Space blanket",
+   "Boiling",
+   "Foraging",
+   "Fishing",
+   "Lean-to"
+  ],
+  "first_aid": [
+   "First aid",
+   "Cardiopulmonary resuscitation",
+   "Automated external defibrillator",
+   "Bleeding",
+   "Wound",
+   "Tourniquet",
+   "Bandage",
+   "Sprain",
+   "Bone fracture",
+   "Splint (medicine)",
+   "Joint dislocation",
+   "Burn",
+   "Frostbite",
+   "Hypothermia",
+   "Hyperthermia",
+   "Heat stroke",
+   "Heat exhaustion",
+   "Dehydration",
+   "Oral rehydration therapy",
+   "Altitude sickness",
+   "Anaphylaxis",
+   "Choking",
+   "Heimlich maneuver",
+   "Recovery position",
+   "Drowning",
+   "Shock (circulatory)",
+   "Concussion",
+   "Blister",
+   "Sunburn",
+   "Carbon monoxide poisoning",
+   "Snakebite",
+   "Insect bites and stings",
+   "Poisoning",
+   "Trench foot"
+  ],
+  "diseases": [
+   "Giardiasis",
+   "Lyme disease",
+   "Crimean–Congo hemorrhagic fever",
+   "Rabies",
+   "Tetanus",
+   "Malaria",
+   "Leptospirosis",
+   "Tick-borne encephalitis",
+   "Tick-borne disease",
+   "Mosquito-borne disease",
+   "Foodborne illness",
+   "Gastroenteritis",
+   "Diarrhea",
+   "Cholera",
+   "Hantavirus",
+   "Brucellosis",
+   "Leishmaniasis",
+   "Cryptosporidiosis",
+   "Hepatitis A",
+   "Typhoid fever",
+   "Tularemia",
+   "West Nile virus",
+   "Scabies",
+   "Salmonellosis",
+   "Norovirus",
+   "Zoonosis"
+  ],
+  "plants": [
+   "Urtica dioica",
+   {
+    "t": "Toxicodendron radicans",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Conium maculatum",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Atropa belladonna",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Datura stramonium",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Ricinus communis",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Nerium oleander",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Digitalis purpurea",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Aconitum",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Cicuta",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Heracleum mantegazzianum",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Colchicum autumnale",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Hyoscyamus niger",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Mandragora officinarum",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Euphorbia",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Laburnum anagyroides",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Taxus baccata",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Hedera helix",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Oenanthe crocata",
+    "notice": "poisonous"
+   },
+   "Taraxacum",
+   "Plantago major",
+   "Rosa canina",
+   "Crataegus monogyna",
+   "Sambucus nigra",
+   "Mentha",
+   "Thymus (plant)",
+   "Oregano",
+   "Rumex",
+   "Portulaca oleracea",
+   "Malva sylvestris",
+   "Allium ursinum",
+   "Blackberry",
+   "Hypericum perforatum",
+   "Achillea millefolium",
+   "Chamomile",
+   "Capsella bursa-pastoris",
+   "Cichorium intybus",
+   "Salvia officinalis",
+   "Rosemary",
+   "Lavandula",
+   "Fennel"
+  ],
+  "trees": [
+   "Pinus brutia",
+   "Pinus nigra",
+   "Pinus pinea",
+   "Quercus",
+   "Cedrus libani",
+   "Platanus orientalis",
+   "Olea europaea",
+   "Juniperus",
+   "Abies",
+   "Fagus orientalis",
+   "Picea orientalis",
+   "Populus",
+   "Salix",
+   "Cupressus sempervirens",
+   "Castanea sativa",
+   "Juglans regia",
+   "Ficus carica",
+   "Laurus nobilis",
+   "Arbutus andrachne",
+   "Liquidambar orientalis",
+   "Tilia",
+   "Fraxinus",
+   "Ulmus",
+   "Betula",
+   "Acer",
+   "Carpinus",
+   "Pistacia terebinthus",
+   "Cercis siliquastrum",
+   "Tree",
+   "Forest"
+  ],
+  "mushrooms": [
+   {
+    "t": "Amanita phalloides",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Amanita virosa",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Amanita muscaria",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Amanita pantherina",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Galerina marginata",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Cortinarius orellanus",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Gyromitra esculenta",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Entoloma sinuatum",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Omphalotus olearius",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Agaricus xanthodermus",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Hypholoma fasciculare",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Coprinopsis atramentaria",
+    "notice": "poisonous"
+   },
+   {
+    "t": "Amatoxin",
+    "notice": "poisonous"
+   },
+   "Mushroom poisoning",
+   "Mushroom hunting",
+   "Boletus edulis",
+   "Cantharellus cibarius",
+   "Craterellus cornucopioides",
+   "Agaricus campestris",
+   "Morchella",
+   "Lactarius deliciosus",
+   "Macrolepiota procera",
+   "Pleurotus ostreatus",
+   "Armillaria mellea",
+   "Tuber melanosporum",
+   "Fungus",
+   "Mycology"
+  ],
+  "animals": [
+   {
+    "t": "Vipera ammodytes",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Vipera berus",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Montivipera xanthina",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Macrovipera lebetina",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Deathstalker",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Scorpion",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Latrodectus tredecimguttatus",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Scolopendra cingulata",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Vespa crabro",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Tick",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Brown bear",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Gray wolf",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Wild boar",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Golden jackal",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Red fox",
+    "notice": "wildlife"
+   },
+   {
+    "t": "Eurasian lynx",
+    "notice": "wildlife"
+   },
+   "Honey bee",
+   "Mosquito",
+   "Phlebotominae",
+   "Jellyfish",
+   "Sea urchin",
+   "Snake",
+   "Venomous snake",
+   "Bat",
+   "Eurasian badger",
+   "Anatolian shepherd dog"
+  ],
+  "weather": [
+   "Thunderstorm",
+   "Lightning",
+   "Flash flood",
+   "Wildfire",
+   "Earthquake",
+   "Cloud",
+   "Wind chill",
+   "Heat index",
+   "Beaufort scale",
+   "Fog",
+   "Hail",
+   "Avalanche",
+   "Rip current",
+   "Tide",
+   "Rain",
+   "Snow",
+   "Wind",
+   "Drought",
+   "Weather forecasting",
+   "Atmospheric pressure",
+   "Dew point",
+   "Humidity"
+  ],
+  "sky": [
+   "Polaris",
+   "Ursa Major",
+   "Orion (constellation)",
+   "Southern Cross",
+   "Cassiopeia (constellation)",
+   "Milky Way",
+   "Moon",
+   "Lunar phase",
+   "Light pollution",
+   "Meteor shower",
+   "Aurora",
+   "Celestial sphere",
+   "Sun",
+   "Star",
+   "Constellation",
+   "Summer Triangle",
+   "Pleiades",
+   "Ursa Minor"
+  ],
+  "places": [
+   "Lycian Way",
+   "St Paul Trail",
+   "Kaçkar Mountains",
+   "Mount Ararat",
+   "Mount Erciyes",
+   "Taurus Mountains",
+   "Pontic Mountains",
+   "Uludağ",
+   "Cappadocia",
+   "Köprülü Canyon",
+   "Saklıkent Gorge",
+   "Mount Nemrut",
+   "Lake Van",
+   "Salda Lake",
+   "Pamukkale",
+   "Abant Lake"
+  ]
+ }
+}
