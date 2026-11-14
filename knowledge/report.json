@@ -1,0 +1,143 @@
+{
+ "disambiguation": [
+  {
+   "title": "Acer (Begriffsklärung)",
+   "where": "de"
+  },
+  {
+   "title": "Acer (значения)",
+   "where": "ru"
+  },
+  {
+   "title": "Acer",
+   "where": "en"
+  },
+  {
+   "title": "Acer",
+   "where": "tr"
+  },
+  {
+   "title": "Kindling (Begriffsklärung)",
+   "where": "de"
+  },
+  {
+   "title": "Kindling",
+   "where": "en"
+  }
+ ],
+ "errors": [],
+ "fallback": {
+  "ar": 28,
+  "de": 15,
+  "ru": 15,
+  "tr": 42
+ },
+ "invalid": [],
+ "kept_previous": [],
+ "missing": [
+  {
+   "title": "Abant Lake",
+   "where": "wikidata"
+  },
+  {
+   "title": "Abies",
+   "where": "wikidata"
+  },
+  {
+   "title": "Anatolian shepherd dog",
+   "where": "wikidata"
+  },
+  {
+   "title": "Atropa belladonna",
+   "where": "wikidata"
+  },
+  {
+   "title": "Betula",
+   "where": "wikidata"
+  },
+  {
+   "title": "Carpinus",
+   "where": "wikidata"
+  },
+  {
+   "title": "Castanea sativa",
+   "where": "wikidata"
+  },
+  {
+   "title": "Cichorium intybus",
+   "where": "wikidata"
+  },
+  {
+   "title": "Eurasian badger",
+   "where": "wikidata"
+  },
+  {
+   "title": "Ficus carica",
+   "where": "wikidata"
+  },
+  {
+   "title": "Gray wolf",
+   "where": "wikidata"
+  },
+  {
+   "title": "Juniperus",
+   "where": "wikidata"
+  },
+  {
+   "title": "Macrovipera lebetina",
+   "where": "wikidata"
+  },
+  {
+   "title": "Nerium oleander",
+   "where": "wikidata"
+  },
+  {
+   "title": "Paracord",
+   "where": "wikidata"
+  },
+  {
+   "title": "Quercus",
+   "where": "wikidata"
+  },
+  {
+   "title": "Ricinus communis",
+   "where": "wikidata"
+  },
+  {
+   "title": "Saklıkent Gorge",
+   "where": "wikidata"
+  },
+  {
+   "title": "Salda Lake",
+   "where": "wikidata"
+  },
+  {
+   "title": "Salix",
+   "where": "wikidata"
+  },
+  {
+   "title": "Signal mirror",
+   "where": "wikidata"
+  },
+  {
+   "title": "Southern Cross",
+   "where": "wikidata"
+  },
+  {
+   "title": "St Paul Trail",
+   "where": "wikidata"
+  },
+  {
+   "title": "Ulmus",
+   "where": "wikidata"
+  },
+  {
+   "title": "Vespa crabro",
+   "where": "wikidata"
+  },
+  {
+   "title": "Vipera berus",
+   "where": "wikidata"
+  }
+ ]
+}

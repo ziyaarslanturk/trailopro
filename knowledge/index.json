@@ -1,0 +1,834 @@
+{
+ "schema": 1,
+ "version": "2a55e88e7def",
+ "updated": "2026-11-14",
+ "license": "CC BY-SA 4.0",
+ "languages": [
+  "tr",
+  "en",
+  "de",
+  "ru",
+  "ar"
+ ],
+ "attribution": {
+  "tr": "Kaynak: Vikipedi, CC BY-SA 4.0 lisansıyla. Her maddenin bağlantısı ve yazarları ilgili sayfadadır.",
+  "en": "Source: Wikipedia, licensed under CC BY-SA 4.0. Each article's link and authors are on its page.",
+  "de": "Quelle: Wikipedia, Lizenz CC BY-SA 4.0. Link und Autoren jedes Artikels stehen auf der jeweiligen Seite.",
+  "ru": "Источник: Википедия, лицензия CC BY-SA 4.0. Ссылка и авторы каждой статьи указаны на её странице.",
+  "ar": "المصدر: ويكيبيديا، بترخيص CC BY-SA 4.0. رابط كل مقالة وكتّابها على صفحتها."
+ },
+ "notices": {
+  "medical": {
+   "tr": "Bu bilgiler genel bilgilendirme amaçlıdır, tıbbi tavsiye değildir. Acil durumda 112'yi arayın.",
+   "en": "This is general information, not medical advice. In an emergency call your local emergency number (112 in Turkey and the EU).",
+   "de": "Dies ist allgemeine Information und keine medizinische Beratung. Im Notfall rufen Sie den Notruf an (112 in der Türkei und der EU).",
+   "ru": "Это общая информация, а не медицинская рекомендация. В экстренной ситуации звоните в службу спасения (112 в Турции и ЕС).",
+   "ar": "هذه معلومات عامة وليست نصيحة طبية. في حالة الطوارئ اتصل برقم الطوارئ (112 في تركيا والاتحاد الأوروبي)."
+  },
+  "foraging": {
+   "tr": "Yabani bitki ve mantarı yalnızca bu bilgiye veya bir fotoğrafa bakarak asla yemeyin. Yanlış tanıma zehirlenmeye ve ölüme yol açabilir. Emin değilseniz bir uzmana danışın.",
+   "en": "Never eat a wild plant or mushroom based only on this information or a photo. Misidentification can cause poisoning or death. If unsure, consult an expert.",
+   "de": "Essen Sie niemals eine Wildpflanze oder einen Pilz allein aufgrund dieser Informationen oder eines Fotos. Fehlbestimmungen können zu Vergiftung oder Tod führen. Fragen Sie im Zweifel einen Experten.",
+   "ru": "Никогда не ешьте дикорастущие растения и грибы, полагаясь только на эту информацию или фотографию. Ошибка в определении может привести к отравлению и смерти. Если сомневаетесь, обратитесь к специалисту.",
+   "ar": "لا تأكل نباتًا برّيًا أو فطرًا اعتمادًا على هذه المعلومات أو على صورة فقط. الخطأ في التعرّف قد يسبب التسمم أو الوفاة. إذا لم تكن متأكدًا فاستشر خبيرًا."
+  },
+  "poisonous": {
+   "tr": "Bu tür zehirli veya tehlikeli olabilir. Dokunmayın, yemeyin; temas veya yeme durumunda hemen 112'yi arayın.",
+   "en": "This species can be poisonous or dangerous. Do not touch or eat it; after contact or ingestion call emergency services (112) immediately.",
+   "de": "Diese Art kann giftig oder gefährlich sein. Nicht berühren oder essen; nach Kontakt oder Verzehr sofort den Notruf (112) wählen.",
+   "ru": "Этот вид может быть ядовитым или опасным. Не трогайте и не ешьте; при контакте или попадании внутрь сразу звоните 112.",
+   "ar": "قد يكون هذا النوع ساماً أو خطيراً. لا تلمسه ولا تأكله؛ عند التلامس أو الابتلاع اتصل بالطوارئ (112) فوراً."
+  },
+  "wildlife": {
+   "tr": "Vahşi hayvanlara yaklaşmayın, uzaktan izleyin. Isırık veya sokma durumunda sakin kalın ve hemen sağlık yardımı alın.",
+   "en": "Keep your distance from wild animals. After a bite or sting stay calm and seek medical help immediately.",
+   "de": "Halten Sie Abstand zu Wildtieren. Bleiben Sie nach einem Biss oder Stich ruhig und suchen Sie sofort ärztliche Hilfe.",
+   "ru": "Держитесь на расстоянии от диких животных. После укуса или ужаления сохраняйте спокойствие и немедленно обратитесь за медицинской помощью.",
+   "ar": "ابقَ بعيدًا عن الحيوانات البرية. بعد العضّة أو اللدغة حافظ على هدوئك واطلب المساعدة الطبية فورًا."
+  }
+ },
+ "categories": [
+  {
+   "id": "camping",
+   "order": 1,
+   "icon": "camping",
+   "notice": null,
+   "name": {
+    "tr": "Kamp ve Açık Hava",
+    "en": "Camping & Outdoors",
+    "de": "Camping & Outdoor",
+    "ru": "Кемпинг и туризм",
+    "ar": "التخييم والهواء الطلق"
+   },
+   "counts": {
+    "tr": 24,
+    "en": 24,
+    "de": 24,
+    "ru": 24,
+    "ar": 24
+   }
+  },
+  {
+   "id": "navigation",
+   "order": 2,
+   "icon": "navigation",
+   "notice": null,
+   "name": {
+    "tr": "Yön Bulma ve Harita",
+    "en": "Navigation & Maps",
+    "de": "Navigation & Karten",
+    "ru": "Навигация и карты",
+    "ar": "الملاحة والخرائط"
+   },
+   "counts": {
+    "tr": 20,
+    "en": 20,
+    "de": 20,
+    "ru": 20,
+    "ar": 20
+   }
+  },
+  {
+   "id": "survival",
+   "order": 3,
+   "icon": "survival",
+   "notice": null,
+   "name": {
+    "tr": "Hayatta Kalma",
+    "en": "Survival",
+    "de": "Überleben",
+    "ru": "Выживание",
+    "ar": "البقاء على قيد الحياة"
+   },
+   "counts": {
+    "tr": 25,
+    "en": 25,
+    "de": 25,
+    "ru": 25,
+    "ar": 25
+   }
+  },
+  {
+   "id": "first_aid",
+   "order": 4,
+   "icon": "first_aid",
+   "notice": "medical",
+   "name": {
+    "tr": "İlk Yardım ve Yaralanmalar",
+    "en": "First Aid & Injuries",
+    "de": "Erste Hilfe & Verletzungen",
+    "ru": "Первая помощь и травмы",
+    "ar": "الإسعافات الأولية والإصابات"
+   },
+   "counts": {
+    "tr": 34,
+    "en": 34,
+    "de": 34,
+    "ru": 34,
+    "ar": 34
+   }
+  },
+  {
+   "id": "diseases",
+   "order": 5,
+   "icon": "diseases",
+   "notice": "medical",
+   "name": {
+    "tr": "Hastalıklar",
+    "en": "Diseases",
+    "de": "Krankheiten",
+    "ru": "Болезни",
+    "ar": "الأمراض"
+   },
+   "counts": {
+    "tr": 26,
+    "en": 26,
+    "de": 26,
+    "ru": 26,
+    "ar": 26
+   }
+  },
+  {
+   "id": "plants",
+   "order": 6,
+   "icon": "plants",
+   "notice": "foraging",
+   "name": {
+    "tr": "Bitkiler",
+    "en": "Plants",
+    "de": "Pflanzen",
+    "ru": "Растения",
+    "ar": "النباتات"
+   },
+   "counts": {
+    "tr": 37,
+    "en": 37,
+    "de": 37,
+    "ru": 37,
+    "ar": 37
+   }
+  },
+  {
+   "id": "trees",
+   "order": 7,
+   "icon": "trees",
+   "notice": null,
+   "name": {
+    "tr": "Ağaçlar",
+    "en": "Trees",
+    "de": "Bäume",
+    "ru": "Деревья",
+    "ar": "الأشجار"
+   },
+   "counts": {
+    "tr": 20,
+    "en": 20,
+    "de": 20,
+    "ru": 20,
+    "ar": 20
+   }
+  },
+  {
+   "id": "mushrooms",
+   "order": 8,
+   "icon": "mushrooms",
+   "notice": "foraging",
+   "name": {
+    "tr": "Mantarlar",
+    "en": "Mushrooms",
+    "de": "Pilze",
+    "ru": "Грибы",
+    "ar": "الفطر"
+   },
+   "counts": {
+    "tr": 27,
+    "en": 27,
+    "de": 27,
+    "ru": 27,
+    "ar": 27
+   }
+  },
+  {
+   "id": "animals",
+   "order": 9,
+   "icon": "animals",
+   "notice": "wildlife",
+   "name": {
+    "tr": "Hayvanlar",
+    "en": "Animals",
+    "de": "Tiere",
+    "ru": "Животные",
+    "ar": "الحيوانات"
+   },
+   "counts": {
+    "tr": 20,
+    "en": 20,
+    "de": 20,
+    "ru": 20,
+    "ar": 20
+   }
+  },
+  {
+   "id": "weather",
+   "order": 10,
+   "icon": "weather",
+   "notice": null,
+   "name": {
+    "tr": "Hava ve Doğa Olayları",
+    "en": "Weather & Natural Events",
+    "de": "Wetter & Naturereignisse",
+    "ru": "Погода и природные явления",
+    "ar": "الطقس والظواهر الطبيعية"
+   },
+   "counts": {
+    "tr": 22,
+    "en": 22,
+    "de": 22,
+    "ru": 22,
+    "ar": 22
+   }
+  },
+  {
+   "id": "sky",
+   "order": 11,
+   "icon": "sky",
+   "notice": null,
+   "name": {
+    "tr": "Gökyüzü ve Yıldızlar",
+    "en": "Sky & Stars",
+    "de": "Himmel & Sterne",
+    "ru": "Небо и звёзды",
+    "ar": "السماء والنجوم"
+   },
+   "counts": {
+    "tr": 17,
+    "en": 17,
+    "de": 17,
+    "ru": 17,
+    "ar": 17
+   }
+  },
+  {
+   "id": "places",
+   "order": 12,
+   "icon": "places",
+   "notice": null,
+   "name": {
+    "tr": "Doğa Rotaları ve Yerler",
+    "en": "Trails & Places",
+    "de": "Wanderwege & Orte",
+    "ru": "Тропы и места",
+    "ar": "المسارات والأماكن"
+   },
+   "counts": {
+    "tr": 12,
+    "en": 12,
+    "de": 12,
+    "ru": 12,
+    "ar": 12
+   }
+  }
+ ],
+ "packs": [
+  {
+   "lang": "tr",
+   "category": "camping",
+   "path": "packs/tr/camping.json",
+   "sha256": "5c7baefc02ea4f6990698bbe70896d45973bc617a1c0f4a33755ac9db75e3f52",
+   "bytes": 147251,
+   "articles": 24,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "camping",
+   "path": "packs/en/camping.json",
+   "sha256": "19dc78624d70da37f789625d7a3339062107e83f5c2602ee47387ce0d392480d",
+   "bytes": 367206,
+   "articles": 24,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "camping",
+   "path": "packs/de/camping.json",
+   "sha256": "ce92479d2e0b4395d6dc082ab0a2218968c49960c3a334d45db690d8eced7acd",
+   "bytes": 374637,
+   "articles": 24,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "camping",
+   "path": "packs/ru/camping.json",
+   "sha256": "88628ecb0ac746fd9a92f896f3c1fdf2975b74284adde60f17347494f5b79ba3",
+   "bytes": 286997,
+   "articles": 24,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "camping",
+   "path": "packs/ar/camping.json",
+   "sha256": "21b3bd0eda3cf6770e497dd6f53fc2b46ae9482c090871492c95cf884900a3aa",
+   "bytes": 127397,
+   "articles": 24,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "navigation",
+   "path": "packs/tr/navigation.json",
+   "sha256": "5e25a15c68f14aabf3bcd2e298f7f6722d8a5f3f50f3c012f9615f0178ca6575",
+   "bytes": 119779,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "navigation",
+   "path": "packs/en/navigation.json",
+   "sha256": "d593eef7811d7727e612304474cb39aa1eb71de19cfc06167b28785dee1a31a1",
+   "bytes": 507749,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "navigation",
+   "path": "packs/de/navigation.json",
+   "sha256": "92d28e862b337727fbb3d111d05f0ae61e1f94cbd04c88b60771d05e8f600336",
+   "bytes": 358558,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "navigation",
+   "path": "packs/ru/navigation.json",
+   "sha256": "e3ff8582ad82a20a702fdf9f887d03e3b6d45e65bbcdde6d3b5e5c5ab412c4df",
+   "bytes": 294737,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "navigation",
+   "path": "packs/ar/navigation.json",
+   "sha256": "877b7093838ea613f61c455dcc998794a3e57833a33822cb8438c76813912283",
+   "bytes": 323332,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "survival",
+   "path": "packs/tr/survival.json",
+   "sha256": "89d42c11c3a881fc4f0ad6355a47020220565cb4c373563c19641be4a7ae1375",
+   "bytes": 154460,
+   "articles": 25,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "survival",
+   "path": "packs/en/survival.json",
+   "sha256": "fac2e825109a21e143a6bc77a058c9f20e56ea2fe301b376513acb98e4aefb19",
+   "bytes": 358920,
+   "articles": 25,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "survival",
+   "path": "packs/de/survival.json",
+   "sha256": "382b12d43789f6f253e917e46284f8477d0b1fe4f71b812609be8d5cd40dc2fb",
+   "bytes": 338455,
+   "articles": 25,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "survival",
+   "path": "packs/ru/survival.json",
+   "sha256": "0bbaa61d0a95c50c4cdd77a9c9fa9348fa4e16e43531af96816e4dda05aa2f9b",
+   "bytes": 452017,
+   "articles": 25,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "survival",
+   "path": "packs/ar/survival.json",
+   "sha256": "5feae4a1cde37687f73674c6763fab7138b6818b1b7d07b2eee65ab30432409d",
+   "bytes": 160619,
+   "articles": 25,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "first_aid",
+   "path": "packs/tr/first_aid.json",
+   "sha256": "15ef351a181c93e7b2395da038d8d7f9c9cfe08ffdc841e1aeebf3099a98444e",
+   "bytes": 383718,
+   "articles": 34,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "first_aid",
+   "path": "packs/en/first_aid.json",
+   "sha256": "06a1a4d2ada1b427cd15d8414a3c17034a2897964a19e958b144c7a438cbf495",
+   "bytes": 765969,
+   "articles": 34,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "first_aid",
+   "path": "packs/de/first_aid.json",
+   "sha256": "2b74fbb64447877d5ecca8d886c7d7b47e1135300daa0ac08b906a54a4bd1655",
+   "bytes": 528969,
+   "articles": 34,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "first_aid",
+   "path": "packs/ru/first_aid.json",
+   "sha256": "6615b61926c5cdcae340c330152b822920ce16a017a2ae323374aa2453955ccf",
+   "bytes": 664111,
+   "articles": 34,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "first_aid",
+   "path": "packs/ar/first_aid.json",
+   "sha256": "972ee49966711919f8d75e43ab3bb3b13217d84476ed93441ff164d9f37114fa",
+   "bytes": 665010,
+   "articles": 34,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "diseases",
+   "path": "packs/tr/diseases.json",
+   "sha256": "9fd12b4c42713a2823d267314205dd327162a8282bad075222b8fe2abc18f01a",
+   "bytes": 176196,
+   "articles": 26,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "diseases",
+   "path": "packs/en/diseases.json",
+   "sha256": "43c2a0a7919b72aaeb7f9d8b905a56c4a2c11e2823a006ddcea3d6e9b69e1a45",
+   "bytes": 795891,
+   "articles": 26,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "diseases",
+   "path": "packs/de/diseases.json",
+   "sha256": "778d35181ff92a2017d1c123a7dc40c5792f27474093a47803b956a3bf858d3e",
+   "bytes": 500085,
+   "articles": 26,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "diseases",
+   "path": "packs/ru/diseases.json",
+   "sha256": "282bb6bac3e07816b17867d27b74137de5d9544fb824e177f4af7309eb6bd1ec",
+   "bytes": 760531,
+   "articles": 26,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "diseases",
+   "path": "packs/ar/diseases.json",
+   "sha256": "2b09727e252827c6e07e8f1d4d52b6679d16f01f0a6af7cf0e3969e2feb65fc7",
+   "bytes": 506821,
+   "articles": 26,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "plants",
+   "path": "packs/tr/plants.json",
+   "sha256": "3f8bbe4d746c5c2411e33e29418fafaad7f3ca1bbd4abf26d5d5bd94cf02bc60",
+   "bytes": 187509,
+   "articles": 37,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "plants",
+   "path": "packs/en/plants.json",
+   "sha256": "37d7f4be269f891b95d9093eed25277c88c141eaadef37400cb2df88c2219ad2",
+   "bytes": 456319,
+   "articles": 37,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "plants",
+   "path": "packs/de/plants.json",
+   "sha256": "bb9568aa6346906803e6390545ab1b239e2ce7d71d1cc4eea66243b9ba8a10ba",
+   "bytes": 621561,
+   "articles": 37,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "plants",
+   "path": "packs/ru/plants.json",
+   "sha256": "7aa7446aa947503b0dd71c1c977d998af321c0491a3c72488dc8c80c5e06cd74",
+   "bytes": 511189,
+   "articles": 37,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "plants",
+   "path": "packs/ar/plants.json",
+   "sha256": "d2df92f43ad6f6c8037f13f062a81ccd3834fc984b850bf1d9368aefaac6c19f",
+   "bytes": 206685,
+   "articles": 37,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "trees",
+   "path": "packs/tr/trees.json",
+   "sha256": "dd2706f54db8abec843d76b18e9b26bf5256fef82516f240c2fd4f9566c5c456",
+   "bytes": 131518,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "trees",
+   "path": "packs/en/trees.json",
+   "sha256": "696b617106f62925cb46bb340075eb986140099f402eae4bb98998c7a65a0770",
+   "bytes": 247114,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "trees",
+   "path": "packs/de/trees.json",
+   "sha256": "4e426f5afb5f9cbb06bb94b781fecdf38c2d4823bcc7cc486840727ddb77c2e2",
+   "bytes": 365954,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "trees",
+   "path": "packs/ru/trees.json",
+   "sha256": "3af18c59d519b6c87636a49c1040eedb46124acadeeb0c86ea9a87d9a312e1fb",
+   "bytes": 388319,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "trees",
+   "path": "packs/ar/trees.json",
+   "sha256": "d64fb9a039ca2079fcd1d34c5b6b9adb9ef6d552155ad9800d74b35709b22d4f",
+   "bytes": 137586,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "mushrooms",
+   "path": "packs/tr/mushrooms.json",
+   "sha256": "b1ca2b997ac7867286e56c961aada8c9f1cc8f43c2bbbad339c6c9b72d2b0e4c",
+   "bytes": 137331,
+   "articles": 27,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "mushrooms",
+   "path": "packs/en/mushrooms.json",
+   "sha256": "2ea04293d21d4449c7047eaa0830d06be876e6ee478deb96d033b04d0b877e35",
+   "bytes": 399760,
+   "articles": 27,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "mushrooms",
+   "path": "packs/de/mushrooms.json",
+   "sha256": "bb70a66b508a1d28f7dcdf07d7672f2826f85fca8a3499b997b1982083c0753e",
+   "bytes": 347380,
+   "articles": 27,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "mushrooms",
+   "path": "packs/ru/mushrooms.json",
+   "sha256": "d7319b2840750d313ca4f251ffd46c4cd7d86b047290d0e23561211db65481b7",
+   "bytes": 398534,
+   "articles": 27,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "mushrooms",
+   "path": "packs/ar/mushrooms.json",
+   "sha256": "d8a741196f1edc04f7aa2d85986e3e0936f37eb3d8d203122f34217fe579268c",
+   "bytes": 212942,
+   "articles": 27,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "animals",
+   "path": "packs/tr/animals.json",
+   "sha256": "7e4b6d13e8dd0ed1187f3f16b42ea9e61be7ff3fb7feb8f15e1e05ee78477b35",
+   "bytes": 185758,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "animals",
+   "path": "packs/en/animals.json",
+   "sha256": "7d894fa989668c93b06b867688a838f7f64e69a3d47011d9330adbbf3d548115",
+   "bytes": 609994,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "animals",
+   "path": "packs/de/animals.json",
+   "sha256": "9a36a9fb01da340c961bdcaf2b04815f03a9915b712fa25281d053621996646e",
+   "bytes": 529711,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "animals",
+   "path": "packs/ru/animals.json",
+   "sha256": "f26bab256ba59030b1fe9e5f059ec770df67e45ce5ded7ba6a3a5ce5351a371d",
+   "bytes": 511793,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "animals",
+   "path": "packs/ar/animals.json",
+   "sha256": "f23967d3814e284b714c1c2993100b61eb2592e31573942adcb602cb6c1851be",
+   "bytes": 268254,
+   "articles": 20,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "weather",
+   "path": "packs/tr/weather.json",
+   "sha256": "6f787e87c002b76638f770774d9372361e6e86764dd9643e9594b14e18904017",
+   "bytes": 197841,
+   "articles": 22,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "weather",
+   "path": "packs/en/weather.json",
+   "sha256": "4160d9f54185f0a90a75c5ea9ec0750c7a657e9b7d4bc82db5b0a278efe2a5f8",
+   "bytes": 700460,
+   "articles": 22,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "weather",
+   "path": "packs/de/weather.json",
+   "sha256": "be2ffa56301f4d49b7cee83007927e4ef7a22765395400e4a81011e0bdff7883",
+   "bytes": 581401,
+   "articles": 22,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "weather",
+   "path": "packs/ru/weather.json",
+   "sha256": "bef8916ecfd84acaa3db52df0970609b9b2ab58b1bbf756649fa4474344fa575",
+   "bytes": 629503,
+   "articles": 22,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "weather",
+   "path": "packs/ar/weather.json",
+   "sha256": "5b34bbb57ff7a9a536ed0091961fc7f211367e8914a06f8d1ccf29f0771976ee",
+   "bytes": 399579,
+   "articles": 22,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "sky",
+   "path": "packs/tr/sky.json",
+   "sha256": "71a1aeda4ac0c61563f63f4bda73148a89bddd66d4eced6c1bf8e8f147f9e87e",
+   "bytes": 380671,
+   "articles": 17,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "sky",
+   "path": "packs/en/sky.json",
+   "sha256": "e771f494f0257b5ad04ff13056b3b7eb7c424a45cf3b7d784d21eb544d44628d",
+   "bytes": 558597,
+   "articles": 17,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "sky",
+   "path": "packs/de/sky.json",
+   "sha256": "5275ee59d732eb6c3cf4abcecb94e85520af2222bbc074de9e3f5286d8edb9a5",
+   "bytes": 410384,
+   "articles": 17,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "sky",
+   "path": "packs/ru/sky.json",
+   "sha256": "fe676122b6ad6f338ceefba35323b1b0aacbd5a23d8d8fd751b23c624e3b43bf",
+   "bytes": 562460,
+   "articles": 17,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "sky",
+   "path": "packs/ar/sky.json",
+   "sha256": "c485c61ef613b051be69abc25d634489e6c23a5e801d0b4d801e93089712d848",
+   "bytes": 589362,
+   "articles": 17,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "tr",
+   "category": "places",
+   "path": "packs/tr/places.json",
+   "sha256": "3d7acee5231a1e727f78170ada8e5b939152397f47a9bbbf2c135d5889512e90",
+   "bytes": 103251,
+   "articles": 12,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "en",
+   "category": "places",
+   "path": "packs/en/places.json",
+   "sha256": "90bcdc3a8eabbea582a87295845ad0e0f51de0fa4b171b55ad2fed8b1ff963be",
+   "bytes": 153698,
+   "articles": 12,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "de",
+   "category": "places",
+   "path": "packs/de/places.json",
+   "sha256": "e2982e5d0f352fbf6aecaf9b84f9971954168229537749cd01ebff1a7d71042a",
+   "bytes": 136235,
+   "articles": 12,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ru",
+   "category": "places",
+   "path": "packs/ru/places.json",
+   "sha256": "a82b5cb823e825567105b03d205257c7b9d8bc57c701e0ea1a583fe4f05ae9fb",
+   "bytes": 145137,
+   "articles": 12,
+   "updated": "2026-11-14"
+  },
+  {
+   "lang": "ar",
+   "category": "places",
+   "path": "packs/ar/places.json",
+   "sha256": "25d61959ff3ffe478fddbc7dfccd344631d585d0635f57dab2bda072601bbef9",
+   "bytes": 59705,
+   "articles": 12,
+   "updated": "2026-11-14"
+  }
+ ]
+}
