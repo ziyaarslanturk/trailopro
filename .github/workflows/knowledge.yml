@@ -1,0 +1,73 @@
+name: Bilgi paketlerini güncelle
+
+# Her gün Vikipedi'yi kontrol eder; yalnızca değişen maddeleri indirir ve knowledge/ klasörünü günceller.
+on:
+  schedule:
+    - cron: "17 3 * * *"        # her gün 03:17 UTC (Türkiye saati 06:17)
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Değişmemiş maddeleri de yeniden indir (ilk kurulumda gerekmez)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write                # yalnızca zamanlanmış görevin "60 gün hareketsizlik" yüzünden durmasını önlemek için
+
+concurrency:
+  group: knowledge
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Testler geçmezse paket üretilmez; yayındaki eski paketler olduğu gibi kalır.
+      - name: Testler
+        run: python -m unittest discover -s tools/knowledge -p "test_*.py" -v
+
+      - name: Paketleri üret
+        env:
+          WIKI_USER_AGENT: "TrailoPRO-KnowledgeBot/1.0 (https://github.com/${{ github.repository }})"
+        run: |
+          set -o pipefail
+          python tools/knowledge/build.py ${{ inputs.force && '--force' || '' }} | tee build.log
+          {
+            echo "### Bilgi paketleri"
+            echo '```'
+            tail -n 3 build.log
+            echo '```'
+            echo "Ayrıntı: knowledge/report.json (eksik maddeler, korunan eski paketler, hatalar)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Değişiklik varsa commit et
+        run: |
+          git config user.name "trailo-knowledge-bot"
+          git config user.email "actions@users.noreply.github.com"
+          # Ayın 1'inde küçük bir hareket kaydı: depo hareketsiz görünmesin
+          if [ "$(date -u +%d)" = "01" ]; then date -u +%F > knowledge/heartbeat.txt; fi
+          git add knowledge
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+          else
+            git commit -m "Bilgi paketleri: $(date -u +%F)"
+            for i in 1 2 3; do
+              git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break
+              sleep 5
+            done
+          fi
+
+      # GitHub, hareketsiz genel depolarda zamanlanmış görevi 60 günde kapatabilir; bunu her gün yeniler.
+      - name: Zamanlanmış görevi canlı tut
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/knowledge.yml/enable"
