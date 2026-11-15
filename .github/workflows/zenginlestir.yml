@@ -1,7 +1,7 @@
 name: Trailo Pro Zenginlestir
 
 on:
-  workflow_dispatch: # GitHub arayüzünden manuel tetiklemek için
+  workflow_dispatch:
     inputs:
       ulke:
         description: 'İşlenecek Ülke Kodu (Örn: TR veya boş bırakın hepsi)'
@@ -27,7 +27,7 @@ jobs:
 
       - name: Zenginleştirme Scriptini Çalıştır
         run: |
-          node tools/zenginlestir.js --ulke "${{ github.event.inputs.ulke }}" --max-dakika "${{ github.event.inputs.max_dakika }}"
+          node zenginlestir.js --ulke "${{ github.event.inputs.ulke }}" --max-dakika "${{ github.event.inputs.max_dakika }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
