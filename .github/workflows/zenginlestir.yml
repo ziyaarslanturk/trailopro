@@ -35,5 +35,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ work/
+          git add data/ || true
+          git add work/ || true
           git diff --quiet && git diff --staged --quiet || (git commit -m "Otomatik veri zenginleştirme güncellemesi [skip ci]" && git push)
