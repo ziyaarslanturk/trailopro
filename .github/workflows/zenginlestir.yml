@@ -31,10 +31,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Değişiklikleri Commit Et ve Pushla
+      - name: Sadece Veri Değişikliklerini Kaydet ve Pushla
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ || true
-          git add work/ || true
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Otomatik veri zenginleştirme güncellemesi [skip ci]" && git push)
+          git add data/ 2>/dev/null || true
+          git add work/ 2>/dev/null || true
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Veri zenginleştirme otomatik güncellemesi [skip ci]" && git push)
