@@ -1,25 +1,47 @@
 #!/usr/bin/env node
 // TRAILO PRO - ulke dosyalarini (data/XX.json) tekrar temizler ve ucretsiz kaynaklardan zenginlestirir.
 // Kesilirse kaldigi yerden devam eder (work/ klasorunde durum tutar). Ek paket gerekmez, Node 18+.
-// Kullanim:  node tools/zenginlestir.js [--ulke TR,DE] [--max-dakika 330] [--sadece-tekrar] [--adimlar osm_id,osm_cevre,site,adres,wiki,irtifa,gbif]
+// Kullanim:  node zenginlestir.js [--ulke TR,DE] [--max-dakika 330] [--sadece-tekrar] [--adimlar osm_id,osm_cevre,site,adres,wiki,irtifa,gbif]
+// NOT: Bu dosya repo'nun KOK klasoründen calistirilmalidir (data/ klasoru ile yan yana).
+//      node zenginlestir.js --ulke TR
 'use strict';
 const fs = require('fs'), path = require('path'), zlib = require('zlib'), https = require('https'), http = require('http');
 
 // ---------------- AYARLAR ----------------
+// Script nerede calisiyorsa ona gore kök bul
+const SCRIPT_DIR = path.dirname(fs.realpathSync(process.argv[1]));
+// data/ ve work/ her zaman repo kökünde: script tools/ altinda olabilir
+const REPO_KOK = fs.existsSync(path.join(SCRIPT_DIR, 'data'))
+  ? SCRIPT_DIR
+  : path.join(SCRIPT_DIR, '..');
+
 const CFG = {
-  VERI: 'data', CALISMA: 'work',
+  VERI: path.join(REPO_KOK, 'data'),
+  CALISMA: path.join(REPO_KOK, 'work'),
   MESAFE: 50,            // metre: bu mesafedeki noktalar ayni yer sayilir
-  KARISIK: 'koru',       // biri adli biri adsiz: 'koru' (ikisi de kalir) | 'birlestir' (adsiz silinir, bilgisi adliya eklenir)
-  ADLI_ADLI: 'benzer',   // ikisi de adli: 'benzer' (sadece adi/sitesi/telefonu benzerse sil) | 'hepsi' (50 m icindeki bilgisi az olan silinir)
+  KARISIK: 'birlestir', // biri adli biri adsiz: 'koru' | 'birlestir' (adsiz silinir, bilgisi adliya eklenir)
+  ADLI_ADLI: 'hepsi',   // ikisi de adli: 'benzer' | 'hepsi' (50m icindeki bilgisi az olan silinir)
   UA: 'TrailoPRO-zenginlestir/1.0 (+https://github.com/ziyaarslanturk/trailopro)',
   ADIMLAR: ['osm_id', 'osm_cevre', 'site', 'adres', 'wiki', 'irtifa', 'gbif'],
 };
+
+// Baslangicta path kontrolu yap
+console.log(`[YAPILANDIRMA] REPO KOK: ${REPO_KOK}`);
+console.log(`[YAPILANDIRMA] VERI klasoru: ${CFG.VERI}`);
+console.log(`[YAPILANDIRMA] CALISMA klasoru: ${CFG.CALISMA}`);
+if (!fs.existsSync(CFG.VERI)) {
+  console.error(`[HATA] data/ klasoru bulunamadi: ${CFG.VERI}`);
+  console.error('Scripti repo kok klasorunden calistirin: node zenginlestir.js');
+  process.exit(1);
+}
+
 const argv = process.argv.slice(2);
 const arg = (n, v) => { const i = argv.indexOf('--' + n); return i < 0 ? v : (argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[i + 1] : true); };
 const MAXMS = (parseFloat(arg('max-dakika', 0)) || 0) * 60000, T0 = Date.now();
 const SADECE_TEKRAR = !!arg('sadece-tekrar', false);
 const ADIMLAR = (arg('adimlar', '') || CFG.ADIMLAR.join(',')).split(',');
-const VERI = arg('veri', CFG.VERI);
+// --yeniden-baslat: belirtilen ulkeler icin state dosyasini sifirla
+const YENIDEN = !!(arg('yeniden-baslat', false));
 
 // ---------------- GENEL ----------------
 class Stop extends Error {}
@@ -112,7 +134,7 @@ function karar(p, k) { // true: p silinir
   const pa = adliMi(p), ka = adliMi(k);
   if (!pa && !ka) return 'ikisi de adsiz';
   if (pa && ka) {
-    if (CFG.ADLI_ADLI === 'hepsi') return 'ikisi de adli, bilgisi az';
+    if (CFG.ADLI_ADLI === 'hepsi') return skor(p) < skor(k) ? 'ikisi de adli, bilgisi az' : null;
     if (benzerAd(p, k)) return 'benzer ad';
     if (p.website && k.website && hostOf(p.website) === hostOf(k.website)) return 'ayni site';
     if (p.phone && k.phone && digits(p.phone) === digits(k.phone)) return 'ayni telefon';
@@ -152,6 +174,7 @@ const kTags = t => { const o = {}; for (const k of Object.keys(t || {})) if (TAG
 const osmRef = id => { const m = /^([nwr])(\d+)$/.exec(id); return m ? { t: { n: 'node', w: 'way', r: 'relation' }[m[1]], i: m[2] } : null; };
 async function adimOsmId(st) {
   const todo = []; for (const p of st.points) { const d = dd(st, p); if (d._id) continue; if (!osmRef(p.id)) d._id = 1; else todo.push(p); }
+  console.log(`  OSM ID: ${todo.length} nokta sorgulanacak`);
   for (let i = 0; i < todo.length; i += 150) {
     const b = todo.slice(i, i + 150), by = { node: [], way: [], relation: [] }; b.forEach(p => { const r = osmRef(p.id); by[r.t].push(r.i); });
     const parts = Object.entries(by).filter(([, a]) => a.length).map(([t, a]) => `${t}(id:${a.join(',')});`).join('');
@@ -159,6 +182,7 @@ async function adimOsmId(st) {
     if (els === undefined) { b.forEach(p => hata(st, p, '_id')); continue; }
     const map = new Map(els.map(e => [{ node: 'n', way: 'w', relation: 'r' }[e.type] + e.id, e]));
     b.forEach(p => { const e = map.get(p.id); const d = dd(st, p); d.tags = e ? kTags(e.tags) : null; d._id = 1; });
+    if (i % 1500 === 0) console.log(`  OSM ID ilerleme: ${i}/${todo.length}`);
     kaydetGerekirse(st);
   }
 }
@@ -184,28 +208,42 @@ const YARICAP = { su: [3000, 3], tepe: [10000, 2], yerlesim: [15000, 2], ilgi: [
 const ADSIZOK = new Set(['icmesuyu', 'wc', 'yakit', 'saglik', 'market']);
 function sorguTile(S, W, N, E) {
   const b = `(${S},${W},${N},${E})`;
-  return `[out:json][timeout:180];(nwr["tourism"~"^(camp_site|caravan_site|guest_house|hostel|chalet|hotel|motel|apartment|alpine_hut|wilderness_hut|attraction|viewpoint)$"]["name"]${b};nwr["natural"~"^(water|beach|spring|hot_spring|peak|bay|cape|cave_entrance)$"]["name"]${b};nwr["waterway"="waterfall"]["name"]${b};nwr["place"~"^(city|town|village|hamlet|suburb|locality|isolated_dwelling)$"]["name"]${b};nwr["amenity"~"^(drinking_water|toilets|shower|fuel|hospital|clinic|pharmacy)$"]${b};nwr["shop"~"^(supermarket|convenience|bakery|general)$"]${b};rel["boundary"~"^(national_park|protected_area)$"]["name"]${b};);out tags center bb;`;
-}
-async function tileCek(S, W, N, E, derinlik) {
-  const els = await overpass(sorguTile(S, W, N, E)); if (els !== undefined) return els;
-  if (derinlik >= 2) return undefined;
-  const oy = (S + N) / 2, ox = (W + E) / 2, hepsi = new Map();
-  for (const [s, w, n, e] of [[S, W, oy, ox], [S, ox, oy, E], [oy, W, N, ox], [oy, ox, N, E]]) {
-    const r = await tileCek(s, w, n, e, derinlik + 1); if (r === undefined) return undefined; r.forEach(x => hepsi.set(x.type + x.id, x));
-  }
-  return [...hepsi.values()];
+  return `[out:json][timeout:180];(
+    node["tourism"~"^(camp_site|caravan_site|attraction|viewpoint|guest_house|hostel|chalet|hotel|motel|apartment|alpine_hut|wilderness_hut)$"]${b};
+    way["tourism"~"^(camp_site|caravan_site|attraction|viewpoint|guest_house|hostel|chalet|hotel|motel|apartment|alpine_hut|wilderness_hut)$"]${b};
+    node["natural"~"^(peak|water|beach|spring|hot_spring|bay|cave_entrance|cape)$"]${b};
+    way["natural"~"^(water|beach|spring|hot_spring|bay)$"]${b};
+    node["waterway"="waterfall"]${b};
+    node["place"]${b};
+    node["amenity"~"^(drinking_water|toilets|shower|fuel|hospital|clinic|pharmacy)$"]${b};
+    way["amenity"~"^(hospital|clinic|pharmacy)$"]${b};
+    node["shop"]${b};
+    relation["boundary"~"^(national_park|protected_area)$"]${b};
+    way["boundary"~"^(national_park|protected_area)$"]${b};
+  );out tags center bb;`;
 }
 function indeksle(els) {
-  const idx = {};
-  for (const e of els) {
-    const t = e.tags || {}, k = sinif(t); if (!k) continue;
-    const la = e.lat != null ? e.lat : e.center && e.center.lat, lo = e.lon != null ? e.lon : e.center && e.center.lon; if (la == null) continue;
-    (idx[k] = idx[k] || []).push({ ad: t.name || null, tur: t.tourism || t.natural || t.place || t.amenity || t.shop || t.boundary || t.waterway, la, lo, bb: e.bounds || null, tags: t });
+  const idx = {}; for (const e of els) {
+    const t = e.tags || {}, s = sinif(t); if (!s) continue;
+    const la = e.center ? e.center.lat : e.lat, lo = e.center ? e.center.lon : e.lon;
+    const ad = t.name || t['name:en'] || t['name:tr'] || null;
+    const bb = e.bounds || null;
+    if (!idx[s]) idx[s] = []; idx[s].push({ la, lo, ad, tur: t.tourism || t.natural || t.amenity || t.place || t.shop || null, tags: t, bb });
   }
   return idx;
 }
+async function tileCek(S, W, N, E, derinlik) {
+  const els = await overpass(sorguTile(S, W, N, E));
+  if (els !== undefined) return els;
+  if (derinlik >= 2) return undefined;
+  const mla = (S + N) / 2, mlo = (W + E) / 2;
+  const q = [[S, W, mla, mlo], [S, mlo, mla, E], [mla, W, N, mlo], [mla, mlo, N, E]];
+  const all = [];
+  for (const [s, w, n, e] of q) { const r = await tileCek(s, w, n, e, derinlik + 1); if (r === undefined) return undefined; all.push(...r); }
+  return all;
+}
 function cevreHesapla(p, idx) {
-  const o = {}; let komsu = null, kd = 51;
+  const o = {}; let kd = Infinity, komsu = null;
   for (const [k, [r, n]] of Object.entries(YARICAP)) {
     const lst = []; for (const x of idx[k] || []) { if (!x.ad && !ADSIZOK.has(k)) continue; if (Math.abs(x.la - p.latitude) > r / 100000) continue; const d = mt(p.latitude, p.longitude, x.la, x.lo); if (d <= r) lst.push({ ad: x.ad, tur: x.tur, m: Math.round(d) }); }
     lst.sort((a, b) => a.m - b.m); if (lst.length) o[k] = lst.slice(0, n);
@@ -218,11 +256,15 @@ function cevreHesapla(p, idx) {
 }
 async function adimCevre(st) {
   const gr = {}; for (const p of st.points) if (!dd(st, p)._cv) { const k = Math.floor(p.latitude / 0.1) + ':' + Math.floor(p.longitude / 0.1); (gr[k] = gr[k] || []).push(p); }
+  const toplam = Object.keys(gr).length;
+  console.log(`  Cevre: ${toplam} tile sorgulanacak`);
+  let tileNo = 0;
   for (const [k, pts] of Object.entries(gr)) {
     const [a, b] = k.split(':').map(Number);
     const els = await tileCek(a * 0.1 - 0.05, b * 0.1 - 0.05, a * 0.1 + 0.15, b * 0.1 + 0.15, 0);
     if (els === undefined) { pts.forEach(p => hata(st, p, '_cv')); continue; }
     const idx = indeksle(els); pts.forEach(p => { const d = dd(st, p); d.cevre = cevreHesapla(p, idx); d._cv = 1; }); durumKaydet(st);
+    tileNo++; if (tileNo % 10 === 0) console.log(`  Cevre tile ${tileNo}/${toplam}`);
   }
 }
 
@@ -248,6 +290,7 @@ function decode(r) {
 const siteOf = (p, d) => { const t = d.tags || {}; return p.website || t.website || t['contact:website'] || t.url || (d.cevre && d.cevre.komsu50 && d.cevre.komsu50.site) || null; };
 async function adimSite(st) {
   const todo = []; for (const p of st.points) { const d = dd(st, p); if (d._st) continue; const u = siteOf(p, d); if (!u) { d._st = 1; continue; } if (SOSYAL.test(u)) { d.sosyal = [u]; d._st = 1; continue; } todo.push([p, /^https?:/i.test(u) ? u : 'https://' + u]); }
+  console.log(`  Site: ${todo.length} adres cekilecek`);
   await havuz(todo, 8, async ([p, u]) => {
     const d = dd(st, p); await bekle(hostOf(u) || 'x', 1500); const r = await NET.get(u, { timeout: 15000, max: 600000, headers: { Accept: 'text/html', 'Accept-Language': 'tr,en;q=0.8' } });
     if (r.status === 200 && /html/i.test((r.headers && r.headers['content-type']) || 'html')) { try { d.site = siteParse(decode(r)); d.site.url = u; } catch (e) {} d._st = 1; }
@@ -259,8 +302,10 @@ async function adimSite(st) {
 // ---------------- 5) ADRES (Nominatim, ~500 m hucre onbellegi) ----------------
 const DIL = { TR: 'tr', DE: 'de', AT: 'de', CH: 'de', FR: 'fr', ES: 'es', IT: 'it', PT: 'pt', NL: 'nl', PL: 'pl', RU: 'ru' };
 async function adimAdres(st) {
-  for (const p of st.points) {
-    const d = dd(st, p); if (d._ad) continue; kontrol();
+  const todo = st.points.filter(p => !dd(st, p)._ad);
+  console.log(`  Adres: ${todo.length} nokta sorgulanacak`);
+  for (const p of todo) {
+    const d = dd(st, p); kontrol();
     const key = 'ad:' + Math.round(p.latitude / 0.005) + ':' + Math.round(p.longitude / 0.005);
     if (st.hucre[key] === undefined) {
       const j = await json(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=16&addressdetails=1&accept-language=${DIL[st.cc] || 'en'}&lat=${p.latitude}&lon=${p.longitude}`, {}, { ms: 1100 });
@@ -275,8 +320,10 @@ async function adimAdres(st) {
 // ---------------- 6) WIKIPEDIA ----------------
 async function adimWiki(st) {
   const lang = DIL[st.cc] || 'en';
-  for (const p of st.points) {
-    const d = dd(st, p); if (d._wk) continue; kontrol();
+  const todo = st.points.filter(p => !dd(st, p)._wk);
+  console.log(`  Wiki: ${todo.length} nokta sorgulanacak`);
+  for (const p of todo) {
+    const d = dd(st, p); kontrol();
     const key = 'wk:' + Math.round(p.latitude / 0.02) + ':' + Math.round(p.longitude / 0.02);
     if (st.hucre[key] === undefined) {
       const j = await json(`https://${lang}.wikipedia.org/w/api.php?action=query&format=json&generator=geosearch&ggscoord=${p.latitude}%7C${p.longitude}&ggsradius=6000&ggslimit=5&prop=extracts%7Ccoordinates&exintro=1&explaintext=1&exchars=350&colimit=5`, {}, { ms: 300 });
@@ -290,6 +337,7 @@ async function adimWiki(st) {
 // ---------------- 7) IRTIFA (Open-Meteo) ----------------
 async function adimIrtifa(st) {
   const todo = st.points.filter(p => !dd(st, p)._el);
+  console.log(`  Irtifa: ${todo.length} nokta sorgulanacak`);
   for (let i = 0; i < todo.length; i += 100) {
     const b = todo.slice(i, i + 100);
     const j = await json(`https://api.open-meteo.com/v1/elevation?latitude=${b.map(p => p.latitude.toFixed(5)).join(',')}&longitude=${b.map(p => p.longitude.toFixed(5)).join(',')}`, {}, { ms: 600 });
@@ -301,8 +349,10 @@ async function adimIrtifa(st) {
 // ---------------- 8) CANLI TURLERI (GBIF gozlem kayitlari, ~5 km hucre) ----------------
 const GRUP = [['kus', 'classKey=212'], ['memeli', 'classKey=359'], ['surungen', 'classKey=358'], ['bitki', 'kingdomKey=6']];
 async function adimGbif(st) {
-  for (const p of st.points) {
-    const d = dd(st, p); if (d._gb) continue; kontrol();
+  const todo = st.points.filter(p => !dd(st, p)._gb);
+  console.log(`  GBIF: ${todo.length} nokta sorgulanacak`);
+  for (const p of todo) {
+    const d = dd(st, p); kontrol();
     const a = Math.round(p.latitude / 0.05), b = Math.round(p.longitude / 0.05), key = 'gb:' + a + ':' + b;
     if (st.hucre[key] === undefined) {
       const o = {}; let bozuk = false;
@@ -368,26 +418,49 @@ function dosyaOku(f) { const b = fs.readFileSync(f); return JSON.parse((f.endsWi
 function dosyaYaz(f, o) { const s = JSON.stringify(o); fs.writeFileSync(f, f.endsWith('.gz') ? zlib.gzipSync(s) : s); }
 const ADIM_FN = { osm_id: adimOsmId, osm_cevre: adimCevre, site: adimSite, adres: adimAdres, wiki: adimWiki, irtifa: adimIrtifa, gbif: adimGbif };
 async function ulke(cc, f) {
+  if (YENIDEN) {
+    const sp = stPath(cc);
+    if (fs.existsSync(sp)) { fs.unlinkSync(sp); console.log(cc, '- state sifirlandi'); }
+  }
   const st = CUR = durumYukle(cc);
-  if (st.bitti) { console.log(cc, 'zaten bitti'); return; }
+  if (st.bitti) { console.log(cc, 'zaten bitti (--yeniden-baslat ile sifirla)'); return; }
   if (!st.tekrarBitti) {
     const p0 = dosyaOku(f); const { points, log } = tekrarTemizle(p0);
     st.points = points; st.log = log; st.once = p0.length; st.tekrarBitti = true; durumKaydet(st);
-    console.log(`${cc}: ${p0.length} nokta, tekrar temizliği sonrası ${points.length} (silinen ${log.length})`);
+    console.log(`${cc}: ${p0.length} nokta, tekrar temizligi sonrasi ${points.length} (silinen ${log.length})`);
+  } else {
+    console.log(`${cc}: state yukle - ${st.points.length} nokta, adimlar isleniyor`);
   }
   if (SADECE_TEKRAR) return;
-  for (const a of ADIMLAR) { console.log(cc, '- adım:', a); await ADIM_FN[a](st); durumKaydet(st); }
-  if (!st.points.every(p => dd(st, p)._id && dd(st, p)._cv)) { /* bazi adimlar secilmediyse yine yaz */ }
+  for (const a of ADIMLAR) {
+    const tamam = st.points.filter(p => dd(st, p)['_' + { osm_id: 'id', osm_cevre: 'cv', site: 'st', adres: 'ad', wiki: 'wk', irtifa: 'el', gbif: 'gb' }[a]]).length;
+    if (tamam === st.points.length) { console.log(cc, '- adim ATLANDI (zaten tamamlandi):', a); continue; }
+    console.log(cc, '- adim basladi:', a, `(${tamam}/${st.points.length} tamamlanmis)`);
+    await ADIM_FN[a](st); durumKaydet(st);
+    console.log(cc, '- adim tamamlandi:', a);
+  }
   st.points.forEach(p => yaz(st, p));
   dosyaYaz(f, st.points); // mevcut dosyanin icine yazar, baska dosya uretmez
   st.bitti = true; durumKaydet(st); console.log(cc, 'TAMAMLANDI ->', f);
 }
 async function main() {
-  const dosyalar = fs.readdirSync(VERI).map(n => /^([A-Za-z]{2})\.json(\.gz)?$/.exec(n)).filter(Boolean).map(m => ({ cc: m[1].toUpperCase(), f: path.join(VERI, m[0]), boy: fs.statSync(path.join(VERI, m[0])).size }));
+  const dosyalar = fs.readdirSync(CFG.VERI)
+    .map(n => /^([A-Za-z]{2})\.json(\.gz)?$/.exec(n))
+    .filter(Boolean)
+    .map(m => ({ cc: m[1].toUpperCase(), f: path.join(CFG.VERI, m[0]), boy: fs.statSync(path.join(CFG.VERI, m[0])).size }));
+  console.log(`[TARAMA] ${dosyalar.length} ulke dosyasi bulundu: ${dosyalar.map(x => x.cc).join(', ')}`);
+  if (dosyalar.length === 0) { console.error('[HATA] data/ klasorunde hic XX.json dosyasi yok!'); process.exit(1); }
   const sec = (arg('ulke', '') || '').toString().toUpperCase().split(',').filter(Boolean);
+  if (sec.length) console.log(`[FILTRE] Secilen ulkeler: ${sec.join(', ')}`);
   dosyalar.sort((a, b) => (a.cc === 'TR' ? -1 : b.cc === 'TR' ? 1 : a.boy - b.boy));
-  try { for (const x of dosyalar) if (!sec.length || sec.includes(x.cc)) await ulke(x.cc, x.f); console.log('Seçilen ülkelerin hepsi bitti.'); }
-  catch (e) { if (CUR) durumKaydet(CUR); if (e instanceof Stop) console.log('Süre doldu, durum kaydedildi. Aynı komutla devam eder.'); else throw e; }
+  try {
+    for (const x of dosyalar) if (!sec.length || sec.includes(x.cc)) await ulke(x.cc, x.f);
+    console.log('Secilen ulkelerin hepsi bitti.');
+  } catch (e) {
+    if (CUR) durumKaydet(CUR);
+    if (e instanceof Stop) console.log('Sure doldu, durum kaydedildi. Ayni komutla devam eder.');
+    else throw e;
+  }
 }
 module.exports = { tekrarTemizle, yaz, indeksle, cevreHesapla, siteParse, adliMi, genel, CFG, NET, dd, ulke, adimCevre, adimOsmId, adimSite, adimAdres, adimWiki, adimIrtifa, adimGbif, durumYukle };
 if (require.main === module) main().catch(e => { console.error(e); process.exit(1); });
