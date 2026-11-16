@@ -1,40 +1,103 @@
-name: Trailo Pro Zenginlestir
+name: Zenginlestir
 
 on:
   workflow_dispatch:
     inputs:
       ulke:
-        description: 'İşlenecek Ülke Kodu (Örn: TR veya boş bırakın hepsi)'
+        description: 'Ulke kodlari (virgul ile ayir, bos = hepsi). Ornek: TR,DE,FR'
         required: false
-        default: ''
+        default: 'TR'
       max_dakika:
-        description: 'Maksimum Çalışma Süresi (Dakika)'
+        description: 'Maksimum calisma suresi (dakika). 0 = sinirsiz.'
         required: false
-        default: '30'
+        default: '320'
+      yeniden_baslat:
+        description: 'State sifirlansin mi? (true = evet, onceki ilerleme silinir)'
+        required: false
+        default: 'false'
+  schedule:
+    # Her gun 02:00 UTC - TR ile baslayip sure dolunca durur, kaldigi yerden devam eder
+    - cron: '0 2 * * *'
 
 jobs:
-  run-script:
+  zenginlestir:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
 
     steps:
-      - name: Repoyu Klonla (Checkout)
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: Node.js Kurulumu
+      - name: Node.js kur
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
-      - name: Zenginleştirme Scriptini Çalıştır
+      # work/ klasorunu onceki calismayla geri yukle (kaldigi yerden devam icin)
+      - name: Cache - work klasorunu geri yukle
+        uses: actions/cache@v4
+        with:
+          path: work/
+          # Cache anahtari: ulke bazinda (her ulke ayri slot)
+          key: zenginlestir-work-${{ github.run_id }}
+          restore-keys: |
+            zenginlestir-work-
+
+      - name: Dizinleri kontrol et
         run: |
-          node zenginlestir.js --ulke "${{ github.event.inputs.ulke }}" --max-dakika "${{ github.event.inputs.max_dakika }}"
+          echo "=== Repo kok ==="
+          ls -la
+          echo "=== data/ klasoru ==="
+          ls data/ | head -20
+          echo "=== work/ klasoru (varsa) ==="
+          ls work/ 2>/dev/null | head -10 || echo "(bos veya yok)"
+
+      - name: Zenginlestir calistir
+        run: |
+          # Ulke parametresi: dispatch'ten veya schedule icin TR
+          ULKE="${{ github.event.inputs.ulke }}"
+          if [ -z "$ULKE" ]; then ULKE="TR"; fi
+
+          MAX="${{ github.event.inputs.max_dakika }}"
+          if [ -z "$MAX" ]; then MAX="320"; fi
+
+          YENIDEN="${{ github.event.inputs.yeniden_baslat }}"
+
+          echo "Ulke: $ULKE"
+          echo "Max dakika: $MAX"
+          echo "Yeniden baslat: $YENIDEN"
+
+          ARGS="--ulke $ULKE --max-dakika $MAX"
+          if [ "$YENIDEN" = "true" ]; then
+            ARGS="$ARGS --yeniden-baslat"
+          fi
+
+          # Script repo kokunden calistirilir (data/ ile yan yana)
+          node zenginlestir.js $ARGS
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_OPTIONS: '--max-old-space-size=1024'
 
-      - name: Sadece Veri Değişikliklerini Kaydet ve Pushla
+      - name: Degisiklikleri commit et
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ 2>/dev/null || true
-          git add work/ 2>/dev/null || true
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Veri zenginleştirme otomatik güncellemesi [skip ci]" && git push)
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Sadece data/ ve work/ klasorlerini ekle
+          git add data/
+          # work/ klasorunu .gitignore'a ekle (state dosyalari cok buyur)
+          if ! grep -q "^work/$" .gitignore 2>/dev/null; then
+            echo "work/" >> .gitignore
+            git add .gitignore
+          fi
+
+          # Degisiklik var mi?
+          if git diff --cached --quiet; then
+            echo "Degisiklik yok, commit atlanıyor."
+          else
+            ULKE="${{ github.event.inputs.ulke }}"
+            if [ -z "$ULKE" ]; then ULKE="zamanlanmis"; fi
+            git commit -m "data: zenginlestir ($ULKE) [skip ci]"
+            git push
+          fi
