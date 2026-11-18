@@ -10,6 +10,14 @@ on:
         description: "Değişmemiş maddeleri de yeniden indir (ilk kurulumda gerekmez)"
         type: boolean
         default: false
+      only:
+        description: "Yalnızca bu kategoriler (virgülle, boşsa hepsi)"
+        type: string
+        default: ""
+      limit:
+        description: "Deneme: kategori başına ilk N konu (0 = hepsi)"
+        type: string
+        default: "0"
 
 permissions:
   contents: write
@@ -22,7 +30,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
 
@@ -37,15 +45,22 @@ jobs:
       - name: Paketleri üret
         env:
           WIKI_USER_AGENT: "TrailoPRO-KnowledgeBot/1.0 (https://github.com/${{ github.repository }})"
+          FORCE: ${{ inputs.force && '--force' || '' }}
+          ONLY: ${{ inputs.only }}
+          LIMIT: ${{ inputs.limit }}
         run: |
           set -o pipefail
-          python tools/knowledge/build.py ${{ inputs.force && '--force' || '' }} | tee build.log
+          args=()
+          [ -n "$FORCE" ] && args+=("$FORCE")
+          [ -n "$ONLY" ] && args+=(--only "$ONLY")
+          [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ] && args+=(--limit "$LIMIT")
+          python tools/knowledge/build.py "${args[@]}" | tee build.log
           {
             echo "### Bilgi paketleri"
             echo '```'
             tail -n 3 build.log
             echo '```'
-            echo "Ayrıntı: knowledge/report.json (eksik maddeler, korunan eski paketler, hatalar)"
+            echo "Ayrıntı: knowledge/report.json (eksik maddeler, korunan eski paketler, hatalar, kısa maddeler)"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Değişiklik varsa commit et
