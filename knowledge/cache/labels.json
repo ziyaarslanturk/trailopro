@@ -1,0 +1,339 @@
+{
+"Q115359865": {
+"de": "Ronnagramm",
+"en": "ronnagram",
+"ru": "роннаграмм"
+},
+"Q1153785": {
+"ar": "شعيبة",
+"de": "Unterstamm",
+"en": "subphylum",
+"ru": "подтип"
+},
+"Q11570": {
+"ar": "كيلوغرام",
+"de": "Kilogramm",
+"en": "kilogram",
+"ru": "килограмм",
+"tr": "kilogram"
+},
+"Q11573": {
+"ar": "متر",
+"de": "Meter",
+"en": "metre",
+"ru": "метр",
+"tr": "metre"
+},
+"Q146481": {
+"ar": "نطاق",
+"de": "Domäne",
+"en": "domain",
+"ru": "домен",
+"tr": "Üst âlem"
+},
+"Q14817220": {
+"ar": "قبيلة عليا",
+"de": "Übertribus",
+"en": "supertribe",
+"ru": "надтриба"
+},
+"Q164280": {
+"ar": "فُصَيلة",
+"de": "Unterfamilie",
+"en": "subfamily",
+"ru": "подсемейство",
+"tr": "Alt familya"
+},
+"Q180892": {
+"ar": "كتلة شمسية",
+"de": "Sonnenmasse",
+"en": "solar mass",
+"ru": "солнечная масса",
+"tr": "güneş kütlesi"
+},
+"Q19858692": {
+"ar": "مملكة عليا",
+"de": "Überreich",
+"en": "superkingdom",
+"ru": "надцарство"
+},
+"Q2007442": {
+"ar": "طائفة سفلى",
+"de": "Teilklasse",
+"en": "infraclass",
+"ru": "инфракласс"
+},
+"Q211005": {
+"ar": "نوع غير مهدد",
+"de": "nicht gefährdet",
+"en": "least concern",
+"ru": "находятся под наименьшей угрозой",
+"tr": "düşük riskli türler"
+},
+"Q2111790": {
+"ar": "شعبة عليا",
+"de": "Überstamm",
+"en": "superphylum",
+"ru": "надтип"
+},
+"Q2136103": {
+"ar": "فصيلة عليا",
+"de": "Überfamilie",
+"en": "superfamily",
+"ru": "надсемейство"
+},
+"Q218593": {
+"ar": "بوصة",
+"de": "Zoll",
+"en": "inch",
+"ru": "дюйм",
+"tr": "inç"
+},
+"Q22666877": {
+"ar": "فوق النطاق",
+"en": "superdomain",
+"ru": "наддомен"
+},
+"Q227936": {
+"ar": "قبيلة",
+"de": "Tribus",
+"en": "tribe",
+"ru": "триба",
+"tr": "Oymak"
+},
+"Q23760204": {
+"ar": "فرقة عليا",
+"de": "Überabteilung",
+"en": "superdivision",
+"ru": "надотдел"
+},
+"Q2752679": {
+"ar": "عويلم",
+"de": "Unterreich",
+"en": "subkingdom",
+"ru": "подцарство",
+"tr": "Alt âlem"
+},
+"Q278113": {
+"ar": "نوع معرض للانقراض",
+"de": "gefährdet",
+"en": "vulnerable",
+"ru": "уязвимый вид",
+"tr": "Duyarlı türler"
+},
+"Q2889003": {
+"ar": "رتبة سفلى",
+"de": "Teilordnung",
+"en": "infraorder",
+"ru": "инфраотряд",
+"tr": "İnfra takım"
+},
+"Q3150876": {
+"ar": "مملكة سفلى",
+"de": "Teilreich",
+"en": "infrakingdom",
+"ru": "инфрацарство"
+},
+"Q3181348": {
+"ar": "قسم",
+"de": "Sektion",
+"en": "section",
+"ru": "секция",
+"tr": "seksiyon"
+},
+"Q3238261": {
+"ar": "جنيس",
+"de": "Untergattung",
+"en": "subgenus",
+"ru": "подрод",
+"tr": "alt cins"
+},
+"Q3245245": {
+"ar": "نوع ناقص البيانات",
+"de": "keine ausreichenden Daten",
+"en": "Data Deficient",
+"ru": "данных недостаточно",
+"tr": "Yetersiz Veri"
+},
+"Q334460": {
+"ar": "شعبة",
+"de": "Abteilung",
+"en": "division",
+"ru": "отдел"
+},
+"Q34740": {
+"ar": "جنس",
+"de": "Gattung",
+"en": "genus",
+"ru": "род",
+"tr": "cins"
+},
+"Q3491997": {
+"ar": "كتيبة",
+"de": "Unterabteilung",
+"en": "subdivision",
+"ru": "подотдел"
+},
+"Q3504061": {
+"ar": "طائفة عليا",
+"de": "Überklasse",
+"en": "superclass",
+"ru": "надкласс"
+},
+"Q35409": {
+"ar": "فصيلة",
+"de": "Familie",
+"en": "family",
+"ru": "семейство",
+"tr": "familya"
+},
+"Q36602": {
+"ar": "رتبة",
+"de": "Ordnung",
+"en": "order",
+"ru": "отряд / порядок",
+"tr": "takım"
+},
+"Q36732": {
+"ar": "مملكة",
+"de": "Reich",
+"en": "kingdom",
+"ru": "царство",
+"tr": "âlem"
+},
+"Q37517": {
+"ar": "طائفة",
+"de": "Klasse",
+"en": "class",
+"ru": "класс",
+"tr": "sınıf"
+},
+"Q38348": {
+"ar": "شعبة",
+"de": "Stamm",
+"en": "phylum",
+"ru": "тип",
+"tr": "şube"
+},
+"Q3965313": {
+"ar": "قُبَيِّلة",
+"de": "Untertribus",
+"en": "subtribe",
+"ru": "подтриба",
+"tr": "alt oymak"
+},
+"Q577": {
+"ar": "سنة",
+"de": "Jahr",
+"en": "year",
+"ru": "год",
+"tr": "yıl"
+},
+"Q5867051": {
+"ar": "طويئفة",
+"de": "Unterklasse",
+"en": "subclass",
+"ru": "подкласс"
+},
+"Q5867959": {
+"ar": "رتيبة",
+"de": "Unterordnung",
+"en": "suborder",
+"ru": "подотряд / подпорядок",
+"tr": "alttakım"
+},
+"Q5868144": {
+"ar": "رتبة عليا",
+"de": "Überordnung",
+"en": "superorder",
+"ru": "надотряд"
+},
+"Q6054237": {
+"ar": "رتبة ضخمة",
+"de": "Magnordnung",
+"en": "magnorder",
+"ru": "магнотряд"
+},
+"Q6054535": {
+"ar": "تحت الفيلق",
+"de": "Infralegion",
+"en": "infralegion",
+"ru": "инфралегион"
+},
+"Q6054637": {
+"ar": "فيلق ثانوي",
+"de": "Unterlegion",
+"en": "sublegion",
+"ru": "подлегион"
+},
+"Q6054795": {
+"ar": "فوق الفيلق",
+"de": "Überlegion",
+"en": "superlegion",
+"ru": "надлегион"
+},
+"Q613726": {
+"ar": "يوتاغرام",
+"de": "Yottagramm",
+"en": "yottagram",
+"ru": "йоттаграмм"
+},
+"Q62075839": {
+"ar": "نطاق",
+"de": "Realm",
+"en": "realm",
+"ru": "реалм"
+},
+"Q6311258": {
+"ar": "رتبة صغرى",
+"de": "Parvordnung",
+"en": "parvorder",
+"ru": "парвотряд",
+"tr": "Parvo takım"
+},
+"Q6462265": {
+"ar": "رتبة كبرى",
+"de": "Großordnung",
+"en": "grandorder",
+"ru": "грандотряд"
+},
+"Q713623": {
+"ar": "فرع حيوي",
+"de": "Klade",
+"en": "clade",
+"ru": "клада",
+"tr": "klad"
+},
+"Q7432": {
+"ar": "نوع",
+"de": "Art",
+"en": "species",
+"ru": "вид",
+"tr": "tür"
+},
+"Q7504331": {
+"ar": "فيلق",
+"de": "Legion",
+"en": "legion",
+"ru": "легион"
+},
+"Q7506274": {
+"ar": "رتبة متوسطة",
+"de": "Mirordnung",
+"en": "mirorder",
+"ru": "миротряд"
+},
+"Q828224": {
+"ar": "كيلومتر",
+"de": "Kilometer",
+"en": "kilometre",
+"ru": "километр",
+"tr": "kilometre"
+},
+"Q96377276": {
+"ar": "مهدد بالانقراض",
+"de": "stark gefährdet",
+"en": "endangered",
+"ru": "вымирающие виды"
+}
+}
