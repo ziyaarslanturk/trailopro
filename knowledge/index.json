@@ -1,7 +1,7 @@
 {
  "schema": 1,
- "version": "828d220df57c",
- "updated": "2026-11-18",
+ "version": "ee5273214e0f",
+ "updated": "2026-11-19",
  "license": "CC BY-SA 4.0",
  "languages": [
   "tr",
@@ -294,19 +294,19 @@
    "lang": "tr",
    "category": "camping",
    "path": "packs/tr/camping.json",
-   "sha256": "212ee6b0231e8a7f86b44fda983c57196622a6cd211a74e50c29bbf87b25a114",
+   "sha256": "999993b39f3c2eddeb66461ec8db430a98a523597e7cca7bc697f471df219b05",
    "bytes": 279429,
    "articles": 24,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "en",
    "category": "camping",
    "path": "packs/en/camping.json",
-   "sha256": "92b36f3fc6d5aff31fec6d5f4f1a468ab590f58fad2572a72dfd65b219bb1ced",
-   "bytes": 433427,
+   "sha256": "97cdf56fbf4037953fc99ce6e47c285e7bdbf39d3db3ce09693b23fee83d9312",
+   "bytes": 433326,
    "articles": 24,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
@@ -321,19 +321,19 @@
    "lang": "ru",
    "category": "camping",
    "path": "packs/ru/camping.json",
-   "sha256": "aaac4e6507580e779a3a8996d3a13794128f6b5f0efd62ae934a6bd02242e447",
-   "bytes": 366954,
+   "sha256": "326c01462c396532a7b1089c59b7d31fed38f12a2202275c8b790637a68e69ef",
+   "bytes": 366807,
    "articles": 24,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "ar",
    "category": "camping",
    "path": "packs/ar/camping.json",
-   "sha256": "32b5efa2a273e94302b5719456ec13b8fd645e10bcc9f13c42ddab4f2e783a8f",
-   "bytes": 283729,
+   "sha256": "e3c69aee08f981109b3068a8ac345c9aa9470c4ea1ff89e51bf0da2e05149d72",
+   "bytes": 283582,
    "articles": 24,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "tr",
@@ -438,10 +438,10 @@
    "lang": "en",
    "category": "first_aid",
    "path": "packs/en/first_aid.json",
-   "sha256": "bb5534b2c38e71d203b7c95bc8e05b00a319b365992e3cd0695ccb4f3f3886b6",
-   "bytes": 860173,
+   "sha256": "a22181cda2d3ec97803b17618cc69d6508c70f86e3b9204d4951ee98621260eb",
+   "bytes": 860175,
    "articles": 34,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
@@ -465,28 +465,28 @@
    "lang": "ar",
    "category": "first_aid",
    "path": "packs/ar/first_aid.json",
-   "sha256": "719db60ced737c173bb067c4b97f99eb2fc807585c9268b14aae5a62eef76b5b",
-   "bytes": 803877,
+   "sha256": "d731e21eb6155199224916c128ddb4bce21ab4882c92978a522c1407b06a0999",
+   "bytes": 803878,
    "articles": 34,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "tr",
    "category": "diseases",
    "path": "packs/tr/diseases.json",
-   "sha256": "6d116a57b9b78d348e6ed1c16ab9a1cbd0b09dd1dedfdde882d4d8e892029434",
+   "sha256": "dc191902b2d0c32ea28c2243e935ccd2fdb341dd9d743dc29df74caa24a570c2",
    "bytes": 315690,
    "articles": 26,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "en",
    "category": "diseases",
    "path": "packs/en/diseases.json",
-   "sha256": "cf9422ef297e2fdd7ca2c61cdcfeb6de7b8f6b3bf2a00c89756ed29fc7742cae",
+   "sha256": "5f3f3a3177884873209b60d1239156082b8eed9d96b5c32d56dee48f7fa85484",
    "bytes": 867462,
    "articles": 26,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
@@ -519,28 +519,28 @@
    "lang": "tr",
    "category": "plants",
    "path": "packs/tr/plants.json",
-   "sha256": "84d9fe56aad5a9e653f12076db9dbc55d7a43a35565a772927f97c0d905d9bc0",
+   "sha256": "637077082e8c4e44a86018f7df3c2c3d8d3247c46354891cbc869dc84cc4f5f6",
    "bytes": 420652,
    "articles": 37,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "en",
    "category": "plants",
    "path": "packs/en/plants.json",
-   "sha256": "a5131d5818634c9706ab05f777badc8de7c0cccc00e6710baa720b1898100abe",
-   "bytes": 571110,
+   "sha256": "0353179233293d5aed694e1dac713a289984ac1de417df6abb6d19a9befdf35c",
+   "bytes": 571237,
    "articles": 37,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
    "category": "plants",
    "path": "packs/de/plants.json",
-   "sha256": "cfaabb7f629bc90ca94b516095a2e93800b0f7daeea3b1428ff1ff2ae00d840d",
+   "sha256": "ce6b0dd1c02721b9acb8f4f98d9daf10a97efb2cc756aa6194efcad8eb9458b9",
    "bytes": 736842,
    "articles": 37,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "ru",
@@ -555,28 +555,28 @@
    "lang": "ar",
    "category": "plants",
    "path": "packs/ar/plants.json",
-   "sha256": "8e2ff6ab0e3ce1cb6891856ce0a9a691d5cf528af1aa26a16dd198a6aefeb4e5",
-   "bytes": 466418,
+   "sha256": "b386c666e12c64162d3d1849b9dd5a0f7babc17193fad16ce0f167a885933f4e",
+   "bytes": 466545,
    "articles": 37,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "tr",
    "category": "trees",
    "path": "packs/tr/trees.json",
-   "sha256": "32ad3b7a422ec7beda0ffa172b15fb20dce96f4cc0efa14a79102bdb97808ad1",
+   "sha256": "6f2c7ce9f11393bc8fa5ab20e48c653ce9146e5378bfb485c9312bb2f452b589",
    "bytes": 210576,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "en",
    "category": "trees",
    "path": "packs/en/trees.json",
-   "sha256": "26517c9a721d75f968179935d04ac02640dbad0b44bbcda014baf2afdce9158e",
-   "bytes": 309158,
+   "sha256": "944dfdc176fc946d7c857feb86568dab164c2440176b03612694991c363b61b8",
+   "bytes": 309240,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
@@ -600,28 +600,28 @@
    "lang": "ar",
    "category": "trees",
    "path": "packs/ar/trees.json",
-   "sha256": "efbe665b5e9af6b3915a81312949463ebfe451f25c5a875f60b561b9b41291ab",
-   "bytes": 287737,
+   "sha256": "b1fda9baeec1c180391eff91bf6f0c535bcfaadb2bb8656836a47842847d6838",
+   "bytes": 286804,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "tr",
    "category": "mushrooms",
    "path": "packs/tr/mushrooms.json",
-   "sha256": "936742885d70c046e8f5936ebc853ba81c4f914ddbba879db06e93f771f991f6",
-   "bytes": 295511,
+   "sha256": "119f527dbe9dc2a6d85708ea547b1612a603005626328eea0b8b683dc507ed19",
+   "bytes": 295530,
    "articles": 27,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "en",
    "category": "mushrooms",
    "path": "packs/en/mushrooms.json",
-   "sha256": "c8a2ae641910ff0604c1f151fe0b9c4065b2658d37643042ac073b143a1bd027",
-   "bytes": 485852,
+   "sha256": "9de29f77fa2dcda04a6687a2f1912c783e910fb665c2246220fe22ea793f9ac7",
+   "bytes": 485871,
    "articles": 27,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
@@ -636,28 +636,28 @@
    "lang": "ru",
    "category": "mushrooms",
    "path": "packs/ru/mushrooms.json",
-   "sha256": "c4e6b82f104e410ef944bbd7f6f0d4f6a6286efad3dccbf431bc7fcaeee63255",
-   "bytes": 497786,
+   "sha256": "28a0032cb1f3dcef632d107e0eecb733384e030651ff6d197ce7a34a5ac4313c",
+   "bytes": 497579,
    "articles": 27,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "ar",
    "category": "mushrooms",
    "path": "packs/ar/mushrooms.json",
-   "sha256": "c48d0d1bde03ebed6ab5d942fdaecfeb24009a7b5f86f1c6584741612c78b462",
-   "bytes": 359293,
+   "sha256": "ffcc7c4c339265ad36c1a8a982cb698dbd96a8eb8cd3e128580d8e71f6061982",
+   "bytes": 359312,
    "articles": 27,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "tr",
    "category": "animals",
    "path": "packs/tr/animals.json",
-   "sha256": "11dfaebb91d3597bcebef0ba24af4a6943951d862217323fad63b882b907a49a",
+   "sha256": "3a2c9b0de864a95c542b549d02f1e7aced275fb0d96f00d08215e486d5e6da85",
    "bytes": 265285,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "en",
@@ -690,10 +690,10 @@
    "lang": "ar",
    "category": "animals",
    "path": "packs/ar/animals.json",
-   "sha256": "deba0264de1b89a8a421737a15b4a158d6a4aae2723ff031113a8a91ae0f3566",
+   "sha256": "9f35b185e517f78ef01d9180f32f5a7fe4715010d00d53c997dc879665e88bed",
    "bytes": 361602,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "tr",
@@ -753,19 +753,19 @@
    "lang": "en",
    "category": "sky",
    "path": "packs/en/sky.json",
-   "sha256": "28be7d3c917337a70bea84a778b260ff2afc8dbfcae9b486ced949cb684c2615",
+   "sha256": "021e4e8e420bdb425a001f174a6e0cfc9e5c9432f5ea9beaa78eb9cd913e4655",
    "bytes": 608583,
    "articles": 17,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "de",
    "category": "sky",
    "path": "packs/de/sky.json",
-   "sha256": "d1430dd02aee91bbbddb648c7453d034e57c6480282c87e3008b0738e53acb39",
+   "sha256": "a8a03bde5d64e48885ddeb74ef3e949a059f60166afd3de97aefbb1e9955f505",
    "bytes": 463553,
    "articles": 17,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "ru",
@@ -816,10 +816,10 @@
    "lang": "ru",
    "category": "places",
    "path": "packs/ru/places.json",
-   "sha256": "e8259b76c14be97f7e7c6719fc13370e03f069a590167fc4bcb8880e5fbe78f1",
+   "sha256": "d0ad40bbc1fbead582b7702231c6104ba2a62013778be1725739974a8435b028",
    "bytes": 185183,
    "articles": 12,
-   "updated": "2026-11-18"
+   "updated": "2026-11-19"
   },
   {
    "lang": "ar",
