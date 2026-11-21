@@ -1,7 +1,7 @@
 {
  "schema": 1,
- "version": "5c6d9793c769",
- "updated": "2026-11-20",
+ "version": "69cd2846e143",
+ "updated": "2026-11-21",
  "license": "CC BY-SA 4.0",
  "languages": [
   "tr",
@@ -303,10 +303,10 @@
    "lang": "en",
    "category": "camping",
    "path": "packs/en/camping.json",
-   "sha256": "97cdf56fbf4037953fc99ce6e47c285e7bdbf39d3db3ce09693b23fee83d9312",
+   "sha256": "e1a47e0f185cb9abbaa9c57bedf39d21c223b4e1504c8b4ee1f8caeb82e40fca",
    "bytes": 433326,
    "articles": 24,
-   "updated": "2026-11-19"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
@@ -357,10 +357,10 @@
    "lang": "de",
    "category": "navigation",
    "path": "packs/de/navigation.json",
-   "sha256": "e2dac3d0be280838d44926c07584567c9a711ae17264f6c90cacadcb07d46152",
-   "bytes": 403363,
+   "sha256": "3c327869389105617755c01fca3df32fda632c03adbd29e9c3ae355ed8ab14ee",
+   "bytes": 403529,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "ru",
@@ -393,19 +393,19 @@
    "lang": "en",
    "category": "survival",
    "path": "packs/en/survival.json",
-   "sha256": "b7e24bb9a1a267a4b6680ece66a82ac199a9de3bb5ae77c43d28e7a9e78a038b",
+   "sha256": "11e487eaa8530b2602bfbc6766501bc19264dbb28157b5fec49ce39262ea19a6",
    "bytes": 421704,
    "articles": 25,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
    "category": "survival",
    "path": "packs/de/survival.json",
-   "sha256": "0a57c3fa10fa7bfd7d8b900569395e31683181143a253fa0cfd26c9d2201312f",
+   "sha256": "5c200bd9d080fb024dfb13a4e6b9e3333daf0c3841cd3333fb63c166ca65b6f8",
    "bytes": 416707,
    "articles": 25,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "ru",
@@ -438,19 +438,19 @@
    "lang": "en",
    "category": "first_aid",
    "path": "packs/en/first_aid.json",
-   "sha256": "a22181cda2d3ec97803b17618cc69d6508c70f86e3b9204d4951ee98621260eb",
+   "sha256": "d2a84ca04bf8b7f59c0f85a1a84834f0817b207a7755df18a3484fd25af4140d",
    "bytes": 860175,
    "articles": 34,
-   "updated": "2026-11-19"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
    "category": "first_aid",
    "path": "packs/de/first_aid.json",
-   "sha256": "579547d7d3dbf55de979987e78016d9ba146b52e17e46202dc7a9c602b292f7a",
-   "bytes": 626608,
+   "sha256": "a153764807ff81ace3f3fb43ae6a4de2a5b365b9beb1a15f8fc07226224166ac",
+   "bytes": 626604,
    "articles": 34,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "ru",
@@ -465,10 +465,10 @@
    "lang": "ar",
    "category": "first_aid",
    "path": "packs/ar/first_aid.json",
-   "sha256": "d731e21eb6155199224916c128ddb4bce21ab4882c92978a522c1407b06a0999",
+   "sha256": "76d3756994147c277d73a568ae5c1b50b3407914ad725d11f19090f63c1ba1d4",
    "bytes": 803878,
    "articles": 34,
-   "updated": "2026-11-19"
+   "updated": "2026-11-21"
   },
   {
    "lang": "tr",
@@ -528,10 +528,10 @@
    "lang": "en",
    "category": "plants",
    "path": "packs/en/plants.json",
-   "sha256": "acf53c1afb2639355aaf5e1b7962db31f4f9c8165fbad2c20e97ef61ce86fdae",
+   "sha256": "787e52254fb9c701dcfe212de8e13de6fba6238d4a98d1ebae6c027e86036d4a",
    "bytes": 571237,
    "articles": 37,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
@@ -582,10 +582,10 @@
    "lang": "de",
    "category": "trees",
    "path": "packs/de/trees.json",
-   "sha256": "259886af28005e2324c5a99fbb2222ced205b3695380880fd3b42bb47b62a07c",
-   "bytes": 427902,
+   "sha256": "39255346447da089a41b7acc64ba22c2951f426182dce3b51330efa43ec06862",
+   "bytes": 428023,
    "articles": 20,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "ru",
@@ -600,10 +600,10 @@
    "lang": "ar",
    "category": "trees",
    "path": "packs/ar/trees.json",
-   "sha256": "b1fda9baeec1c180391eff91bf6f0c535bcfaadb2bb8656836a47842847d6838",
+   "sha256": "f851d6704ff6e5fc09c05905b482e118802150ad5ec49ac276f3d7ebfed1cc72",
    "bytes": 286804,
    "articles": 20,
-   "updated": "2026-11-19"
+   "updated": "2026-11-21"
   },
   {
    "lang": "tr",
@@ -618,10 +618,10 @@
    "lang": "en",
    "category": "mushrooms",
    "path": "packs/en/mushrooms.json",
-   "sha256": "14fd3f4a3bcd0d3864783627c28e233f54f800a6041e7b01bf6b578fea623131",
+   "sha256": "087e261eba4f46e61100130db085cf6225efd51b56c2fc657ba48d18a832c47a",
    "bytes": 485871,
    "articles": 27,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
@@ -645,10 +645,10 @@
    "lang": "ar",
    "category": "mushrooms",
    "path": "packs/ar/mushrooms.json",
-   "sha256": "9947bd7dc993ef02e46d95f3e1f731041b4240ac6317b6065690b3c3f2c251d7",
+   "sha256": "46c3a45b85dc01bfdc54c05b4804e6ade4c0521746d30baa1fd324e397dfa192",
    "bytes": 359312,
    "articles": 27,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "tr",
@@ -663,19 +663,19 @@
    "lang": "en",
    "category": "animals",
    "path": "packs/en/animals.json",
-   "sha256": "16a0492a4bef387992438171a3dfaf645bd4354935caaa5aeb0f969156e28cfd",
+   "sha256": "845ffa3b2790091c07716ff23ea31b44f797abdcb3c06841c9884c77c73aa69a",
    "bytes": 672987,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
    "category": "animals",
    "path": "packs/de/animals.json",
-   "sha256": "3e6b596f1da29bdd13a10d452530a3ea57bbd804b666aadd2bc18f5ff9766fee",
-   "bytes": 598221,
+   "sha256": "42d85189a4356eb8d10aec705efa1df13548f31cac5392bcb8d069f56619f11a",
+   "bytes": 598741,
    "articles": 20,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "ru",
@@ -726,10 +726,10 @@
    "lang": "ru",
    "category": "weather",
    "path": "packs/ru/weather.json",
-   "sha256": "33c5ce211b896ffe27ec283e68a8042b208db097f898005554d0a55eec552f7b",
-   "bytes": 690174,
+   "sha256": "e4bb6cd63b77ea8779f98e7bc50e17a2e3adeba7ae4d4282708ba3f98b15702d",
+   "bytes": 688609,
    "articles": 22,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "ar",
@@ -744,19 +744,19 @@
    "lang": "tr",
    "category": "sky",
    "path": "packs/tr/sky.json",
-   "sha256": "22715f49c1f3669ff9d725319ad84d7760fdb04078710d8b27d5824bb22095fa",
+   "sha256": "7a334f3233983776dc841c1bac63f454ba668452ed6a8b524d8f58b40117556b",
    "bytes": 431196,
    "articles": 17,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "en",
    "category": "sky",
    "path": "packs/en/sky.json",
-   "sha256": "28134d5bb31417489eb8b6b9a82b70c11573941edf057f44997fc874a366186e",
-   "bytes": 611961,
+   "sha256": "4705b3538d4e516afcc46c4eb9af60e62e87a3bfd43132de2689aa3f52bb4677",
+   "bytes": 608823,
    "articles": 17,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
@@ -780,10 +780,10 @@
    "lang": "ar",
    "category": "sky",
    "path": "packs/ar/sky.json",
-   "sha256": "7c048a5adf2027299fae59294c33cea4ddbed1f16e8e7d8cbe060ffab0c21f1f",
+   "sha256": "1cbac7077b4ab204c34e09d0bc54fee927ab9ec59ad9466252e3dd9d628848de",
    "bytes": 642826,
    "articles": 17,
-   "updated": "2026-11-18"
+   "updated": "2026-11-21"
   },
   {
    "lang": "tr",
@@ -798,10 +798,10 @@
    "lang": "en",
    "category": "places",
    "path": "packs/en/places.json",
-   "sha256": "eaccff33c811aa7f55c06afcfadff2e4ce8d36b93688c2786fb2b8afb6c5daf6",
-   "bytes": 185274,
+   "sha256": "fd2544220db22aeaddd41af3471a6824d6a56e82126cf86bc306281d3205dbdb",
+   "bytes": 185269,
    "articles": 12,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   },
   {
    "lang": "de",
@@ -825,10 +825,10 @@
    "lang": "ar",
    "category": "places",
    "path": "packs/ar/places.json",
-   "sha256": "b092cd10ffab1a62b72c172e543066f206c365cb8f40313a6336f3a4b9a308af",
-   "bytes": 133060,
+   "sha256": "f951bb34b2759d647c28724b4542d9398a7fe805a6c07730a1dfe9cd5b87763a",
+   "bytes": 133055,
    "articles": 12,
-   "updated": "2026-11-20"
+   "updated": "2026-11-21"
   }
  ]
 }
