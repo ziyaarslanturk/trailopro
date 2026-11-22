@@ -1,0 +1,15 @@
+{
+ "hedef_surum": 2,
+ "yenile_gun": 90,
+ "deneme_siniri": 5,
+ "max_dakika": 300,
+ "yedek_dakika": 10,
+ "topluluk_dakika": 40,
+ "parca": 150,
+ "osm_min_gun": 7,
+ "osm_kayip_siniri": 3,
+ "osm_min_oran": 0.5,
+ "min_kayit_orani": 0.8,
+ "topluluk_ust_sinir": 500,
+ "bolge_toleransi_derece": 3.0
+}
