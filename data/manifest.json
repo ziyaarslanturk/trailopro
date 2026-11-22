@@ -1,0 +1,232 @@
+{
+ "countries": {
+  "AE": {
+   "count": 107,
+   "sha256": "7a3c301ea4ae91b02b87631966d894df7fa3dfbad10014b297d98186bdb3438e",
+   "size": 31172,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "AT": {
+   "count": 783,
+   "sha256": "1c438d437ad193bac61d40a81669709a1ed9552e84f454165fd05b564f6764f5",
+   "size": 272473,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "BE": {
+   "count": 751,
+   "sha256": "da4af2134439032c0897bcc0331c93b1db7ce16815baffc199c16371174cde61",
+   "size": 249522,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "BH": {
+   "count": 1,
+   "sha256": "01b551c41327ba80c5431102f2a9ce202bc47760d417b5fdb44b286a07362009",
+   "size": 299,
+   "updated": "2026-11-13T21:42:49Z"
+  },
+  "CH": {
+   "count": 820,
+   "sha256": "fb266540ac75984c939b62efe8b1ec45b91757928abd317fc2fcbe24c6f84ed7",
+   "size": 269295,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "CZ": {
+   "count": 1224,
+   "sha256": "266984805ceb55f8cdf456f9f859a14379116a43bdfb1b119606c9ca829c3f59",
+   "size": 378936,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "DE": {
+   "count": 8086,
+   "sha256": "1e9f1b05e3c30c9e73131a67840f1eb1cd83a51da8c513f3115bf62b7fd6e1d0",
+   "size": 2880590,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "DK": {
+   "count": 1933,
+   "sha256": "cee8117e4a2ed95daf915f4ced04eb579fc473eff437dbc3c6028138f3532da3",
+   "size": 635184,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "DZ": {
+   "count": 353,
+   "sha256": "837fa3bc39768d1e7c0a98dbf6f3ea4a9078a859c7d1576a417e4614078afd93",
+   "size": 100532,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "EG": {
+   "count": 307,
+   "sha256": "2b426c63ac38b97a75898c5898cf7286c71d8f2ce93ef81f624445ee81fd887f",
+   "size": 94285,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "ES": {
+   "count": 3235,
+   "sha256": "53045ab9e0d866396b5ceba076fa51fc792d4690686d29f834113e0a870c1802",
+   "size": 1042082,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "FI": {
+   "count": 926,
+   "sha256": "89373e11f1638a446c065153dba43db445bd0e3b481e88fac5ccc0c0241905bf",
+   "size": 285646,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "FR": {
+   "count": 12615,
+   "sha256": "1da4b86f5469dc70294d48d6cd885ccd1f9231aa77d20f2d03ee3055eec741ce",
+   "size": 4426352,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "GB": {
+   "count": 8298,
+   "sha256": "ea0b24423b37a8f30d89ceac9c29f3843da2adf915a9819dadfba9613bb08d8d",
+   "size": 2542177,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "GR": {
+   "count": 591,
+   "sha256": "4078291edce5472400d4dd4d743d2aa78651551c9e4aac48de291117abb83a43",
+   "size": 177353,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "HR": {
+   "count": 592,
+   "sha256": "743507748e634db7ce186a8a4cef5b10e3a966f9517c55a5122c8ec5ff2e5ffa",
+   "size": 182822,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "IE": {
+   "count": 428,
+   "sha256": "8e2229f07127c38f467bedc086f49e3b7e80b10f3e7d64f0bfbb365fbe3bf8eb",
+   "size": 130553,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "IT": {
+   "count": 4000,
+   "sha256": "bcbe903b6e8909af02578407bd6c72afc464dfe4c5a63789aa620be53fa02ca0",
+   "size": 1339767,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "JO": {
+   "count": 249,
+   "sha256": "489797aa39aa6f1fbb70e60ac9e36d415aa945ebcf259ea515a4583cbbceb357",
+   "size": 70781,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "KW": {
+   "count": 30,
+   "sha256": "0555cfd31eca1f742096a6d8e7b78e0c6881bdcb130f16a9ba01d6faa8d338de",
+   "size": 8836,
+   "updated": "2026-11-13T21:42:49Z"
+  },
+  "LU": {
+   "count": 85,
+   "sha256": "d3a63bab1b0d9b8a3e3cf953b01a7e44b2138e1aca37b5b80bad9faebf053167",
+   "size": 27391,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "MA": {
+   "count": 670,
+   "sha256": "c68961101728c5be7aa5f8d40d266add738178322f7bfc850349632b82234a15",
+   "size": 196450,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "NL": {
+   "count": 3536,
+   "sha256": "9babba3341bb8b4db40b85bd5705b5b3fe9fb776f2c37f981b9656bda63ed56e",
+   "size": 1180336,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "NO": {
+   "count": 1790,
+   "sha256": "7cda550d96cc71dc8cbe486588cf68022bce7ec8d79456a41d66820fe4419af7",
+   "size": 565177,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "OM": {
+   "count": 176,
+   "sha256": "5a627c490b0a5c3a14c6ed92dcefca33e4d347a353a7b5ab6243cc0a9b872aa5",
+   "size": 50754,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "PL": {
+   "count": 1907,
+   "sha256": "05c9ee14759346f33bde7c3aaf1c2ecc449aabcf17eda6d5176d8d57559cc137",
+   "size": 574265,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "PT": {
+   "count": 723,
+   "sha256": "cdca474359063f28f90e2508e0790b1e09599eac4b595ec6136405133eb41516",
+   "size": 229562,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "QA": {
+   "count": 73,
+   "sha256": "220b11306dccf2d512590cbaa982fc098935cef7acaccd783a70e195de95f6c4",
+   "size": 20003,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "RU": {
+   "count": 16637,
+   "sha256": "f107144696adec5f73645bd0c7ac05b6243861e4b43846fb435eeff5d6283f04",
+   "size": 4706187,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "SA": {
+   "count": 290,
+   "sha256": "6fd52c7cc7db058e1aa21cfcd175604e4e670ea9394b5d96940bba65c3c2efe5",
+   "size": 82242,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "SE": {
+   "count": 2160,
+   "sha256": "e70d1f7e6df313a7480b573417d9137ebd7d4398d9faf9468b6b6dea8fe71336",
+   "size": 663900,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "TN": {
+   "count": 56,
+   "sha256": "fcacc140f9247716883201748560b448dc00d2964aaca76aa6b18cda4e64f874",
+   "size": 17277,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "TR": {
+   "count": 2055,
+   "sha256": "a668c1161e66e0cdd63e90fb00c84dc22b5611cf1b425425a29f3358ff46ed61",
+   "size": 2471038,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "US_MIDWEST": {
+   "count": 10259,
+   "sha256": "3ac0dbebaf480e092481586729143d446706dbe149d371dcf7ce8ea7419291cb",
+   "size": 3143430,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "US_NORTHEAST": {
+   "count": 3529,
+   "sha256": "221172cece1ea7c5cab901c6d9c3e5a83d3d3a1210d01a0e6ab0ed0bc6d197e5",
+   "size": 1120701,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "US_PACIFIC": {
+   "count": 555,
+   "sha256": "a53a2c55ded1103bbddea045aae3788d5a5d172d76e83a78fe942638529035e9",
+   "size": 180885,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "US_SOUTH": {
+   "count": 8839,
+   "sha256": "3cdb5d12ba1722b1020e4b8bb62fb7e1a4a96ca7167acc4f85c776e9f8f6c46c",
+   "size": 2696357,
+   "updated": "2026-11-22T22:42:34Z"
+  },
+  "US_WEST": {
+   "count": 17978,
+   "sha256": "af13ad57f985a781ce6f074a83c266ace39c49bcc492518a71fafb8318020a91",
+   "size": 5624808,
+   "updated": "2026-11-22T22:42:34Z"
+  }
+ }
+}
