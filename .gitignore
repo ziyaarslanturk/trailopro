@@ -1,9 +1,0 @@
-ham/*
-!ham/.gitkeep
-work/
-out/
-cache/
-__pycache__/
-*.pyc
-node_modules/
-testler/_*.json
