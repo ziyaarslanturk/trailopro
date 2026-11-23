@@ -12,7 +12,7 @@ from pathlib import Path
 KOK = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(KOK / "tools"))
 sys.path.insert(0, str(KOK / "testler"))
-from lib import ortak, zengin as Z, osm_birlestir, kontrol, sira, topluluk, yayin  # noqa: E402
+from lib import ortak, zengin as Z, osm_birlestir, kontrol, sira, tekrar, topluluk, yayin  # noqa: E402
 from sahte_firebase import SahteHTTP  # noqa: E402
 
 ORNEK = json.loads((KOK / "testler" / "ornek_TR.json").read_text(encoding="utf-8"))
@@ -204,6 +204,66 @@ class Yayin(unittest.TestCase):
             self.assertEqual(json.loads(man1)["countries"]["TR"]["count"], 1)
 
 
+class Tekrar100m(unittest.TestCase):
+    def test_en_az_bilgili_silinir_bilgisi_kalana_eklenir(self):
+        zengin_ = Z.v2_cevir({"konum": {}, "kaynak": {}}, "TR")
+        zayif = kayit("w1", 49.0, 6.0)
+        guclu = kayit("a2", 49.0, 6.0004, name_local="Kamp", website="https://k.lu", zengin=zengin_)   # ~29 m
+        orta = kayit("n3", 49.0, 6.0002, phone="+352 1", category_ids=[2, 5])                           # ~15 m
+        uzak = kayit("n4", 49.0, 6.01)                                                                  # ~730 m
+        liste = [zayif, orta, guclu, uzak]
+        r = tekrar.temizle(liste, 100, 0.9)
+        self.assertEqual(sorted(k["id"] for k in liste), ["a2", "n4"])
+        self.assertEqual(r["silinen"], 2)
+        k = next(x for x in liste if x["id"] == "a2")
+        self.assertEqual(k["phone"], "+352 1")                      # silinenin bilgisi eklendi
+        self.assertEqual(k["category_ids"], [1, 2, 5])
+        self.assertEqual(k["_meta"]["birlesen"], ["n3", "w1"])      # silinen kimlikler hatirlanir
+        self.assertEqual(tekrar.temizle(liste, 100, 0.9)["silinen"], 0)   # ikinci calisma: degisiklik yok
+
+    def test_zincirleme_silme_yok(self):
+        # A-B 80 m, B-C 80 m, A-C 160 m: B (en cok bilgi) kalir, A ve C ikisi de B'ye 100 m icinde -> silinir.
+        # Ama B en zayif olsaydi A kalir, C (A'ya 160 m) KALIR.
+        m = 80 / 111320.0 * 1.0
+        a = kayit("n1", 49.0, 6.0, name_local="A", website="x", phone="1")
+        b = kayit("n2", 49.0 + m, 6.0)
+        c = kayit("n3", 49.0 + 2 * m, 6.0, phone="9")
+        liste = [a, b, c]
+        tekrar.temizle(liste, 100, 0.9)
+        self.assertEqual(sorted(k["id"] for k in liste), ["n1", "n3"])
+
+    def test_kullanici_kaydi_kaybederse_bilgisi_korunur(self):
+        osm = kayit("n1", 49.0, 6.0, name_local="OSM Kamp", website="https://osm.lu", phone="1", category_ids=[1, 2])
+        kul = kayit("u_x", 49.0, 6.00005, website="https://kullanici.lu", fee="yes", _meta={"kaynak": "kullanici", "kullanici_alanlari": ["konum", "fee", "website"]})
+        liste = [kul, osm]
+        tekrar.temizle(liste, 100, 0.9)
+        self.assertEqual([k["id"] for k in liste], ["n1"])
+        self.assertEqual(liste[0]["fee"], "yes")
+        self.assertIn("fee", liste[0]["_meta"]["kullanici_alanlari"])
+        self.assertNotIn("konum", liste[0]["_meta"]["kullanici_alanlari"])   # osm'in konumu ezilmesin diye korunmaz
+
+    def test_cok_fazla_silinecekse_veri_hatasi_sanilir(self):
+        liste = [kayit(f"n{i}", 49.0, 6.0) for i in range(10)]   # hepsi ayni nokta
+        r = tekrar.temizle(liste, 100, 0.6)
+        self.assertTrue(r["uygulanmadi"])
+        self.assertEqual(len(liste), 10)
+
+    def test_gecersiz_koordinatli_kayda_dokunmaz(self):
+        liste = [kayit("n1", None, None), kayit("n2", 49.0, 6.0), kayit("n3", 49.0, 6.0)]
+        tekrar.temizle(liste, 100, 0.9)
+        self.assertIn("n1", [k["id"] for k in liste])
+        self.assertEqual(len(liste), 2)
+
+    def test_gercek_lu_verisi_243_den_100m_ciftsiz_listeye(self):
+        d = json.loads((KOK / "testler" / "ornek_LU.json").read_text(encoding="utf-8-sig"))
+        r = tekrar.temizle(d, 100, 0.6)
+        self.assertEqual(len(d) + r["silinen"], 243)
+        self.assertLess(len(d), 130)
+        for i, a in enumerate(d):
+            for b in d[i + 1:]:
+                self.assertGreater(tekrar._mesafe(a, b), 100)
+
+
 # ------------------------------------------------------------------ uctan uca
 SURUCU = r'''
 import sys, json
@@ -312,6 +372,21 @@ class UctanUca(unittest.TestCase):
         self.calistir(t, "calis", "--ulke", "TR", "--osm")
         self.assertGreaterEqual(len(self.veri(t)), 55)
         self.assertFalse((t / "state" / "osm_md5.json").exists(), "uygulanmayan OSM'in md5'i kaydedilmemeli (sonra tekrar denensin)")
+
+    def test_lu_ham_veri_yuzde_100m_temizlenir_kontrol_engellemez(self):
+        t = self.kur()
+        (t / "data" / "TR.json").unlink()
+        (t / "data" / "LU.json").write_text((KOK / "testler" / "ornek_LU.json").read_text(encoding="utf-8-sig"), encoding="utf-8")
+        self.calistir(t, "calis", "--ulke", "LU")
+        d = json.loads((t / "data" / "LU.json").read_text(encoding="utf-8"))
+        self.assertLess(len(d), 130)
+        self.assertTrue(all(k.get("zengin", {}).get("surum") == 2 for k in d))
+        for i, a in enumerate(d):
+            for b in d[i + 1:]:
+                self.assertGreater(tekrar._mesafe(a, b), 100)
+        ilk = (t / "data" / "LU.json").read_bytes()
+        self.calistir(t, "calis", "--ulke", "LU")      # ikinci calisma: ayni sonuc, yeni silme yok
+        self.assertEqual(len(json.loads((t / "data" / "LU.json").read_text(encoding="utf-8"))), len(d))
 
     def test_bozuk_data_dosyasina_dokunulmaz(self):
         t = self.kur()

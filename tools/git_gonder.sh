@@ -11,7 +11,7 @@ cikti() { [ -n "${GITHUB_OUTPUT:-}" ] && echo "yayinlandi=$1" >> "$GITHUB_OUTPUT
 
 git config user.name "trailopro-bot"
 git config user.email "trailopro-bot@users.noreply.github.com"
-git add -A data state
+for y in data state pilot tools/durum.json tools/durum-pilot.json; do [ -e "$y" ] && git add -A -- "$y"; done
 if git diff --cached --quiet; then echo "Degisiklik yok."; cikti true; exit 0; fi
 git commit -q -m "dongu: ${ULKE:-genel} guncellendi [skip ci]"
 

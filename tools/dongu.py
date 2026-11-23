@@ -18,7 +18,7 @@ import traceback
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from lib import ortak, zengin as Z, osm_birlestir, kontrol, yayin, sira, topluluk  # noqa: E402
+from lib import ortak, zengin as Z, osm_birlestir, kontrol, yayin, sira, tekrar, topluluk  # noqa: E402
 
 K = ortak.KOK
 DATA, HAM, STATE, WORK = K / "data", K / "ham", K / "state", K / "work"
@@ -88,6 +88,14 @@ def calis(zorla=None, osm_zorla=False):
     md5_durum = ortak.json_oku(OSM_YOL, {})
     md5_durum = md5_durum if isinstance(md5_durum, dict) else {}
     ulkeler = ortak.ulke_listesi(DATA)
+    # Dunya taramasi (tools/dunya-tara.js) bir ulkeyi olusturuyor/zenginlestiriyorsa (durum.json'da var ama 'tamam' yok) ona dokunma.
+    # Henuz olusturmadigi ulkeler zaten data/ icinde yok, listeye hic girmez (sessizce atlanir).
+    dunya = ortak.json_oku(K / "tools" / "durum.json", {})
+    dunya = dunya if isinstance(dunya, dict) else {}
+    mesgul = {c for c, v in dunya.items() if isinstance(v, dict) and not v.get("tamam") and c not in (ortak.json_oku(OSM_YOL, {}) or {})}
+    if mesgul:
+        ortak.log(f"Dunya taramasi uzerinde calisiyor, atlanan ulkeler: {sorted(mesgul)}")
+    ulkeler = [c for c in ulkeler if c not in mesgul or c == zorla]
     if zorla and zorla not in ulkeler:
         ulkeler.append(zorla)
     if ilk:  # ilk calismada OSM yenilemesi hemen baslamasin; once mevcut veri zenginlessin
@@ -170,6 +178,16 @@ def ulke_isle(cc, neden, ayar, durum, md5_durum, osm_deg, fb, t0):
         except Exception as e:
             ortak.uyari(f"{cc}: topluluk adimi atlandi: {type(e).__name__}: {e}")
 
+    # ---- birbirine 100 m'den yakin noktalar: en az bilgili olan silinir, sonraki adimlar temiz listeyle baslar
+    tk = {"silinen": 0}
+    try:
+        tk = tekrar.temizle(kayitlar, ayar["tekrar_mesafe_m"], ayar["tekrar_max_oran"])
+        if tk["uygulanmadi"]:
+            ortak.uyari(f"{cc}: tekrar temizligi uygulanmadi ({tk['uygulanmadi']})")
+        ozet.append(f"- {int(ayar['tekrar_mesafe_m'])} m tekrar temizliği: {tk['silinen']} kayıt silindi (örnek: {', '.join(tk['ornek']) or '-'})")
+    except Exception as e:
+        ortak.uyari(f"{cc}: tekrar temizligi atlandi: {type(e).__name__}: {e}")
+
     # ---- bekleyen kayitlar -> motor
     bekle = 0
     for k in kayitlar:
@@ -196,7 +214,7 @@ def ulke_isle(cc, neden, ayar, durum, md5_durum, osm_deg, fb, t0):
     kalan = sum(1 for k in ham if isinstance(k, dict) and k.get("_bekle"))
 
     # ---- kontrol + yayin
-    temiz, kr, ok = kontrol.kontrol_et(eski, ham, ayar, cc)
+    temiz, kr, ok = kontrol.kontrol_et(eski, ham, ayar, cc, haric=tk["silinen"])
     ozet.append(f"- kontrol: {kr}")
     if not ok:
         ortak.uyari(f"{cc}: kontrol basarisiz, YAYINLANMADI: {kr['mesaj']}")

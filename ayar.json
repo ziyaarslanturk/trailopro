@@ -11,5 +11,7 @@
  "osm_min_oran": 0.5,
  "min_kayit_orani": 0.8,
  "topluluk_ust_sinir": 500,
- "bolge_toleransi_derece": 3.0
+ "bolge_toleransi_derece": 3.0,
+ "tekrar_mesafe_m": 100,
+ "tekrar_max_oran": 0.6
 }

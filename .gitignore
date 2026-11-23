@@ -7,3 +7,5 @@ __pycache__/
 *.pyc
 node_modules/
 testler/_*.json
+tools/durum.json.bozuk-*
+tools/durum-pilot.json.bozuk-*

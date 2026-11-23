@@ -1,19 +1,26 @@
 name: Dünya kamp taraması
 
+# Ülke ülke OpenStreetMap'ten kamp alanlarını çeker, data/XX.json ile güvenle birleştirir (100 m kuralı, zenginleştirme motoru).
+# Hata verse bile iş kırmızı olmaz; sorunlu ülke durum dosyasına işlenir ve bekleme süresinden sonra yeniden denenir.
+# Geofabrik ülkelerini (state/osm_md5.json) ve elle eklenmiş dosyaları "Dongu" workflow'u yönetir; bu iş onlara dokunmaz.
 on:
   workflow_dispatch:
     inputs:
       mod:
-        description: "pilot = sadece LU, pilot/ klasörüne | tam = tüm dünya, data/ klasörüne"
+        description: "pilot = sadece LU, pilot/ klasörüne | tam = dünya, data/ klasörüne"
         default: pilot
         type: choice
         options: [pilot, tam]
       ulkeler:
-        description: "İsteğe bağlı: virgülle ülke kodları (örn. AT,DE,US). Boşsa hepsi"
+        description: "İsteğe bağlı: virgülle ülke kodları (örn. AD,AL). Boşsa hepsi"
         required: false
         default: ""
+      zorla:
+        description: "Sahiplik kuralını yoksay (Geofabrik ülkelerini de tara)"
+        type: boolean
+        default: false
   schedule:
-    - cron: "17 */6 * * *"   # tam mod; bitene kadar kaldığı yerden devam eder
+    - cron: "47 */6 * * *"   # tam mod; bitene kadar kaldığı yerden devam eder
 
 permissions:
   contents: write
@@ -28,21 +35,33 @@ jobs:
     timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
+
+      - uses: actions/cache@v4
+        with:
+          path: work/*.hucre.json.gz
+          key: hucre-dunya-${{ github.run_id }}
+          restore-keys: hucre-
+
       - name: Tara ve zenginleştir
+        continue-on-error: true      # betik zaten hata vermez; yine de iş kırmızı olmasın
         env:
           MOD: ${{ github.event.inputs.mod || 'tam' }}
           ULKELER: ${{ github.event.inputs.ulkeler }}
+          ZORLA: ${{ github.event.inputs.zorla }}
         run: |
-          ARGS="--mod $MOD --commit --sure 335"
+          ARGS="--mod $MOD --commit --sure 320"
           if [ -n "$ULKELER" ]; then ARGS="$ARGS --ulkeler $ULKELER"; fi
+          if [ "$ZORLA" = "true" ]; then ARGS="$ARGS --zorla"; fi
           node tools/dunya-tara.js $ARGS
-      - name: Pilot çıktısını kaydet
-        if: ${{ github.event.inputs.mod == 'pilot' }}
-        run: |
-          git config user.name "trailopro-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add pilot tools/durum-pilot.json || true
-          git diff --cached --quiet || (git commit -m "pilot: LU örnek çıktı" && git pull --rebase -X theirs -q && git push -q)
+
+      - name: Bekleyen değişiklik kaldıysa gönder
+        continue-on-error: true
+        run: bash tools/git_gonder.sh dunya

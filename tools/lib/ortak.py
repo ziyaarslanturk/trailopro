@@ -21,6 +21,8 @@ VARSAYILAN_AYAR = {
     "osm_kayip_siniri": 3,    # OSM'de ust uste bu kadar yenilemede gorunmeyen yer silinir
     "osm_min_oran": 0.5,      # OSM dosyasi eskisinin yarisindan azsa supheli sayilir, uygulanmaz
     "min_kayit_orani": 0.8,   # yeni liste eskisinin %80'inden azsa yayinlanmaz
+    "tekrar_mesafe_m": 100,   # birbirine bu kadar metre yakin noktalardan en az bilgili olan silinir
+    "tekrar_max_oran": 0.6,   # bir seferde kayitlarin bundan fazlasi silinecekse veri hatasi sanilir, hicbiri silinmez
     "topluluk_ust_sinir": 500,
     "bolge_toleransi_derece": 3.0,
 }
