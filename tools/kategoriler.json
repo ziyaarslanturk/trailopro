@@ -1,0 +1,26 @@
+{
+  "onayli": false,
+  "aciklama": "TASLAK. Sadece verideki kanıtla doğrulanabilen 3 kategori dolu (1, 2, 24). Diğer kategori numaralarının anlamı projedeki tablodan gelecek: her numara için 'kural' listesine [osm_etiketi, deger] ekleyin ('*' = etiket varsa). Tablo tamamlanınca 'onayli' true yapılır; true olmadan tam tarama başlamaz.",
+  "kategoriler": {
+    "1": { "ad": "TASLAK: kamp alani / cadir", "kural": [["tourism", "camp_site"], ["tourism", "wilderness_hut"], ["amenity", "shelter"]] },
+    "2": { "ad": "TASLAK: karavan", "kural": [["tourism", "caravan_site"], ["caravans", "yes"], ["motorhome", "yes"]] },
+    "3": { "ad": "?", "kural": [] },
+    "4": { "ad": "?", "kural": [] },
+    "5": { "ad": "?", "kural": [] },
+    "6": { "ad": "?", "kural": [] },
+    "7": { "ad": "?", "kural": [] },
+    "8": { "ad": "?", "kural": [] },
+    "10": { "ad": "?", "kural": [] },
+    "11": { "ad": "?", "kural": [] },
+    "12": { "ad": "?", "kural": [] },
+    "15": { "ad": "?", "kural": [] },
+    "16": { "ad": "?", "kural": [] },
+    "17": { "ad": "?", "kural": [] },
+    "18": { "ad": "?", "kural": [] },
+    "19": { "ad": "?", "kural": [] },
+    "20": { "ad": "?", "kural": [] },
+    "22": { "ad": "?", "kural": [] },
+    "23": { "ad": "?", "kural": [] },
+    "24": { "ad": "TASLAK: naturist (FKK)", "kural": [["nudism", "yes"], ["nudism", "designated"], ["nudism", "obligatory"]] }
+  }
+}

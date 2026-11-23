@@ -1,0 +1,48 @@
+name: Dünya kamp taraması
+
+on:
+  workflow_dispatch:
+    inputs:
+      mod:
+        description: "pilot = sadece LU, pilot/ klasörüne | tam = tüm dünya, data/ klasörüne"
+        default: pilot
+        type: choice
+        options: [pilot, tam]
+      ulkeler:
+        description: "İsteğe bağlı: virgülle ülke kodları (örn. AT,DE,US). Boşsa hepsi"
+        required: false
+        default: ""
+  schedule:
+    - cron: "17 */6 * * *"   # tam mod; bitene kadar kaldığı yerden devam eder
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dunya-tara
+  cancel-in-progress: false
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Tara ve zenginleştir
+        env:
+          MOD: ${{ github.event.inputs.mod || 'tam' }}
+          ULKELER: ${{ github.event.inputs.ulkeler }}
+        run: |
+          ARGS="--mod $MOD --commit --sure 335"
+          if [ -n "$ULKELER" ]; then ARGS="$ARGS --ulkeler $ULKELER"; fi
+          node tools/dunya-tara.js $ARGS
+      - name: Pilot çıktısını kaydet
+        if: ${{ github.event.inputs.mod == 'pilot' }}
+        run: |
+          git config user.name "trailopro-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add pilot tools/durum-pilot.json || true
+          git diff --cached --quiet || (git commit -m "pilot: LU örnek çıktı" && git pull --rebase -X theirs -q && git push -q)
