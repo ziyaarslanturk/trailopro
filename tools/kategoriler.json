@@ -1,26 +1,280 @@
 {
-  "onayli": false,
-  "aciklama": "TASLAK. Sadece verideki kanıtla doğrulanabilen 3 kategori dolu (1, 2, 24). Diğer kategori numaralarının anlamı projedeki tablodan gelecek: her numara için 'kural' listesine [osm_etiketi, deger] ekleyin ('*' = etiket varsa). Tablo tamamlanınca 'onayli' true yapılır; true olmadan tam tarama başlamaz.",
-  "kategoriler": {
-    "1": { "ad": "TASLAK: kamp alani / cadir", "kural": [["tourism", "camp_site"], ["tourism", "wilderness_hut"], ["amenity", "shelter"]] },
-    "2": { "ad": "TASLAK: karavan", "kural": [["tourism", "caravan_site"], ["caravans", "yes"], ["motorhome", "yes"]] },
-    "3": { "ad": "?", "kural": [] },
-    "4": { "ad": "?", "kural": [] },
-    "5": { "ad": "?", "kural": [] },
-    "6": { "ad": "?", "kural": [] },
-    "7": { "ad": "?", "kural": [] },
-    "8": { "ad": "?", "kural": [] },
-    "10": { "ad": "?", "kural": [] },
-    "11": { "ad": "?", "kural": [] },
-    "12": { "ad": "?", "kural": [] },
-    "15": { "ad": "?", "kural": [] },
-    "16": { "ad": "?", "kural": [] },
-    "17": { "ad": "?", "kural": [] },
-    "18": { "ad": "?", "kural": [] },
-    "19": { "ad": "?", "kural": [] },
-    "20": { "ad": "?", "kural": [] },
-    "22": { "ad": "?", "kural": [] },
-    "23": { "ad": "?", "kural": [] },
-    "24": { "ad": "TASLAK: naturist (FKK)", "kural": [["nudism", "yes"], ["nudism", "designated"], ["nudism", "obligatory"]] }
+ "onayli": true,
+ "aciklama": "Kategori numaralari uygulamadaki app/src/main/assets/packs.json tablosundan alindi. Kural = [osm_etiketi, deger]; '*' = etiket varsa. 9 (telefon cekiyor) ve 13 (golgelik) icin OSM'de karsilik etiket yok: bos birakildi, sonraki zenginlestirme asamasinda doldurulur.",
+ "kategoriler": {
+  "1": {
+   "ad": "ÇADIR ALANI",
+   "kural": [
+    [
+     "tourism",
+     "camp_site"
+    ],
+    [
+     "tents",
+     "yes"
+    ],
+    [
+     "tourism",
+     "wilderness_hut"
+    ],
+    [
+     "amenity",
+     "shelter"
+    ]
+   ]
+  },
+  "2": {
+   "ad": "KARAVAN ALANI",
+   "kural": [
+    [
+     "tourism",
+     "caravan_site"
+    ],
+    [
+     "caravans",
+     "yes"
+    ],
+    [
+     "motorhome",
+     "yes"
+    ]
+   ]
+  },
+  "3": {
+   "ad": "İÇME SUYU",
+   "kural": [
+    [
+     "drinking_water",
+     "yes"
+    ]
+   ]
+  },
+  "4": {
+   "ad": "ELEKTRİK BAĞLANTISI",
+   "kural": [
+    [
+     "power_supply",
+     "yes"
+    ],
+    [
+     "electricity",
+     "yes"
+    ]
+   ]
+  },
+  "5": {
+   "ad": "ATEŞ YAKILABİLİR",
+   "kural": [
+    [
+     "openfire",
+     "yes"
+    ],
+    [
+     "campfire",
+     "yes"
+    ]
+   ]
+  },
+  "6": {
+   "ad": "WC / TUVALET",
+   "kural": [
+    [
+     "toilets",
+     "yes"
+    ]
+   ]
+  },
+  "7": {
+   "ad": "DUŞ İMKANI",
+   "kural": [
+    [
+     "shower",
+     "yes"
+    ]
+   ]
+  },
+  "8": {
+   "ad": "MARKET / TESİS",
+   "kural": [
+    [
+     "shop",
+     "*"
+    ],
+    [
+     "restaurant",
+     "yes"
+    ],
+    [
+     "amenity",
+     "restaurant"
+    ],
+    [
+     "amenity",
+     "cafe"
+    ]
+   ]
+  },
+  "9": {
+   "ad": "TELEFON ÇEKİYOR",
+   "kural": []
+  },
+  "10": {
+   "ad": "Wİ-Fİ İNTERNET",
+   "kural": [
+    [
+     "internet_access",
+     "wlan"
+    ],
+    [
+     "internet_access",
+     "wifi"
+    ],
+    [
+     "internet_access",
+     "yes"
+    ]
+   ]
+  },
+  "11": {
+   "ad": "OTOPARK",
+   "kural": [
+    [
+     "parking",
+     "yes"
+    ]
+   ]
+  },
+  "12": {
+   "ad": "EVCİL HAYVAN İZİNLİ",
+   "kural": [
+    [
+     "dog",
+     "yes"
+    ]
+   ]
+  },
+  "13": {
+   "ad": "GÖLGELİK / AĞAÇLIK ALAN",
+   "kural": []
+  },
+  "14": {
+   "ad": "YÜRÜYÜŞ ROTASI",
+   "kural": [
+    [
+     "hiking",
+     "yes"
+    ],
+    [
+     "backcountry",
+     "yes"
+    ]
+   ]
+  },
+  "15": {
+   "ad": "BALIK TUTMA",
+   "kural": [
+    [
+     "fishing",
+     "yes"
+    ]
+   ]
+  },
+  "16": {
+   "ad": "GÜVENLİK / BEKÇİ",
+   "kural": [
+    [
+     "supervised",
+     "yes"
+    ],
+    [
+     "security",
+     "yes"
+    ]
+   ]
+  },
+  "17": {
+   "ad": "DENİZ / PLAJ",
+   "kural": [
+    [
+     "beach",
+     "yes"
+    ],
+    [
+     "natural",
+     "beach"
+    ]
+   ]
+  },
+  "18": {
+   "ad": "MANGAL ALANI",
+   "kural": [
+    [
+     "bbq",
+     "yes"
+    ]
+   ]
+  },
+  "19": {
+   "ad": "ÇOCUK OYUN ALANI",
+   "kural": [
+    [
+     "playground",
+     "yes"
+    ]
+   ]
+  },
+  "20": {
+   "ad": "KAMP ATEŞİ ODUNU",
+   "kural": [
+    [
+     "firewood",
+     "yes"
+    ]
+   ]
+  },
+  "21": {
+   "ad": "TARİHİ ALAN / ÖRENYERİ",
+   "kural": [
+    [
+     "historic",
+     "*"
+    ]
+   ]
+  },
+  "22": {
+   "ad": "AT BİNİCİLİĞİ",
+   "kural": [
+    [
+     "horse",
+     "yes"
+    ],
+    [
+     "horse_riding",
+     "yes"
+    ]
+   ]
+  },
+  "23": {
+   "ad": "4x4 ARAZİ ULAŞIMI",
+   "kural": [
+    [
+     "4wd_only",
+     "yes"
+    ]
+   ]
+  },
+  "24": {
+   "ad": "YÜZME ALANI / GÖL",
+   "kural": [
+    [
+     "swimming",
+     "yes"
+    ],
+    [
+     "swimming_pool",
+     "yes"
+    ]
+   ]
   }
+ }
 }
