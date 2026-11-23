@@ -1,27 +1,27 @@
 {
  "AD": {
   "hata": {
-   "n": 1,
-   "son": "2026-11-23T09:50:55.591Z",
+   "n": 2,
+   "son": "2026-11-23T14:24:25.418Z",
    "mesaj": "Overpass sorgusu basarisiz: fetch failed"
   },
-  "sonraki": "2026-11-23T10:20:55.591Z"
+  "sonraki": "2026-11-23T15:24:25.418Z"
  },
  "AF": {
   "hata": {
-   "n": 1,
-   "son": "2026-11-23T10:10:46.987Z",
-   "mesaj": "Overpass sorgusu basarisiz: HTTP 502"
+   "n": 2,
+   "son": "2026-11-23T15:08:49.705Z",
+   "mesaj": "Overpass sorgusu basarisiz: fetch failed"
   },
-  "sonraki": "2026-11-23T10:40:46.987Z"
+  "sonraki": "2026-11-23T16:08:49.705Z"
  },
  "AG": {
   "hata": {
-   "n": 1,
-   "son": "2026-11-23T10:21:42.232Z",
-   "mesaj": "Overpass sorgusu basarisiz: fetch failed"
+   "n": 2,
+   "son": "2026-11-23T15:35:58.281Z",
+   "mesaj": "Overpass sorgusu basarisiz: HTTP 502"
   },
-  "sonraki": "2026-11-23T10:51:42.232Z"
+  "sonraki": "2026-11-23T16:35:58.281Z"
  },
  "AI": {
   "hata": {
@@ -30,5 +30,13 @@
    "mesaj": "Overpass sorgusu basarisiz: HTTP 504"
   },
   "sonraki": "2026-11-23T11:00:07.955Z"
+ },
+ "AE": {
+  "hata": {
+   "n": 1,
+   "son": "2026-11-23T14:50:12.464Z",
+   "mesaj": "Overpass sorgusu basarisiz: HTTP 504"
+  },
+  "sonraki": "2026-11-23T15:20:12.464Z"
  }
 }
