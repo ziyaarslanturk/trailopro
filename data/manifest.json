@@ -120,6 +120,12 @@
    "size": 97918,
    "updated": "2026-11-24T10:49:19Z"
   },
+  "BG": {
+   "count": 308,
+   "sha256": "a52ef1c415ea528de8f9c6c6933315b1bf6cfc5080666a139126cadfc6f41e03",
+   "size": 160437,
+   "updated": "2026-11-24T10:50:14Z"
+  },
   "BH": {
    "count": 1,
    "sha256": "64d9c1f260edc9aea56dbb6df33ea38778991f2fa4134d7c568f4e09a9a33c13",
