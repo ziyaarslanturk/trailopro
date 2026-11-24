@@ -102,5 +102,12 @@
   "elenen": 0,
   "sayi": 3,
   "tamam": "2026-11-24T10:16:31.173Z"
+ },
+ "AX": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T10:19:29.447Z",
+  "osm": 30,
+  "elenen": 1,
+  "sayi": 29
  }
 }
