@@ -218,5 +218,16 @@
   "elenen": 9,
   "sayi": 303,
   "tamam": "2026-11-24T10:58:10.282Z"
+ },
+ "BQ": {
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-24T11:06:01.696Z"
+ },
+ "BR": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-24T11:31:45.322Z",
+  "osm": 1872,
+  "elenen": 173,
+  "sayi": 1699
  }
 }
