@@ -27,12 +27,12 @@
   "tamam": "2026-11-24T01:47:57.853Z"
  },
  "AI": {
-  "hata": {
-   "n": 2,
-   "son": "2026-11-23T20:52:22.128Z",
-   "mesaj": "Overpass sorgusu basarisiz: fetch failed"
-  },
-  "sonraki": "2026-11-23T21:52:22.128Z"
+  "sonraki": "2026-11-23T21:52:22.128Z",
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T01:48:02.110Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  },
  "AE": {
   "sonraki": "2026-11-23T15:20:12.464Z",
