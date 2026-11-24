@@ -5,7 +5,25 @@
  *
  * - Çok kaynaklı OSM çekimi: Geofabrik PBF -> OSM.fr PBF -> Geofabrik kırpılmış PBF -> 5 aynalı Overpass -> BBox
  * - Gerçek ülke/eyalet sınır poligonu ve addr:country kontrolü ile sınır taşması engellenir
- * - Boş/uydurma veri yazılmaz; yalnızca OSM ve irtifa servislerinden gerçekten gelen alanlar kaydedilir
+ * - Boş/uydurma veri yazılmaz; yalnızca OSM ve irtifa servisconst HAYIR_DEGERLER = new Set(['no', 'none', 'false', '0']);
+
+function kategoriHesapla(etiket, kat) {
+  const ids = [];
+  for (const [id, k] of Object.entries(kat.kategoriler)) {
+    const num = Number(id);
+    if (num === 1 && String(etiket.tents || '').trim().toLowerCase() === 'no') continue;
+    const eslesti = (k.kural || []).some(([key, val]) => {
+      const t = etiket[key];
+      if (t === undefined) return false;
+      const parcalar = String(t).split(';').map((s) => s.trim().toLowerCase()).filter(Boolean);
+      if (!parcalar.length) return false;
+      if (val === '*') return parcalar.some((p) => !HAYIR_DEGERLER.has(p));
+      return parcalar.includes(String(val).toLowerCase());
+    });
+    if (eslesti) ids.push(num);
+  }
+  return ids.sort((a, b) => a - b);
+}lerinden gerçekten gelen alanlar kaydedilir
  * - data/XX.json ile AYNI formatta yazar (US için US_WEST, US_SOUTH ... bölge dosyaları)
  * - Birbirine ESIK metre (aynı isimli kayıtlarda 300 m) içindeki noktalardan bilgisi az olanı atar
  * - Yeniden başlatılabilir: durum tools/durum.json ve kayıtların notes.note işaretinde tutulur
