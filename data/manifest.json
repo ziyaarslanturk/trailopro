@@ -276,6 +276,12 @@
    "size": 906673,
    "updated": "2026-11-24T14:21:14Z"
   },
+  "CR": {
+   "count": 112,
+   "sha256": "1f1fe46eb1db7ddb1bd454026149b704031bf5532a33c4ebf9f9021004fd8524",
+   "size": 52532,
+   "updated": "2026-11-24T14:37:51Z"
+  },
   "CZ": {
    "count": 1216,
    "sha256": "edf4e9141c04b4e7f589e145ab76aab73fac46456a5b5a23136f8455e78ea08f",

@@ -356,10 +356,18 @@
   "tamam": "2026-11-24T14:18:03.731Z"
  },
  "CN": {
-  "kaynak": "overpass-area",
-  "harita": "2026-11-24T14:21:14.894Z",
-  "osm": 2388,
-  "elenen": 175,
-  "sayi": 2213
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-24T14:27:20.691Z"
+ },
+ "CO": {
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-24T14:37:21.731Z"
+ },
+ "CR": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T14:37:51.665Z",
+  "osm": 115,
+  "elenen": 3,
+  "sayi": 112
  }
 }
