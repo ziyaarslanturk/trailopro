@@ -714,5 +714,16 @@
   "elenen": 18,
   "sayi": 316,
   "tamam": "2026-11-24T19:07:07.308Z"
+ },
+ "IM": {
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-24T19:13:49.278Z"
+ },
+ "IN": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T19:16:43.691Z",
+  "osm": 2193,
+  "elenen": 189,
+  "sayi": 2004
  }
 }
