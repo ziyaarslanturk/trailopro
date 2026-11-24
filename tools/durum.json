@@ -666,5 +666,12 @@
   "elenen": 1,
   "sayi": 31,
   "tamam": "2026-11-24T18:04:44.868Z"
+ },
+ "HK": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T18:07:40.562Z",
+  "osm": 93,
+  "elenen": 6,
+  "sayi": 87
  }
 }
