@@ -696,10 +696,14 @@
   "sonDeneme": "2026-11-24T18:44:32.378Z"
  },
  "ID": {
-  "kaynak": "overpass-area",
-  "harita": "2026-11-24T18:46:01.031Z",
-  "osm": 645,
-  "elenen": 39,
-  "sayi": 606
+  "hata": "overpass.private.coffee: HTTP 504",
+  "sonDeneme": "2026-11-24T19:01:33.740Z"
+ },
+ "IE": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T19:02:38.579Z",
+  "osm": 458,
+  "elenen": 446,
+  "sayi": 439
  }
 }
