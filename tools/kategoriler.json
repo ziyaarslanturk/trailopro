@@ -1,117 +1,70 @@
 {
  "onayli": true,
- "aciklama": "Kategori numaralari uygulamadaki app/src/main/assets/packs.json tablosundan alindi. Kural = [osm_etiketi, deger]; '*' = etiket varsa. 9 (telefon cekiyor) ve 13 (golgelik) icin OSM'de karsilik etiket yok: bos birakildi, sonraki zenginlestirme asamasinda doldurulur.",
+ "aciklama": "Kategori numaralari uygulamadaki app/src/main/assets/packs.json tablosundan alindi. Kural = [osm_etiketi, deger]; '*' = no/none/false disinda etiket varsa. 9 (telefon cekiyor) icin OSM'de guvenilir etiket olmadigindan bos birakildi.",
  "kategoriler": {
   "1": {
    "ad": "ÇADIR ALANI",
    "kural": [
-    [
-     "tourism",
-     "camp_site"
-    ],
-    [
-     "tents",
-     "yes"
-    ],
-    [
-     "tourism",
-     "wilderness_hut"
-    ],
-    [
-     "amenity",
-     "shelter"
-    ]
+    ["tourism", "camp_site"],
+    ["tents", "yes"],
+    ["tents", "designated"],
+    ["tourism", "wilderness_hut"],
+    ["amenity", "shelter"]
    ]
   },
   "2": {
    "ad": "KARAVAN ALANI",
    "kural": [
-    [
-     "tourism",
-     "caravan_site"
-    ],
-    [
-     "caravans",
-     "yes"
-    ],
-    [
-     "motorhome",
-     "yes"
-    ]
+    ["tourism", "caravan_site"],
+    ["caravans", "yes"],
+    ["caravans", "designated"],
+    ["motorhome", "yes"],
+    ["motorhome", "designated"]
    ]
   },
   "3": {
    "ad": "İÇME SUYU",
    "kural": [
-    [
-     "drinking_water",
-     "yes"
-    ]
+    ["drinking_water", "yes"],
+    ["drinking_water", "designated"]
    ]
   },
   "4": {
    "ad": "ELEKTRİK BAĞLANTISI",
    "kural": [
-    [
-     "power_supply",
-     "yes"
-    ],
-    [
-     "electricity",
-     "yes"
-    ]
+    ["power_supply", "*"],
+    ["electricity", "*"]
    ]
   },
   "5": {
    "ad": "ATEŞ YAKILABİLİR",
    "kural": [
-    [
-     "openfire",
-     "yes"
-    ],
-    [
-     "campfire",
-     "yes"
-    ]
+    ["openfire", "yes"],
+    ["openfire", "designated"],
+    ["campfire", "yes"]
    ]
   },
   "6": {
    "ad": "WC / TUVALET",
    "kural": [
-    [
-     "toilets",
-     "yes"
-    ]
+    ["toilets", "yes"],
+    ["toilets", "designated"]
    ]
   },
   "7": {
    "ad": "DUŞ İMKANI",
    "kural": [
-    [
-     "shower",
-     "yes"
-    ]
+    ["shower", "yes"],
+    ["shower", "designated"]
    ]
   },
   "8": {
    "ad": "MARKET / TESİS",
    "kural": [
-    [
-     "shop",
-     "*"
-    ],
-    [
-     "restaurant",
-     "yes"
-    ],
-    [
-     "amenity",
-     "restaurant"
-    ],
-    [
-     "amenity",
-     "cafe"
-    ]
+    ["shop", "*"],
+    ["restaurant", "yes"],
+    ["amenity", "restaurant"],
+    ["amenity", "cafe"]
    ]
   },
   "9": {
@@ -121,159 +74,104 @@
   "10": {
    "ad": "Wİ-Fİ İNTERNET",
    "kural": [
-    [
-     "internet_access",
-     "wlan"
-    ],
-    [
-     "internet_access",
-     "wifi"
-    ],
-    [
-     "internet_access",
-     "yes"
-    ]
+    ["internet_access", "wlan"],
+    ["internet_access", "wifi"],
+    ["internet_access", "yes"]
    ]
   },
   "11": {
    "ad": "OTOPARK",
    "kural": [
-    [
-     "parking",
-     "yes"
-    ]
+    ["parking", "yes"],
+    ["parking", "surface"],
+    ["parking", "designated"]
    ]
   },
   "12": {
    "ad": "EVCİL HAYVAN İZİNLİ",
    "kural": [
-    [
-     "dog",
-     "yes"
-    ]
+    ["dog", "yes"],
+    ["dog", "leashed"],
+    ["pets", "yes"]
    ]
   },
   "13": {
    "ad": "GÖLGELİK / AĞAÇLIK ALAN",
-   "kural": []
+   "kural": [
+    ["shade", "yes"],
+    ["trees", "yes"]
+   ]
   },
   "14": {
    "ad": "YÜRÜYÜŞ ROTASI",
    "kural": [
-    [
-     "hiking",
-     "yes"
-    ],
-    [
-     "backcountry",
-     "yes"
-    ]
+    ["hiking", "yes"],
+    ["backcountry", "yes"]
    ]
   },
   "15": {
    "ad": "BALIK TUTMA",
    "kural": [
-    [
-     "fishing",
-     "yes"
-    ]
+    ["fishing", "yes"]
    ]
   },
   "16": {
    "ad": "GÜVENLİK / BEKÇİ",
    "kural": [
-    [
-     "supervised",
-     "yes"
-    ],
-    [
-     "security",
-     "yes"
-    ]
+    ["supervised", "yes"],
+    ["security", "yes"]
    ]
   },
   "17": {
    "ad": "DENİZ / PLAJ",
    "kural": [
-    [
-     "beach",
-     "yes"
-    ],
-    [
-     "natural",
-     "beach"
-    ]
+    ["beach", "yes"],
+    ["natural", "beach"]
    ]
   },
   "18": {
    "ad": "MANGAL ALANI",
    "kural": [
-    [
-     "bbq",
-     "yes"
-    ]
+    ["bbq", "yes"],
+    ["bbq", "designated"]
    ]
   },
   "19": {
    "ad": "ÇOCUK OYUN ALANI",
    "kural": [
-    [
-     "playground",
-     "yes"
-    ]
+    ["playground", "yes"]
    ]
   },
   "20": {
    "ad": "KAMP ATEŞİ ODUNU",
    "kural": [
-    [
-     "firewood",
-     "yes"
-    ]
+    ["firewood", "yes"]
    ]
   },
   "21": {
    "ad": "TARİHİ ALAN / ÖRENYERİ",
    "kural": [
-    [
-     "historic",
-     "*"
-    ]
+    ["historic", "*"]
    ]
   },
   "22": {
    "ad": "AT BİNİCİLİĞİ",
    "kural": [
-    [
-     "horse",
-     "yes"
-    ],
-    [
-     "horse_riding",
-     "yes"
-    ]
+    ["horse", "yes"],
+    ["horse_riding", "yes"]
    ]
   },
   "23": {
    "ad": "4x4 ARAZİ ULAŞIMI",
    "kural": [
-    [
-     "4wd_only",
-     "yes"
-    ]
+    ["4wd_only", "yes"]
    ]
   },
   "24": {
    "ad": "YÜZME ALANI / GÖL",
    "kural": [
-    [
-     "swimming",
-     "yes"
-    ],
-    [
-     "swimming_pool",
-     "yes"
-    ]
+    ["swimming", "yes"],
+    ["swimming_pool", "yes"]
    ]
   }
  }
