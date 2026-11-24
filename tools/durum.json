@@ -690,5 +690,12 @@
   "elenen": 4,
   "sayi": 35,
   "tamam": "2026-11-24T18:24:56.584Z"
+ },
+ "HU": {
+  "kaynak": "overpass-iso",
+  "harita": "2026-11-24T18:33:29.041Z",
+  "osm": 675,
+  "elenen": 37,
+  "sayi": 638
  }
 }
