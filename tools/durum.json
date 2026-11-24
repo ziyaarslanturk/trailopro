@@ -290,5 +290,12 @@
   "osm": 3,
   "elenen": 0,
   "sayi": 3
+ },
+ "CD": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T14:09:43.913Z",
+  "osm": 96,
+  "elenen": 4,
+  "sayi": 92
  }
 }
