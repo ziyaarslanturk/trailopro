@@ -6,7 +6,7 @@ const os = require('os');
 const readline = require('readline');
 const { execFileSync, spawnSync } = require('child_process');
 
-const UA = 'TrailoPRO-harvester/3.0 (https://github.com/ziyaarslanturk/trailopro)';
+const UA = 'TrailoPRO-harvester/3.1 (https://github.com/ziyaarslanturk/trailopro)';
 const GEOFABRIK_INDEX_URL = 'https://download.geofabrik.de/index-v1-nogeom.json';
 const MAX_SINGLE_PBF_BYTES = 1.5 * 1024 * 1024 * 1024; // 1.5 GB üstünde alt bölgelere böl
 
@@ -107,6 +107,20 @@ const OSMFR_ALIAS = {
   XK: ['kosovo'],
 };
 
+const US_EYALET_AD = {
+  AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California',
+  CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', DC: 'District of Columbia',
+  FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois',
+  IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana',
+  ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota',
+  MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada',
+  NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York',
+  NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon',
+  PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota',
+  TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia',
+  WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming',
+};
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 const EN_BOLGE_AD = (() => {
@@ -119,6 +133,7 @@ let osmiumVarCache = null;
 let sonOverpassMs = 0;
 let sonNominatimMs = 0;
 const aynaSoguma = new Map();
+const sinirCache = new Map();
 
 function osmiumMevcutMu() {
   if (osmiumVarCache !== null) return osmiumVarCache;
@@ -148,13 +163,31 @@ function kaynakUygunMu(t) {
   return false;
 }
 
+function addrBolgeUygunMu(tags, kod, iso2Mi) {
+  if (!tags) return true;
+  const beklenenUlke = iso2Mi ? kod.split('-')[0].toUpperCase() : kod.toUpperCase();
+  let addrUlke = String(tags['addr:country'] || '').trim().toUpperCase();
+  if (addrUlke === 'UK') addrUlke = 'GB';
+  if (addrUlke && /^[A-Z]{2}$/.test(addrUlke) && addrUlke !== beklenenUlke) {
+    return false;
+  }
+  if (iso2Mi) {
+    const beklenenEyalet = kod.split('-')[1]?.toUpperCase();
+    const addrEyalet = String(tags['addr:state'] || '').trim().toUpperCase();
+    if (beklenenEyalet && addrEyalet && /^[A-Z]{2}$/.test(addrEyalet) && addrEyalet !== beklenenEyalet) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function poiUygunMu(t, osmType) {
   if (!t || typeof t !== 'object') return false;
   if (t.natural === 'peak') return osmType === 'node';
   if (t.natural === 'beach' || t.leisure === 'beach_resort') return true;
   if (/^(drinking_water|toilets|shower|fuel|pharmacy|hospital|clinic|doctors)$/.test(t.amenity || '')) return true;
   if (/^(supermarket|convenience|general|kiosk)$/.test(t.shop || '')) return true;
-  if (/^(city|town|village|suburb|hamlet|neighbourhood)$/.test(t.place || '')) return true;
+  if (/^(city|town|village|suburb|hamlet|neighbourhood)$/.test(t.place || '')) return Boolean(t.name && String(t.name).trim());
   if (/^(attraction|museum|viewpoint|hotel|hostel|motel|guest_house)$/.test(t.tourism || '')) return true;
   if (/^(castle|ruins|monument|archaeological_site)$/.test(t.historic || '')) return true;
   return false;
@@ -204,6 +237,83 @@ function ogeTekillestir(ogeler) {
     if (!map.has(k)) map.set(k, el);
   }
   return Array.from(map.values());
+}
+
+/* ---------- Poligon Sınır Kontrolü (Sınır Taşmasını Kesin Önler) ---------- */
+function halkaIcindeMi(lon, lat, ring) {
+  let icinde = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0], yi = ring[i][1];
+    const xj = ring[j][0], yj = ring[j][1];
+    const kesisir = ((yi > lat) !== (yj > lat)) &&
+      (lon < ((xj - xi) * (lat - yi)) / ((yj - yi) || 1e-12) + xi);
+    if (kesisir) icinde = !icinde;
+  }
+  return icinde;
+}
+
+function poligonBboxHesapla(geom) {
+  let minLon = Infinity, minLat = Infinity, maxLon = -Infinity, maxLat = -Infinity;
+  const gez = (c) => {
+    if (!Array.isArray(c) || !c.length) return;
+    if (typeof c[0] === 'number' && typeof c[1] === 'number') {
+      if (c[0] < minLon) minLon = c[0];
+      if (c[0] > maxLon) maxLon = c[0];
+      if (c[1] < minLat) minLat = c[1];
+      if (c[1] > maxLat) maxLat = c[1];
+      return;
+    }
+    for (const alt of c) gez(alt);
+  };
+  gez(geom.coordinates);
+  return { minLon, minLat, maxLon, maxLat };
+}
+
+function sinirTestiHazirla(feature) {
+  if (!feature || !feature.geometry) return null;
+  const geom = feature.geometry;
+  if (geom.type !== 'Polygon' && geom.type !== 'MultiPolygon') return null;
+  const poligonlar = geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates;
+  const bbox = poligonBboxHesapla(geom);
+
+  return function icindeMi(lon, lat) {
+    if (lon < bbox.minLon || lon > bbox.maxLon || lat < bbox.minLat || lat > bbox.maxLat) {
+      return false;
+    }
+    for (const poly of poligonlar) {
+      if (!poly || !poly.length) continue;
+      if (!halkaIcindeMi(lon, lat, poly[0])) continue;
+      let delikte = false;
+      for (let h = 1; h < poly.length; h++) {
+        if (halkaIcindeMi(lon, lat, poly[h])) { delikte = true; break; }
+      }
+      if (!delikte) return true;
+    }
+    return false;
+  };
+}
+
+function ogeleriSinirlaFiltrele(ogeler, kod, iso2Mi, sinirTesti) {
+  let elenenSinir = 0;
+  const kalan = [];
+  for (const el of ogeler) {
+    const lat = el.lat !== undefined ? el.lat : el.center && el.center.lat;
+    const lon = el.lon !== undefined ? el.lon : el.center && el.center.lon;
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+    if (!addrBolgeUygunMu(el.tags, kod, iso2Mi)) {
+      elenenSinir++;
+      continue;
+    }
+    if (sinirTesti && !sinirTesti(lon, lat)) {
+      elenenSinir++;
+      continue;
+    }
+    kalan.push(el);
+  }
+  if (elenenSinir > 0) {
+    log(`  [Sınır filtresi:${kod}] komşu ülke/eyaletten taşan ${elenenSinir} kayıt elendi`);
+  }
+  return kalan;
 }
 
 /* ---------- Mekansal Izgara (0.15 derece ~ 16.7 km) ---------- */
@@ -389,7 +499,7 @@ async function headBoyut(url) {
   }
 }
 
-/* ---------- Nominatim (Sınır GeoJSON & BBox) ---------- */
+/* ---------- Nominatim (Gerçek Sınır Poligonu & BBox) ---------- */
 async function nominatimSorgula(params) {
   const gecen = Date.now() - sonNominatimMs;
   if (gecen < 1200) await sleep(1200 - gecen);
@@ -404,19 +514,70 @@ async function nominatimSorgula(params) {
   return res.json();
 }
 
-async function ulkeSinirGeojsonAl(iso1) {
-  const fc = await nominatimSorgula({
-    countrycodes: iso1.toLowerCase(),
-    format: 'geojson',
-    polygon_geojson: '1',
-    featuretype: 'country',
-    limit: '3',
-  });
-  const features = fc && fc.features ? fc.features : [];
-  const poly = features.find(
+function enIyiPoligonSec(fc) {
+  const features = fc && Array.isArray(fc.features) ? fc.features : [];
+  const poligonlar = features.filter(
     (f) => f.geometry && (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon')
   );
-  return poly || null;
+  if (!poligonlar.length) return null;
+  const idari = poligonlar.find(
+    (f) => f.properties && (f.properties.category === 'boundary' || f.properties.type === 'administrative')
+  );
+  return idari || poligonlar[0];
+}
+
+async function sinirGeojsonAl(kod, iso2Mi) {
+  const anahtar = `${iso2Mi ? '2' : '1'}:${kod}`;
+  if (sinirCache.has(anahtar)) return sinirCache.get(anahtar);
+
+  let bulunan = null;
+  try {
+    if (iso2Mi && kod.startsWith('US-')) {
+      const eyaletKod = kod.slice(3).toUpperCase();
+      const eyaletAd = US_EYALET_AD[eyaletKod];
+      if (eyaletAd) {
+        const fc = await nominatimSorgula({
+          state: eyaletAd,
+          country: 'United States',
+          format: 'geojson',
+          polygon_geojson: '1',
+          limit: '3',
+        });
+        bulunan = enIyiPoligonSec(fc);
+      }
+    } else if (!iso2Mi) {
+      const fc = await nominatimSorgula({
+        countrycodes: kod.toLowerCase(),
+        format: 'geojson',
+        polygon_geojson: '1',
+        featuretype: 'country',
+        limit: '5',
+      });
+      bulunan = enIyiPoligonSec(fc);
+
+      if (!bulunan && EN_BOLGE_AD) {
+        let ad = null;
+        try { ad = EN_BOLGE_AD.of(kod); } catch {}
+        if (ad) {
+          const fc2 = await nominatimSorgula({
+            q: ad,
+            format: 'geojson',
+            polygon_geojson: '1',
+            limit: '5',
+          });
+          const aday = enIyiPoligonSec(fc2);
+          if (aday && aday.properties && aday.properties.category === 'boundary') {
+            bulunan = aday;
+          }
+        }
+      }
+    }
+  } catch (e) {
+    log(`  [Sınır poligonu:${kod}] alınamadı: ${e.message}`);
+  }
+
+  sinirCache.set(anahtar, bulunan);
+  return bulunan;
 }
 
 async function bboxAl(kod) {
@@ -478,41 +639,28 @@ async function geojsonSeqOku(dosya, isleyici) {
 }
 
 async function pbfCozumle(pbfDosya, tmpDir, secenekler) {
-  const { sinirFeature, kampCek, poiCek, mevcutNoktalar } = secenekler;
-  const ogeler = [];
+  const { kod, iso2Mi, sinirTesti, kampCek, poiCek, mevcutNoktalar } = secenekler;
+  let ogeler = [];
   const poiler = [];
 
   if (kampCek) {
     const kampHam = path.join(tmpDir, 'kamp-ham.osm.pbf');
-    let kampHedef = kampHam;
+    const kampSeq = path.join(tmpDir, 'kamp.geojsonseq');
     execFileSync(
       'osmium',
       ['tags-filter', '--overwrite', '-o', kampHam, pbfDosya, ...OSMIUM_CAMP_FILTERS],
       { stdio: 'pipe' }
     );
-
-    if (sinirFeature) {
-      const sinirYol = path.join(tmpDir, 'sinir.geojson');
-      const kampKirpik = path.join(tmpDir, 'kamp-kirpik.osm.pbf');
-      fs.writeFileSync(sinirYol, JSON.stringify(sinirFeature));
-      execFileSync(
-        'osmium',
-        ['extract', '--overwrite', '-p', sinirYol, '-o', kampKirpik, kampHam],
-        { stdio: 'pipe' }
-      );
-      kampHedef = kampKirpik;
-    }
-
-    const kampSeq = path.join(tmpDir, 'kamp.geojsonseq');
     execFileSync(
       'osmium',
-      ['export', '--overwrite', '-f', 'geojsonseq', '-u', 'type_id', '-a', 'type,id', '-o', kampSeq, kampHedef],
+      ['export', '--overwrite', '-f', 'geojsonseq', '-u', 'type_id', '-a', 'type,id', '-o', kampSeq, kampHam],
       { stdio: 'pipe' }
     );
 
     await geojsonSeqOku(kampSeq, (el) => {
       if (kaynakUygunMu(el.tags)) ogeler.push(el);
     });
+    ogeler = ogeleriSinirlaFiltrele(ogeler, kod, iso2Mi, sinirTesti);
   }
 
   if (poiCek) {
@@ -636,29 +784,28 @@ function alanSorgusuOlustur(filtre) {
   return `[out:json][timeout:110];${filtre}->.a;(${KAYNAK_QL.map((k) => `${k}(area.a);`).join('')});out center tags;`;
 }
 
-async function overpassAlanVeyaBbox(kod, iso2Mi, ayar) {
+async function overpassAlanVeyaBbox(kod, iso2Mi, ayar, sinirTesti) {
   const anaFiltre = iso2Mi
     ? `area["ISO3166-2"="${kod}"]["boundary"="administrative"]`
     : `area["ISO3166-1"="${kod}"]["boundary"="administrative"]`;
 
-  // 4a: Resmi idari sınır alanı
   try {
     const ogeler = await overpassSorgula(alanSorgusuOlustur(anaFiltre), ayar, 2);
-    if (ogeler.length > 0) return { ogeler, kaynak: 'overpass-area' };
+    if (ogeler.length > 0) {
+      return { ogeler: ogeleriSinirlaFiltrele(ogeler, kod, iso2Mi, null), kaynak: 'overpass-area' };
+    }
   } catch (e) {
     log(`  [Overpass alan] ${kod}: ${e.message}`);
   }
 
-  // 4b: boundary filtresi olmadan ISO3166 alanı (XK, TW, PS vb. için)
   try {
     const esnek = iso2Mi ? `area["ISO3166-2"="${kod}"]` : `area["ISO3166-1"="${kod}"]`;
     const ogeler = await overpassSorgula(alanSorgusuOlustur(esnek), ayar, 1);
-    return { ogeler, kaynak: 'overpass-iso' };
+    return { ogeler: ogeleriSinirlaFiltrele(ogeler, kod, iso2Mi, null), kaynak: 'overpass-iso' };
   } catch (e) {
     log(`  [Overpass esnek] ${kod}: ${e.message}`);
   }
 
-  // 4c: Ülke için admin_level=4 alt bölgelere böl
   if (!iso2Mi) {
     try {
       const alt = await overpassSorgula(
@@ -674,168 +821,12 @@ async function overpassAlanVeyaBbox(kod, iso2Mi, ayar) {
             await overpassSorgula(alanSorgusuOlustur(`area["ISO3166-2"="${k}"]["boundary"="administrative"]`), ayar, 2)
           );
         }
-        return { ogeler: ogeTekillestir(tum), kaynak: 'overpass-subarea' };
+        return { ogeler: ogeleriSinirlaFiltrele(ogeTekillestir(tum), kod, iso2Mi, null), kaynak: 'overpass-subarea' };
       }
     } catch (e) {
       log(`  [Overpass alt-bölge] ${kod}: ${e.message}`);
     }
   }
 
-  // 5: Son çare — Nominatim BBox 2x2 bölme
-  const [s, n, w, e] = await bboxAl(kod);
-  const kucukMu = Math.abs(n - s) < 1.5 && Math.abs(e - w) < 1.5;
-  const kutular = kucukMu
-    ? [[s, w, n, e]]
-    : [
-        [s, w, (s + n) / 2, (w + e) / 2],
-        [s, (w + e) / 2, (s + n) / 2, e],
-        [(s + n) / 2, w, n, (w + e) / 2],
-        [(s + n) / 2, (w + e) / 2, n, e],
-      ];
-
-  const tum = [];
-  for (let i = 0; i < kutular.length; i++) {
-    const [bS, bW, bN, bE] = kutular[i];
-    const bbox = `(${bS.toFixed(4)},${bW.toFixed(4)},${bN.toFixed(4)},${bE.toFixed(4)})`;
-    const sorgu = `[out:json][timeout:110];(${KAYNAK_QL.map((q) => `${q}${bbox};`).join('')});out center tags;`;
-    log(`  [Overpass BBox ${i + 1}/${kutular.length}] ${kod}`);
-    tum.push(...(await overpassSorgula(sorgu, ayar, 2)));
-  }
-  return { ogeler: ogeTekillestir(tum), kaynak: 'overpass-bbox' };
-}
-
-/* ---------- Tek Ülke veya Tek ABD Eyaleti Çekimi ---------- */
-async function tekBolgeCek(kod, iso2Mi, ayar, secenekler) {
-  const osmiumVar = osmiumMevcutMu();
-  const features = osmiumVar ? await geofabrikIndeksAl() : [];
-
-  // KATMAN 1: Geofabrik tam eşleşen tek ülke / ABD eyalet PBF
-  if (osmiumVar && features.length) {
-    const kayit = iso2Mi
-      ? geofabrikIso2Bul(features, kod)
-      : geofabrikIso1Bul(features, kod, true);
-    if (kayit) {
-      try {
-        const urls = await geofabrikKayitUrlListesi(features, kayit);
-        const res = await pbfUrlListesiIsle(urls, `Geofabrik:${kod}`, secenekler);
-        return { ...res, kaynak: 'geofabrik-pbf', yerelPoiHazir: secenekler.poiCek };
-      } catch (e) {
-        log(`  !! [Geofabrik] ${kod} hata: ${e.message}`);
-      }
-    }
-  }
-
-  // KATMAN 2: OpenStreetMap.fr tek ülke PBF
-  if (osmiumVar && !iso2Mi) {
-    try {
-      const osmFrUrl = await osmFrUrlBul(kod);
-      if (osmFrUrl) {
-        const head = await headBoyut(osmFrUrl);
-        if (head.ok && head.bytes <= MAX_SINGLE_PBF_BYTES) {
-          const res = await pbfUrlListesiIsle([osmFrUrl], `OSM.fr:${kod}`, secenekler);
-          return { ...res, kaynak: 'osm-fr-pbf', yerelPoiHazir: secenekler.poiCek };
-        }
-      }
-    } catch (e) {
-      log(`  !! [OSM.fr] ${kod} hata: ${e.message}`);
-    }
-  }
-
-  // KATMAN 3: Geofabrik çoklu ülke PBF + Nominatim GeoJSON sınır kırpma
-  if (osmiumVar && !iso2Mi && features.length) {
-    const bolgeKayit = geofabrikIso1Bul(features, kod, false);
-    if (bolgeKayit) {
-      try {
-        const head = await headBoyut(bolgeKayit.properties.urls.pbf);
-        if (head.ok && head.bytes <= MAX_SINGLE_PBF_BYTES) {
-          const sinirFeature = await ulkeSinirGeojsonAl(kod);
-          if (sinirFeature) {
-            const res = await pbfUrlListesiIsle(
-              [bolgeKayit.properties.urls.pbf],
-              `Geofabrik-Kırp:${kod}`,
-              { ...secenekler, sinirFeature }
-            );
-            return { ...res, kaynak: 'geofabrik-clipped-pbf', yerelPoiHazir: secenekler.poiCek };
-          }
-        }
-      } catch (e) {
-        log(`  !! [Geofabrik-Kırp] ${kod} hata: ${e.message}`);
-      }
-    }
-  }
-
-  // KATMAN 4 & 5: Sadece POI gerekiyorsa PBF yoktur, null dön ki Overpass karo yedeğine geçsin
-  if (!secenekler.kampCek) {
-    return { ogeler: [], poiler: [], kaynak: 'yok', yerelPoiHazir: false };
-  }
-
-  const ov = await overpassAlanVeyaBbox(kod, iso2Mi, ayar);
-  return { ogeler: ov.ogeler, poiler: [], kaynak: ov.kaynak, yerelPoiHazir: false };
-}
-
-/**
- * Bir birim ({ dosya, kod, iso1?, iso2[]? }) için tüm kaynakları dener.
- * PBF kullanıldığında hem kampları hem yakın çevre POI'lerini 0 Overpass isteğiyle döndürür.
- */
-async function birimVerisiCek(birim, ayar, mevcutKayitlar = []) {
-  const poiCek = Boolean(ayar.yakinCevre);
-  const secenekler = { kampCek: true, poiCek, mevcutNoktalar: mevcutKayitlar };
-
-  if (birim.iso2) {
-    const tumOgeler = [];
-    const tumPoiler = [];
-    const kaynaklar = new Set();
-    let hepsiYerelPoi = poiCek;
-
-    for (const st of birim.iso2) {
-      const r = await tekBolgeCek(st, true, ayar, secenekler);
-      tumOgeler.push(...r.ogeler);
-      tumPoiler.push(...r.poiler);
-      kaynaklar.add(r.kaynak);
-      if (!r.yerelPoiHazir) hepsiYerelPoi = false;
-    }
-
-    const benzersiz = ogeTekillestir(tumOgeler);
-    return {
-      ogeler: benzersiz,
-      poiIzgarasi: hepsiYerelPoi ? poiIzgarasiOlustur(tumPoiler) : null,
-      kaynak: Array.from(kaynaklar).join('+'),
-    };
-  }
-
-  const r = await tekBolgeCek(birim.iso1, false, ayar, secenekler);
-  return {
-    ogeler: r.ogeler,
-    poiIzgarasi: r.yerelPoiHazir ? poiIzgarasiOlustur(r.poiler) : null,
-    kaynak: r.kaynak,
-  };
-}
-
-/**
- * Yarım kalmış zenginleştirme devam ederken PBF mevcutsa POI'leri yine Overpass'siz çeker.
- */
-async function birimYerelPoiCek(birim, ayar, kayitlar) {
-  if (!osmiumMevcutMu() || !kayitlar.length) return null;
-  const secenekler = { kampCek: false, poiCek: true, mevcutNoktalar: kayitlar };
-
-  if (birim.iso2) {
-    const tumPoiler = [];
-    for (const st of birim.iso2) {
-      const r = await tekBolgeCek(st, true, ayar, secenekler);
-      if (!r.yerelPoiHazir) return null;
-      tumPoiler.push(...r.poiler);
-    }
-    return poiIzgarasiOlustur(tumPoiler);
-  }
-
-  const r = await tekBolgeCek(birim.iso1, false, ayar, secenekler);
-  return r.yerelPoiHazir ? poiIzgarasiOlustur(r.poiler) : null;
-}
-
-module.exports = {
-  birimVerisiCek,
-  birimYerelPoiCek,
-  overpassSorgula,
-  izgaradanYakinPoiler,
-  POI_QL,
-};
+  // Son çare: Nominatim BBox 2x2 + gerçek sınır poligonu kırpması
+  const [s,
