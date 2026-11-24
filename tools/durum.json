@@ -590,5 +590,16 @@
   "elenen": 0,
   "sayi": 2,
   "tamam": "2026-11-24T17:17:06.231Z"
+ },
+ "GL": {
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-24T17:27:10.360Z"
+ },
+ "GM": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T17:27:36.980Z",
+  "osm": 15,
+  "elenen": 1,
+  "sayi": 14
  }
 }
