@@ -28,9 +28,21 @@ jobs:
     timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Osmium ve indirme araçlarını kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq osmium-tool curl
+
+      - name: Git kimliğini ayarla
+        run: |
+          git config user.name "trailopro-bot"
+          git config user.email "bot@users.noreply.github.com"
+
       - name: Tara ve zenginleştir
         env:
           MOD: ${{ github.event.inputs.mod || 'tam' }}
@@ -39,10 +51,24 @@ jobs:
           ARGS="--mod $MOD --commit --sure 335"
           if [ -n "$ULKELER" ]; then ARGS="$ARGS --ulkeler $ULKELER"; fi
           node tools/dunya-tara.js $ARGS
-      - name: Pilot çıktısını kaydet
-        if: ${{ github.event.inputs.mod == 'pilot' }}
+
+      - name: Kalan çıktıları güvenle kaydet
+        if: always()
+        env:
+          MOD: ${{ github.event.inputs.mod || 'tam' }}
         run: |
-          git config user.name "trailopro-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add pilot tools/durum-pilot.json || true
-          git diff --cached --quiet || (git commit -m "pilot: LU örnek çıktı" && git pull --rebase -X theirs -q && git push -q)
+          if [ "$MOD" = "pilot" ]; then
+            if [ -e pilot ]; then git add pilot; fi
+          else
+            if [ -e data ]; then git add data; fi
+          fi
+          if [ -f "tools/durum-${MOD}.json" ]; then git add "tools/durum-${MOD}.json"; fi
+
+          if git diff --cached --quiet; then
+            echo "Commit edilecek ek değişiklik yok."
+            exit 0
+          fi
+
+          git commit -m "${MOD}: tarama durumu ve çıktılar güncellendi"
+          git pull --rebase -X theirs -q
+          git push -q
