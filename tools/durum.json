@@ -390,5 +390,16 @@
   "elenen": 0,
   "sayi": 2,
   "tamam": "2026-11-24T14:47:41.196Z"
+ },
+ "CX": {
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-24T14:57:57.745Z"
+ },
+ "CY": {
+  "kaynak": "overpass-iso",
+  "harita": "2026-11-24T15:06:19.853Z",
+  "osm": 58,
+  "elenen": 0,
+  "sayi": 58
  }
 }
