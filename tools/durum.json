@@ -434,5 +434,12 @@
   "elenen": 0,
   "sayi": 2,
   "tamam": "2026-11-24T15:27:47.232Z"
+ },
+ "DO": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T15:28:16.805Z",
+  "osm": 46,
+  "elenen": 4,
+  "sayi": 42
  }
 }
