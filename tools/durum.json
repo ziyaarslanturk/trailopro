@@ -33,11 +33,11 @@
   "sonraki": "2026-11-23T21:52:22.128Z"
  },
  "AE": {
-  "hata": {
-   "n": 1,
-   "son": "2026-11-23T14:50:12.464Z",
-   "mesaj": "Overpass sorgusu basarisiz: HTTP 504"
-  },
-  "sonraki": "2026-11-23T15:20:12.464Z"
+  "sonraki": "2026-11-23T15:20:12.464Z",
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T01:46:07.111Z",
+  "osm": 119,
+  "elenen": 14,
+  "sayi": 111
  }
 }
