@@ -692,10 +692,14 @@
   "tamam": "2026-11-24T18:24:56.584Z"
  },
  "HU": {
-  "kaynak": "overpass-iso",
-  "harita": "2026-11-24T18:33:29.041Z",
-  "osm": 675,
-  "elenen": 37,
-  "sayi": 638
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-24T18:44:32.378Z"
+ },
+ "ID": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T18:46:01.031Z",
+  "osm": 645,
+  "elenen": 39,
+  "sayi": 606
  }
 }
