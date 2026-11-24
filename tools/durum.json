@@ -18,12 +18,12 @@
   "tamam": "2026-11-24T01:47:51.000Z"
  },
  "AG": {
-  "hata": {
-   "n": 3,
-   "son": "2026-11-23T20:33:34.193Z",
-   "mesaj": "Overpass sorgusu basarisiz: HTTP 504"
-  },
-  "sonraki": "2026-11-23T22:33:34.193Z"
+  "sonraki": "2026-11-23T22:33:34.193Z",
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T01:47:56.433Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  },
  "AI": {
   "hata": {
