@@ -502,5 +502,12 @@
   "elenen": 1092,
   "sayi": 1499,
   "tamam": "2026-11-24T16:05:22.061Z"
+ },
+ "FJ": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T16:08:11.882Z",
+  "osm": 1,
+  "elenen": 0,
+  "sayi": 1
  }
 }
