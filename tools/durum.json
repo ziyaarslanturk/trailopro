@@ -59,5 +59,12 @@
   "elenen": 13,
   "sayi": 223,
   "tamam": "2026-11-24T01:49:45.040Z"
+ },
+ "AO": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-24T01:50:41.320Z",
+  "osm": 261,
+  "elenen": 20,
+  "sayi": 241
  }
 }
