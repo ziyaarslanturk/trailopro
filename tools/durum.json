@@ -104,10 +104,14 @@
   "tamam": "2026-11-24T10:16:31.173Z"
  },
  "AX": {
-  "kaynak": "overpass-area",
-  "harita": "2026-11-24T10:19:29.447Z",
-  "osm": 30,
-  "elenen": 1,
-  "sayi": 29
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-24T10:37:05.605Z"
+ },
+ "AZ": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-24T10:37:33.934Z",
+  "osm": 437,
+  "elenen": 28,
+  "sayi": 409
  }
 }
