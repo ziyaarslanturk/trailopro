@@ -4,9 +4,10 @@
  * Trailo PRO - Dünya kamp alanı tarama + zenginleştirme aracı
  *
  * - Çok kaynaklı OSM çekimi: Geofabrik PBF -> OSM.fr PBF -> Geofabrik kırpılmış PBF -> 5 aynalı Overpass -> BBox
+ * - Gerçek ülke/eyalet sınır poligonu ve addr:country kontrolü ile sınır taşması engellenir
+ * - Boş/uydurma veri yazılmaz; yalnızca OSM ve irtifa servislerinden gerçekten gelen alanlar kaydedilir
  * - data/XX.json ile AYNI formatta yazar (US için US_WEST, US_SOUTH ... bölge dosyaları)
- * - Birbirine ESIK metre içindeki noktalardan bilgisi az olanı atar (mevcut dosya ile de birleştirir)
- * - Zenginleştirme: OSM etiketleri + yakın çevre (yerel PBF POI ızgarası, yoksa Overpass karo) + irtifa (Open-Meteo / yedek)
+ * - Birbirine ESIK metre (aynı isimli kayıtlarda 300 m) içindeki noktalardan bilgisi az olanı atar
  * - Yeniden başlatılabilir: durum tools/durum.json ve kayıtların notes.note işaretinde tutulur
  *
  * Kullanım:
@@ -27,7 +28,7 @@ const {
 } = require('./osm-kaynak');
 
 const KOK = path.resolve(__dirname, '..');
-const UA = 'TrailoPRO-harvester/3.0 (https://github.com/ziyaarslanturk/trailopro)';
+const UA = 'TrailoPRO-harvester/3.1 (https://github.com/ziyaarslanturk/trailopro)';
 
 const ILKELER = ['AD','AE','AF','AG','AI','AL','AM','AO','AR','AS','AT','AU','AW','AX','AZ','BA','BB','BD','BE','BF','BG','BH','BI','BJ','BL','BM','BN','BO','BQ','BR','BS','BT','BW','BY','BZ','CA','CC','CD','CF','CG','CH','CI','CK','CL','CM','CN','CO','CR','CU','CV','CW','CX','CY','CZ','DE','DJ','DK','DM','DO','DZ','EC','EE','EG','EH','ER','ES','ET','FI','FJ','FK','FM','FO','FR','GA','GB','GD','GE','GF','GG','GH','GI','GL','GM','GN','GP','GQ','GR','GS','GT','GU','GW','GY','HK','HN','HR','HT','HU','ID','IE','IL','IM','IN','IO','IQ','IR','IS','IT','JE','JM','JO','JP','KE','KG','KH','KI','KM','KN','KP','KR','KW','KY','KZ','LA','LB','LC','LI','LK','LR','LS','LT','LU','LV','LY','MA','MC','MD','ME','MF','MG','MH','MK','ML','MM','MN','MO','MP','MQ','MR','MS','MT','MU','MV','MW','MX','MY','MZ','NA','NC','NE','NF','NG','NI','NL','NO','NP','NR','NU','NZ','OM','PA','PE','PF','PG','PH','PK','PL','PM','PN','PR','PS','PT','PW','PY','QA','RE','RO','RS','RU','RW','SA','SB','SC','SD','SE','SG','SH','SI','SJ','SK','SL','SM','SN','SO','SR','SS','ST','SV','SX','SY','SZ','TC','TD','TG','TH','TJ','TK','TL','TM','TN','TO','TR','TT','TV','TW','TZ','UA','UG','US','UY','UZ','VA','VC','VE','VG','VI','VN','VU','WF','WS','XK','YE','YT','ZA','ZM','ZW'];
 
@@ -76,6 +77,7 @@ function mesafeYaz(m) {
 }
 const bos = (v) => v === undefined || v === null || String(v).trim() === '';
 const temiz = (v) => (bos(v) ? null : String(v).trim());
+const adNorm = (s) => (bos(s) ? '' : String(s).toLowerCase().replace(/\s+/g, ' ').trim());
 
 /* ---------- Kategori kuralları ---------- */
 function kategoriYukle(kok) {
@@ -180,7 +182,7 @@ function ucretMetni(t) {
   return parca.join(', ') + '.';
 }
 
-/* ---------- Bilgi puanı + mesafe tekilleştirme ---------- */
+/* ---------- Bilgi puanı + mesafe ve aynı-isim tekilleştirme ---------- */
 function puan(r) {
   let s = 0;
   const adlar = Object.values(r.name || {}).filter(Boolean);
@@ -196,13 +198,15 @@ function puan(r) {
   return s;
 }
 function tekillestir(kayitlar, esik) {
+  const ayniAdEsik = Math.max(esik, 300);
   const sirali = kayitlar
-    .map((r) => ({ r, p: puan(r) }))
+    .map((r) => ({ r, p: puan(r), normAd: adNorm(r.name_local) }))
     .sort((a, b) => b.p - a.p || (b.r._eski ? 1 : 0) - (a.r._eski ? 1 : 0) || (a.r.id < b.r.id ? -1 : 1));
   const HUCRE = 0.004; // ~444 m
   const izgara = new Map();
   const kalan = [];
-  for (const { r } of sirali) {
+  for (const item of sirali) {
+    const { r, normAd } = item;
     const cy = Math.floor(r.latitude / HUCRE);
     const cx = Math.floor((r.longitude * Math.max(Math.cos((r.latitude * Math.PI) / 180), 0.05)) / HUCRE);
     const span = 3;
@@ -212,22 +216,28 @@ function tekillestir(kayitlar, esik) {
         const liste = izgara.get(cy + dy + ',' + (cx + dx));
         if (!liste) continue;
         for (const k of liste) {
-          if (mesafe(r.latitude, r.longitude, k.latitude, k.longitude) <= esik) { tekrar = true; break; }
+          const d = mesafe(r.latitude, r.longitude, k.r.latitude, k.r.longitude);
+          if (d <= esik || (normAd.length >= 3 && normAd === k.normAd && d <= ayniAdEsik)) {
+            tekrar = true;
+            break;
+          }
         }
       }
     }
     if (tekrar) continue;
     const anahtar = cy + ',' + cx;
     if (!izgara.has(anahtar)) izgara.set(anahtar, []);
-    izgara.get(anahtar).push(r);
+    izgara.get(anahtar).push(item);
     kalan.push(r);
   }
   return { kalan, silinen: kayitlar.length - kalan.length };
 }
 
-/* ---------- İrtifa: Open-Meteo + Open-Elevation + OSM ele yedeği ---------- */
+/* ---------- İrtifa: Open-Meteo -> Open-Elevation -> OSM ele etiketi ---------- */
 async function irtifaAl(noktalar) {
-  const sonuc = [];
+  const degerler = [];
+  const kaynaklar = [];
+
   for (let i = 0; i < noktalar.length; i += 100) {
     const dilim = noktalar.slice(i, i + 100);
     const url =
@@ -237,25 +247,29 @@ async function irtifaAl(noktalar) {
       dilim.map((p) => p.longitude).join(',');
 
     let deger = null;
-    for (let d = 0; d < 4 && !deger; d++) {
+    let kaynak = null;
+
+    for (let d = 0; d < 3 && !deger; d++) {
       try {
         const res = await fetch(url, {
           headers: { 'User-Agent': UA },
-          signal: AbortSignal.timeout(20_000),
+          signal: AbortSignal.timeout(15_000),
         });
         if (res.status === 429) {
-          await sleep(5000 * (d + 1));
+          await sleep(4000 * (d + 1));
           continue;
         }
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const j = await res.json();
-        if (Array.isArray(j.elevation)) deger = j.elevation;
+        if (Array.isArray(j.elevation)) {
+          deger = j.elevation;
+          kaynak = 'Open-Meteo';
+        }
       } catch {
-        await sleep(2500 * (d + 1));
+        await sleep(2000 * (d + 1));
       }
     }
 
-    // Yedek 1: Open-Elevation
     if (!deger) {
       try {
         const res = await fetch('https://api.open-elevation.com/api/v1/lookup', {
@@ -264,61 +278,130 @@ async function irtifaAl(noktalar) {
           body: JSON.stringify({
             locations: dilim.map((p) => ({ latitude: p.latitude, longitude: p.longitude })),
           }),
-          signal: AbortSignal.timeout(25_000),
+          signal: AbortSignal.timeout(15_000),
         });
         if (res.ok) {
           const j = await res.json();
           if (Array.isArray(j.results)) {
             deger = j.results.map((x) => (x && Number.isFinite(x.elevation) ? x.elevation : null));
+            kaynak = 'Open-Elevation';
           }
         }
       } catch {
-        // Yedek 2 (OSM ele etiketi) kullanılacak
+        // Yalnızca OSM ele etiketi varsa kullanılacak
       }
     }
 
     for (let k = 0; k < dilim.length; k++) {
-      let m = deger && deger[k] !== undefined && deger[k] !== null ? Math.round(deger[k]) : null;
+      let m = deger && deger[k] !== undefined && deger[k] !== null && Number.isFinite(deger[k])
+        ? Math.round(deger[k])
+        : null;
+      let kynk = m !== null ? kaynak : null;
+
       if (m === null && dilim[k]._tags && dilim[k]._tags.ele) {
         const parsed = parseFloat(String(dilim[k]._tags.ele).replace(',', '.'));
-        if (Number.isFinite(parsed)) m = Math.round(parsed);
+        if (Number.isFinite(parsed)) {
+          m = Math.round(parsed);
+          kynk = 'OSM';
+        }
       }
-      sonuc.push(m);
+      degerler.push(m);
+      kaynaklar.push(kynk);
     }
-    await sleep(350);
+
+    if (i + 100 < noktalar.length) await sleep(600);
   }
-  return sonuc;
+  return { degerler, kaynaklar };
 }
 
-/* ---------- Yakın çevre ---------- */
+/* ---------- Yakın çevre (Sıfır uydurma etiket, tekrar temizlemeli) ---------- */
+const POI_TURKCE_ETIKET = {
+  beach: 'Plaj',
+  beach_resort: 'Plaj tesisi',
+  drinking_water: 'Su noktası',
+  toilets: 'Tuvalet',
+  shower: 'Duş',
+  supermarket: 'Süpermarket',
+  convenience: 'Market',
+  general: 'Market',
+  kiosk: 'Büfe',
+  fuel: 'Akaryakıt istasyonu',
+  pharmacy: 'Eczane',
+  hospital: 'Hastane',
+  clinic: 'Klinik',
+  doctors: 'Sağlık ocağı/Doktor',
+  peak: 'Zirve',
+  attraction: 'Turistik nokta',
+  museum: 'Müze',
+  viewpoint: 'Manzara noktası',
+  castle: 'Kale',
+  ruins: 'Harabe',
+  monument: 'Anıt',
+  archaeological_site: 'Arkeolojik alan',
+  hotel: 'Otel',
+  hostel: 'Hostel',
+  motel: 'Motel',
+  guest_house: 'Pansiyon',
+};
+
 const GRUPLAR = [
-  { baslik: 'Su/plaj', test: (t) => t.natural === 'beach' || t.leisure === 'beach_resort', adet: 1, azami: 10000, etiket: null },
-  { baslik: 'İçme suyu', test: (t) => t.amenity === 'drinking_water', adet: 2, azami: 5000, etiket: 'drinking_water' },
-  { baslik: 'Tuvalet/duş noktası', test: (t) => t.amenity === 'toilets' || t.amenity === 'shower', adet: 1, azami: 3000, etiket: (t) => (t.amenity === 'shower' ? 'Public Shower' : 'Public Toilet') },
-  { baslik: 'Market', test: (t) => /^(supermarket|convenience|general|kiosk)$/.test(t.shop || ''), adet: 2, azami: 10000, etiket: (t) => t.shop },
-  { baslik: 'Akaryakıt', test: (t) => t.amenity === 'fuel', adet: 1, azami: 10000, etiket: 'fuel' },
-  { baslik: 'Sağlık', test: (t) => /^(pharmacy|hospital|clinic|doctors)$/.test(t.amenity || ''), adet: 1, azami: 10000, etiket: (t) => t.amenity },
-  { baslik: 'Yerleşim', test: (t) => !!t.place, adet: 2, azami: 10000, etiket: (t) => t.place },
-  { baslik: 'Zirve', test: (t) => t.natural === 'peak', adet: 2, azami: 10000, etiket: 'peak' },
-  { baslik: 'Görülecek', test: (t) => /^(attraction|museum|viewpoint)$/.test(t.tourism || '') || !!t.historic, adet: 3, azami: 10000, etiket: (t) => t.tourism || t.historic },
-  { baslik: 'Yakın tesis', test: (t) => /^(hotel|hostel|motel|guest_house)$/.test(t.tourism || ''), adet: 1, azami: 5000, etiket: (t) => t.tourism },
+  { baslik: 'Su/plaj', test: (t) => t.natural === 'beach' || t.leisure === 'beach_resort', adet: 1, azami: 10000, etiket: (t) => POI_TURKCE_ETIKET[t.natural || t.leisure] || 'Plaj' },
+  { baslik: 'İçme suyu', test: (t) => t.amenity === 'drinking_water', adet: 2, azami: 5000, etiket: () => 'Su noktası' },
+  { baslik: 'Tuvalet/duş noktası', test: (t) => t.amenity === 'toilets' || t.amenity === 'shower', adet: 1, azami: 3000, etiket: (t) => (t.amenity === 'shower' ? 'Duş' : 'Tuvalet') },
+  { baslik: 'Market', test: (t) => /^(supermarket|convenience|general|kiosk)$/.test(t.shop || ''), adet: 2, azami: 10000, etiket: (t) => POI_TURKCE_ETIKET[t.shop] || 'Market' },
+  { baslik: 'Akaryakıt', test: (t) => t.amenity === 'fuel', adet: 1, azami: 10000, etiket: () => 'Akaryakıt istasyonu' },
+  { baslik: 'Sağlık', test: (t) => /^(pharmacy|hospital|clinic|doctors)$/.test(t.amenity || ''), adet: 1, azami: 10000, etiket: (t) => POI_TURKCE_ETIKET[t.amenity] || 'Sağlık noktası' },
+  { baslik: 'Yerleşim', test: (t) => !!t.place && !!temiz(t.name), adet: 2, azami: 10000, etiket: () => null },
+  { baslik: 'Zirve', test: (t) => t.natural === 'peak', adet: 2, azami: 10000, etiket: () => 'Zirve' },
+  { baslik: 'Görülecek', test: (t) => /^(attraction|museum|viewpoint)$/.test(t.tourism || '') || !!t.historic, adet: 3, azami: 10000, etiket: (t) => POI_TURKCE_ETIKET[t.tourism || t.historic] || 'Görülecek yer' },
+  { baslik: 'Yakın tesis', test: (t) => /^(hotel|hostel|motel|guest_house)$/.test(t.tourism || ''), adet: 1, azami: 5000, etiket: (t) => POI_TURKCE_ETIKET[t.tourism] || 'Konaklama tesisi' },
 ];
+
 function yakinCevreMetni(r, poiler) {
+  const kampAdNorm = adNorm(r.name_local);
   const parcalar = [];
+
   for (const g of GRUPLAR) {
     const adaylar = [];
     for (const p of poiler) {
       if (!g.test(p.tags)) continue;
       if (p.tags === r._tags) continue;
+      const hamAd = temiz(p.tags.name);
+      const normAd = adNorm(hamAd);
       const d = mesafe(r.latitude, r.longitude, p.lat, p.lon);
-      if (d <= g.azami) adaylar.push({ d, ad: p.tags.name || (typeof g.etiket === 'function' ? g.etiket(p.tags) : g.etiket) || '?' });
+      if (d > g.azami) continue;
+      // Kampın kendi adını yakın tesis/yer olarak tekrar yazma
+      if (kampAdNorm && normAd && kampAdNorm === normAd && d < 250) continue;
+
+      const gorunenAd = hamAd || (typeof g.etiket === 'function' ? g.etiket(p.tags) : g.etiket);
+      if (!gorunenAd) continue;
+      adaylar.push({ d, ad: gorunenAd, normAd, lat: p.lat, lon: p.lon });
     }
+
     adaylar.sort((a, b) => a.d - b.d);
-    const sec = adaylar.slice(0, g.adet);
-    if (sec.length) parcalar.push(g.baslik + ': ' + sec.map((s) => s.ad + ' (' + mesafeYaz(s.d) + ')').join(', ') + '.');
+
+    const sec = [];
+    const gorulenAdlar = new Set();
+    for (const a of adaylar) {
+      if (sec.length >= g.adet) break;
+      // Aynı isimli POI'yi ikinci kez ekleme (OSM way + node tekrarı)
+      if (a.normAd && gorulenAdlar.has(a.normAd)) continue;
+      // Aynı etiketli ve birbirine 100 m'den yakın isimsiz/aynı noktaları tekrarlama
+      const yakinTekrar = sec.some(
+        (s) => s.ad === a.ad && mesafe(s.lat, s.lon, a.lat, a.lon) < 100
+      );
+      if (yakinTekrar) continue;
+      if (a.normAd) gorulenAdlar.add(a.normAd);
+      sec.push(a);
+    }
+
+    if (sec.length) {
+      parcalar.push(g.baslik + ': ' + sec.map((s) => s.ad + ' (' + mesafeYaz(s.d) + ')').join(', ') + '.');
+    }
   }
   return parcalar.length ? 'YAKIN ÇEVRE: ' + parcalar.join(' ') : null;
 }
+
 function poiNoktalari(elemanlar) {
   const out = [];
   for (const e of elemanlar) {
@@ -347,6 +430,12 @@ function konumMetni(r, irtifa) {
   return m;
 }
 
+function derlemeNotu(bugun, irtifaKaynagi) {
+  const kaynaklar = ['OSM'];
+  if (irtifaKaynagi && irtifaKaynagi !== 'OSM') kaynaklar.push(irtifaKaynagi);
+  return 'Temel derleme (' + bugun + '): ' + kaynaklar.join(', ') + '. Doğrulanmalı.';
+}
+
 async function zenginlestir(birim, kayitlar, ayar, saatDolduMu, kaydet, yerelPoiIzgarasi) {
   const hedef = kayitlar.filter((r) => !(r.notes && r.notes.note && /^(Otomatik|Temel) derleme/.test(r.notes.note)));
   if (!hedef.length) return true;
@@ -354,19 +443,18 @@ async function zenginlestir(birim, kayitlar, ayar, saatDolduMu, kaydet, yerelPoi
   const bugun = new Date().toISOString().slice(0, 10);
   let poiIzgarasi = yerelPoiIzgarasi;
 
-  // Yarım kalmış zenginleştirme devam ediyorsa önce yerel PBF POI'lerini dene (Overpass'e takılmamak için)
   if (ayar.yakinCevre && !poiIzgarasi) {
     poiIzgarasi = await birimYerelPoiCek(birim, ayar, hedef);
   }
 
-  // HIZLI YOL: Yerel PBF POI ızgarası mevcutsa 0 Overpass isteğiyle toplu zenginleştir
+  // HIZLI YOL: Yerel PBF POI ızgarası (0 Overpass isteği)
   if (!ayar.yakinCevre || poiIzgarasi) {
     log('zenginleştirilecek', hedef.length, 'kayıt (yerel PBF POI ızgarası — 0 Overpass isteği)');
     const PAKET = 200;
     for (let i = 0; i < hedef.length; i += PAKET) {
       if (saatDolduMu()) return false;
       const dilim = hedef.slice(i, i + PAKET);
-      const irt = await irtifaAl(dilim);
+      const { degerler: irt, kaynaklar: irtKaynak } = await irtifaAl(dilim);
       dilim.forEach((r, idx) => {
         const parcalar = [konumMetni(r, irt[idx])];
         if (ayar.yakinCevre && poiIzgarasi) {
@@ -376,7 +464,7 @@ async function zenginlestir(birim, kayitlar, ayar, saatDolduMu, kaydet, yerelPoi
         }
         if (r.notes.description) parcalar.push(r.notes.description);
         r.notes.description = parcalar.join('\n');
-        r.notes.note = 'Temel derleme (' + bugun + '): OSM, Open-Meteo. Doğrulanmalı.';
+        r.notes.note = derlemeNotu(bugun, irtKaynak[idx]);
       });
       if ((i + PAKET) % 2000 === 0 && i + PAKET < hedef.length) {
         kaydet();
@@ -406,14 +494,14 @@ async function zenginlestir(birim, kayitlar, ayar, saatDolduMu, kaydet, yerelPoi
     const bbox = '(' + s + ',' + w + ',' + n + ',' + e + ')';
     const sorgu = '[out:json][timeout:110];(' + POI_QL.map((q) => q + bbox + ';').join('') + ');out center tags;';
     const poiler = poiNoktalari(await overpassSorgula(sorgu, ayar, 2));
-    const irt = await irtifaAl(liste);
+    const { degerler: irt, kaynaklar: irtKaynak } = await irtifaAl(liste);
     liste.forEach((r, i) => {
       const parcalar = [konumMetni(r, irt[i])];
       const yc = yakinCevreMetni(r, poiler);
       if (yc) parcalar.push(yc);
       if (r.notes.description) parcalar.push(r.notes.description);
       r.notes.description = parcalar.join('\n');
-      r.notes.note = 'Temel derleme (' + bugun + '): OSM, Open-Meteo. Doğrulanmalı.';
+      r.notes.note = derlemeNotu(bugun, irtKaynak[i]);
     });
     islenen += liste.length;
     if (++say % 25 === 0) { kaydet(); log('ara kayıt:', islenen, '/', hedef.length); }
@@ -504,10 +592,8 @@ async function calistir(ayar) {
   const yenileMs = ayar.yenileGun * 86400000;
   const gitYollari = [veriKlasorAd, durumDosyaAd];
 
-  // Durum dosyasının başlangıçta mevcut olmasını garanti et
   fs.writeFileSync(durumYol, JSON.stringify(durum, null, 1));
 
-  // Sıra: durumu olmayan veya en eski taranan önce
   const sirali = birimler(ayar).sort(
     (a, b) => (Date.parse((durum[a.kod] || {}).harita || 0) || 0) - (Date.parse((durum[b.kod] || {}).harita || 0) || 0)
   );
