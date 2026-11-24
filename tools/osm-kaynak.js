@@ -6,7 +6,7 @@ const os = require('os');
 const readline = require('readline');
 const { execFileSync, spawnSync } = require('child_process');
 
-const UA = 'TrailoPRO-harvester/3.1 (https://github.com/ziyaarslanturk/trailopro)';
+const UA = 'TrailoPRO-harvester/3.2 (https://github.com/ziyaarslanturk/trailopro)';
 const GEOFABRIK_INDEX_URL = 'https://download.geofabrik.de/index-v1-nogeom.json';
 const MAX_SINGLE_PBF_BYTES = 1.5 * 1024 * 1024 * 1024; // 1.5 GB üstünde alt bölgelere böl
 
@@ -58,7 +58,8 @@ const OSMIUM_POI_FILTERS = [
 ];
 
 const POI_TAG_KEYS = [
-  'name', 'natural', 'leisure', 'amenity', 'shop', 'place', 'tourism', 'historic',
+  'name', 'name:tr', 'name:en', 'name:de', 'name:ru', 'name:ar',
+  'natural', 'leisure', 'amenity', 'shop', 'place', 'tourism', 'historic',
 ];
 
 const OSMFR_DIZINLER = [
@@ -859,7 +860,6 @@ async function tekBolgeCek(kod, iso2Mi, ayar, secenekler) {
   const osmiumVar = osmiumMevcutMu();
   const features = osmiumVar ? await geofabrikIndeksAl() : [];
 
-  // Gerçek ülke/eyalet sınır poligonunu bir kez çek (sınır taşmasını önlemek için)
   const sinirFeature = secenekler.kampCek ? await sinirGeojsonAl(kod, iso2Mi) : null;
   const sinirTesti = sinirTestiHazirla(sinirFeature);
   const bolgeSecenek = { ...secenekler, kod, iso2Mi, sinirTesti };
@@ -896,7 +896,7 @@ async function tekBolgeCek(kod, iso2Mi, ayar, secenekler) {
     }
   }
 
-  // KATMAN 3: Geofabrik çoklu ülke PBF (yalnızca gerçek sınır poligonu varsa kullanılır)
+  // KATMAN 3: Geofabrik çoklu ülke PBF (yalnızca gerçek sınır poligonu varsa)
   if (osmiumVar && !iso2Mi && features.length && (!secenekler.kampCek || sinirTesti)) {
     const bolgeKayit = geofabrikIso1Bul(features, kod, false);
     if (bolgeKayit) {
