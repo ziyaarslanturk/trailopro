@@ -130,5 +130,12 @@
   "elenen": 0,
   "sayi": 1,
   "tamam": "2026-11-24T10:39:01.637Z"
+ },
+ "BD": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-24T10:42:17.483Z",
+  "osm": 81,
+  "elenen": 2,
+  "sayi": 79
  }
 }
