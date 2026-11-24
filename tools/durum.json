@@ -122,5 +122,12 @@
   "elenen": 24,
   "sayi": 216,
   "tamam": "2026-11-24T10:38:53.513Z"
+ },
+ "BB": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T10:38:59.939Z",
+  "osm": 1,
+  "elenen": 0,
+  "sayi": 1
  }
 }
