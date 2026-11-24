@@ -49,7 +49,7 @@ jobs:
           ULKELER: ${{ github.event.inputs.ulkeler }}
         run: |
           ARGS="--mod $MOD --commit --sure 335"
-          if [ -n "$ULKELER" ]; then ARGS="$ARGS --ulkeler$ULKELER"; fi
+          if [ -n "$ULKELER" ]; then ARGS="$ARGS --ulkeler $ULKELER"; fi
           node tools/dunya-tara.js $ARGS
 
       - name: Pilot veya kalan çıktıları güvenle kaydet
