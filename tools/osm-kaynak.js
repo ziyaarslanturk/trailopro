@@ -829,4 +829,157 @@ async function overpassAlanVeyaBbox(kod, iso2Mi, ayar, sinirTesti) {
   }
 
   // Son çare: Nominatim BBox 2x2 + gerçek sınır poligonu kırpması
-  const [s,
+  const [s, n, w, e] = await bboxAl(kod);
+  const kucukMu = Math.abs(n - s) < 1.5 && Math.abs(e - w) < 1.5;
+  const kutular = kucukMu
+    ? [[s, w, n, e]]
+    : [
+        [s, w, (s + n) / 2, (w + e) / 2],
+        [s, (w + e) / 2, (s + n) / 2, e],
+        [(s + n) / 2, w, n, (w + e) / 2],
+        [(s + n) / 2, (w + e) / 2, n, e],
+      ];
+
+  const tum = [];
+  for (let i = 0; i < kutular.length; i++) {
+    const [bS, bW, bN, bE] = kutular[i];
+    const bbox = `(${bS.toFixed(4)},${bW.toFixed(4)},${bN.toFixed(4)},${bE.toFixed(4)})`;
+    const sorgu = `[out:json][timeout:110];(${KAYNAK_QL.map((q) => `${q}${bbox};`).join('')});out center tags;`;
+    log(`  [Overpass BBox ${i + 1}/${kutular.length}] ${kod}`);
+    tum.push(...(await overpassSorgula(sorgu, ayar, 2)));
+  }
+  return {
+    ogeler: ogeleriSinirlaFiltrele(ogeTekillestir(tum), kod, iso2Mi, sinirTesti),
+    kaynak: 'overpass-bbox',
+  };
+}
+
+/* ---------- Tek Ülke veya Tek ABD Eyaleti Çekimi ---------- */
+async function tekBolgeCek(kod, iso2Mi, ayar, secenekler) {
+  const osmiumVar = osmiumMevcutMu();
+  const features = osmiumVar ? await geofabrikIndeksAl() : [];
+
+  // Gerçek ülke/eyalet sınır poligonunu bir kez çek (sınır taşmasını önlemek için)
+  const sinirFeature = secenekler.kampCek ? await sinirGeojsonAl(kod, iso2Mi) : null;
+  const sinirTesti = sinirTestiHazirla(sinirFeature);
+  const bolgeSecenek = { ...secenekler, kod, iso2Mi, sinirTesti };
+
+  // KATMAN 1: Geofabrik tek ülke / ABD eyalet PBF + sınır filtresi
+  if (osmiumVar && features.length) {
+    const kayit = iso2Mi
+      ? geofabrikIso2Bul(features, kod)
+      : geofabrikIso1Bul(features, kod, true);
+    if (kayit) {
+      try {
+        const urls = await geofabrikKayitUrlListesi(features, kayit);
+        const res = await pbfUrlListesiIsle(urls, `Geofabrik:${kod}`, bolgeSecenek);
+        return { ...res, kaynak: 'geofabrik-pbf', yerelPoiHazir: secenekler.poiCek };
+      } catch (e) {
+        log(`  !! [Geofabrik] ${kod} hata: ${e.message}`);
+      }
+    }
+  }
+
+  // KATMAN 2: OpenStreetMap.fr tek ülke PBF + sınır filtresi
+  if (osmiumVar && !iso2Mi) {
+    try {
+      const osmFrUrl = await osmFrUrlBul(kod);
+      if (osmFrUrl) {
+        const head = await headBoyut(osmFrUrl);
+        if (head.ok && head.bytes <= MAX_SINGLE_PBF_BYTES) {
+          const res = await pbfUrlListesiIsle([osmFrUrl], `OSM.fr:${kod}`, bolgeSecenek);
+          return { ...res, kaynak: 'osm-fr-pbf', yerelPoiHazir: secenekler.poiCek };
+        }
+      }
+    } catch (e) {
+      log(`  !! [OSM.fr] ${kod} hata: ${e.message}`);
+    }
+  }
+
+  // KATMAN 3: Geofabrik çoklu ülke PBF (yalnızca gerçek sınır poligonu varsa kullanılır)
+  if (osmiumVar && !iso2Mi && features.length && (!secenekler.kampCek || sinirTesti)) {
+    const bolgeKayit = geofabrikIso1Bul(features, kod, false);
+    if (bolgeKayit) {
+      try {
+        const head = await headBoyut(bolgeKayit.properties.urls.pbf);
+        if (head.ok && head.bytes <= MAX_SINGLE_PBF_BYTES) {
+          const res = await pbfUrlListesiIsle(
+            [bolgeKayit.properties.urls.pbf],
+            `Geofabrik-Kırp:${kod}`,
+            bolgeSecenek
+          );
+          return { ...res, kaynak: 'geofabrik-clipped-pbf', yerelPoiHazir: secenekler.poiCek };
+        }
+      } catch (e) {
+        log(`  !! [Geofabrik-Kırp] ${kod} hata: ${e.message}`);
+      }
+    }
+  }
+
+  if (!secenekler.kampCek) {
+    return { ogeler: [], poiler: [], kaynak: 'yok', yerelPoiHazir: false };
+  }
+
+  // KATMAN 4 & 5: 5 Aynalı Overpass Alan -> Alt Bölge -> BBox
+  const ov = await overpassAlanVeyaBbox(kod, iso2Mi, ayar, sinirTesti);
+  return { ogeler: ov.ogeler, poiler: [], kaynak: ov.kaynak, yerelPoiHazir: false };
+}
+
+async function birimVerisiCek(birim, ayar, mevcutKayitlar = []) {
+  const poiCek = Boolean(ayar.yakinCevre);
+  const secenekler = { kampCek: true, poiCek, mevcutNoktalar: mevcutKayitlar };
+
+  if (birim.iso2) {
+    const tumOgeler = [];
+    const tumPoiler = [];
+    const kaynaklar = new Set();
+    let hepsiYerelPoi = poiCek;
+
+    for (const st of birim.iso2) {
+      const r = await tekBolgeCek(st, true, ayar, secenekler);
+      tumOgeler.push(...r.ogeler);
+      tumPoiler.push(...r.poiler);
+      kaynaklar.add(r.kaynak);
+      if (!r.yerelPoiHazir) hepsiYerelPoi = false;
+    }
+
+    return {
+      ogeler: ogeTekillestir(tumOgeler),
+      poiIzgarasi: hepsiYerelPoi ? poiIzgarasiOlustur(tumPoiler) : null,
+      kaynak: Array.from(kaynaklar).join('+'),
+    };
+  }
+
+  const r = await tekBolgeCek(birim.iso1, false, ayar, secenekler);
+  return {
+    ogeler: r.ogeler,
+    poiIzgarasi: r.yerelPoiHazir ? poiIzgarasiOlustur(r.poiler) : null,
+    kaynak: r.kaynak,
+  };
+}
+
+async function birimYerelPoiCek(birim, ayar, kayitlar) {
+  if (!osmiumMevcutMu() || !kayitlar.length) return null;
+  const secenekler = { kampCek: false, poiCek: true, mevcutNoktalar: kayitlar };
+
+  if (birim.iso2) {
+    const tumPoiler = [];
+    for (const st of birim.iso2) {
+      const r = await tekBolgeCek(st, true, ayar, secenekler);
+      if (!r.yerelPoiHazir) return null;
+      tumPoiler.push(...r.poiler);
+    }
+    return poiIzgarasiOlustur(tumPoiler);
+  }
+
+  const r = await tekBolgeCek(birim.iso1, false, ayar, secenekler);
+  return r.yerelPoiHazir ? poiIzgarasiOlustur(r.poiler) : null;
+}
+
+module.exports = {
+  birimVerisiCek,
+  birimYerelPoiCek,
+  overpassSorgula,
+  izgaradanYakinPoiler,
+  POI_QL,
+};
