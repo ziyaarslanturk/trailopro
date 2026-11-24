@@ -298,5 +298,12 @@
   "elenen": 4,
   "sayi": 92,
   "tamam": "2026-11-24T14:09:46.499Z"
+ },
+ "CF": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T14:10:23.344Z",
+  "osm": 4,
+  "elenen": 0,
+  "sayi": 4
  }
 }
