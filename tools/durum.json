@@ -396,10 +396,14 @@
   "sonDeneme": "2026-11-24T14:57:57.745Z"
  },
  "CY": {
-  "kaynak": "overpass-iso",
-  "harita": "2026-11-24T15:06:19.853Z",
-  "osm": 58,
-  "elenen": 0,
-  "sayi": 58
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-24T15:13:53.094Z"
+ },
+ "CZ": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T15:16:01.836Z",
+  "osm": 1457,
+  "elenen": 1325,
+  "sayi": 1348
  }
 }
