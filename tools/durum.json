@@ -456,10 +456,14 @@
   "sonDeneme": "2026-11-24T15:39:21.279Z"
  },
  "EE": {
-  "kaynak": "overpass-area",
-  "harita": "2026-11-24T15:41:59.301Z",
-  "osm": 506,
-  "elenen": 24,
-  "sayi": 482
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-24T15:47:59.928Z"
+ },
+ "EG": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T15:48:45.560Z",
+  "osm": 328,
+  "elenen": 322,
+  "sayi": 313
  }
 }
