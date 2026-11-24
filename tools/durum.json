@@ -92,8 +92,12 @@
   "sayi": 915
  },
  "AU": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-24T13:52:19.951Z"
+  "sonDeneme": "2026-11-24T13:52:19.951Z",
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T19:33:21.140Z",
+  "osm": 10319,
+  "elenen": 10319,
+  "sayi": 9558
  },
  "AW": {
   "kaynak": "osm-fr-pbf",
