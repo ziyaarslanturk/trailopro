@@ -9,12 +9,12 @@
   "tamam": "2026-11-24T01:45:46.146Z"
  },
  "AF": {
-  "hata": {
-   "n": 3,
-   "son": "2026-11-23T20:25:46.922Z",
-   "mesaj": "Overpass sorgusu basarisiz: HTTP 504"
-  },
-  "sonraki": "2026-11-23T22:25:46.922Z"
+  "sonraki": "2026-11-23T22:25:46.922Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-24T01:47:49.147Z",
+  "osm": 47,
+  "elenen": 1,
+  "sayi": 46
  },
  "AG": {
   "hata": {
