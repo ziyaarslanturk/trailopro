@@ -90,5 +90,12 @@
   "osm": 933,
   "elenen": 799,
   "sayi": 915
+ },
+ "AU": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-24T07:50:59.902Z",
+  "osm": 10319,
+  "elenen": 761,
+  "sayi": 9558
  }
 }
