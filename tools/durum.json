@@ -582,5 +582,12 @@
   "elenen": 1,
   "sayi": 16,
   "tamam": "2026-11-24T17:16:13.607Z"
+ },
+ "GI": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-24T17:16:39.257Z",
+  "osm": 2,
+  "elenen": 0,
+  "sayi": 2
  }
 }
