@@ -799,8 +799,12 @@
   "tamam": "2026-11-25T09:50:32.717Z"
  },
  "ID": {
-  "hata": "overpass.private.coffee: HTTP 504",
-  "sonDeneme": "2026-11-24T19:01:33.740Z"
+  "sonDeneme": "2026-11-24T19:01:33.740Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-25T09:57:57.218Z",
+  "osm": 658,
+  "elenen": 644,
+  "sayi": 620
  },
  "IE": {
   "kaynak": "osm-fr-pbf",
