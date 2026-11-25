@@ -726,6 +726,12 @@
    "size": 2,
    "updated": "2026-11-25T17:04:44Z"
   },
+  "KZ": {
+   "count": 775,
+   "sha256": "1fa0bd173a70a7f6373c8871985286edde25a09663abdfc2f77066cddaddd0e9",
+   "size": 407105,
+   "updated": "2026-11-25T17:05:56Z"
+  },
   "LU": {
    "count": 84,
    "sha256": "a9aade362ed19ead62d3c2fa5ca8c4d4406e848f84c50ec4bb26a59d9649c869",
