@@ -1285,5 +1285,12 @@
   "elenen": 1,
   "sayi": 113,
   "tamam": "2026-11-25T17:59:37.129Z"
+ },
+ "NF": {
+  "kaynak": "overpass-iso",
+  "harita": "2026-11-25T18:03:53.947Z",
+  "osm": 1,
+  "elenen": 0,
+  "sayi": 1
  }
 }
