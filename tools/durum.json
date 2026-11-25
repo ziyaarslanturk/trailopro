@@ -442,8 +442,12 @@
   "tamam": "2026-11-24T15:17:14.905Z"
  },
  "DE": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-24T15:23:46.333Z"
+  "sonDeneme": "2026-11-24T15:23:46.333Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-25T03:59:25.673Z",
+  "osm": 8702,
+  "elenen": 8350,
+  "sayi": 8406
  },
  "DJ": {
   "kaynak": "osm-fr-pbf",
