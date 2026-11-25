@@ -824,8 +824,12 @@
   "tamam": "2026-11-24T19:07:07.308Z"
  },
  "IM": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-24T19:13:49.278Z"
+  "sonDeneme": "2026-11-24T19:13:49.278Z",
+  "kaynak": "overpass-area",
+  "harita": "2026-11-25T10:03:14.087Z",
+  "osm": 22,
+  "elenen": 0,
+  "sayi": 22
  },
  "IN": {
   "kaynak": "overpass-area",
