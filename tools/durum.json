@@ -838,5 +838,12 @@
   "osm": 2193,
   "elenen": 189,
   "sayi": 2004
+ },
+ "IO": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-25T10:17:44.961Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  }
 }
