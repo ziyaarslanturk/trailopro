@@ -660,6 +660,12 @@
    "size": 826886,
    "updated": "2026-11-25T13:08:39Z"
   },
+  "JP": {
+   "count": 5765,
+   "sha256": "03cf677c29af3bf416e73df2e1fc5d51da755750805473811ec933f8caa000eb",
+   "size": 2574061,
+   "updated": "2026-11-25T13:25:02Z"
+  },
   "KW": {
    "count": 30,
    "sha256": "90f42731604e242c69a441f3bc4737ed248b24cfa2e86b2d413cbfa928e3d5d8",
