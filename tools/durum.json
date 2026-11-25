@@ -945,5 +945,12 @@
   "elenen": 0,
   "sayi": 2,
   "tamam": "2026-11-25T14:35:02.019Z"
+ },
+ "KN": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-25T14:35:06.752Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  }
 }
