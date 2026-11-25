@@ -425,8 +425,12 @@
   "tamam": "2026-11-25T03:02:37.764Z"
  },
  "CY": {
-  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-24T15:13:53.094Z"
+  "sonDeneme": "2026-11-24T15:13:53.094Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-25T03:03:13.917Z",
+  "osm": 58,
+  "elenen": 58,
+  "sayi": 58
  },
  "CZ": {
   "kaynak": "osm-fr-pbf",
