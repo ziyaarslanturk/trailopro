@@ -858,6 +858,12 @@
    "size": 1658190,
    "updated": "2026-11-25T17:28:31Z"
   },
+  "MN": {
+   "count": 680,
+   "sha256": "5f0dcc8b6f1a374cfa3b913962f95acdfa1cf512c66e548846a7bc5bcf9db746",
+   "size": 262060,
+   "updated": "2026-11-25T17:28:57Z"
+  },
   "NL": {
    "count": 3527,
    "sha256": "1053e51f97465f42013e0e1ce26c3fa78e561f05295059f50c3daf97b1c31086",
