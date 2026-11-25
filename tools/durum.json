@@ -1005,5 +1005,12 @@
   "elenen": 0,
   "sayi": 32,
   "tamam": "2026-11-25T17:07:58.318Z"
+ },
+ "LC": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-25T17:08:04.050Z",
+  "osm": 1,
+  "elenen": 0,
+  "sayi": 1
  }
 }
