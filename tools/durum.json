@@ -665,8 +665,12 @@
   "tamam": "2026-11-24T17:17:06.231Z"
  },
  "GL": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-24T17:27:10.360Z"
+  "sonDeneme": "2026-11-24T17:27:10.360Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-25T09:19:23.906Z",
+  "osm": 106,
+  "elenen": 7,
+  "sayi": 99
  },
  "GM": {
   "kaynak": "osm-fr-pbf",
