@@ -1406,10 +1406,14 @@
   "sayi": 729
  },
  "PK": {
-  "kaynak": "overpass-iso",
-  "harita": "2026-11-25T20:21:02.026Z",
-  "osm": 358,
-  "elenen": 89,
-  "sayi": 269
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-25T20:33:06.353Z"
+ },
+ "PL": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-25T20:36:20.030Z",
+  "osm": 2109,
+  "elenen": 2042,
+  "sayi": 1969
  }
 }
