@@ -1181,5 +1181,12 @@
   "elenen": 0,
   "sayi": 6,
   "tamam": "2026-11-25T17:40:51.402Z"
+ },
+ "MQ": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-25T17:40:58.452Z",
+  "osm": 4,
+  "elenen": 1,
+  "sayi": 3
  }
 }
