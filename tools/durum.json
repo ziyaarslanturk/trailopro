@@ -491,8 +491,12 @@
   "tamam": "2026-11-24T15:29:18.561Z"
  },
  "EC": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-24T15:39:21.279Z"
+  "sonDeneme": "2026-11-24T15:39:21.279Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-25T04:13:28.316Z",
+  "osm": 954,
+  "elenen": 76,
+  "sayi": 878
  },
  "EE": {
   "hata": "overpass.private.coffee: The operation was aborted due to timeout",
