@@ -872,8 +872,8 @@
   "tamam": "2026-11-25T10:31:45.562Z"
  },
  "IT": {
-  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-25T14:28:19.868Z"
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-25T19:58:29.388Z"
  },
  "JE": {
   "kaynak": "osm-fr-pbf",
@@ -963,8 +963,8 @@
   "tamam": "2026-11-25T14:35:56.213Z"
  },
  "KR": {
-  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-25T17:04:31.391Z"
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-25T20:16:11.538Z"
  },
  "KW": {
   "kaynak": "osm-fr-pbf",
@@ -1404,5 +1404,12 @@
   "osm": 769,
   "elenen": 40,
   "sayi": 729
+ },
+ "PK": {
+  "kaynak": "overpass-iso",
+  "harita": "2026-11-25T20:21:02.026Z",
+  "osm": 358,
+  "elenen": 89,
+  "sayi": 269
  }
 }
