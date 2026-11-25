@@ -108,8 +108,12 @@
   "tamam": "2026-11-24T10:16:31.173Z"
  },
  "AX": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-24T14:03:16.191Z"
+  "sonDeneme": "2026-11-24T14:03:16.191Z",
+  "kaynak": "overpass-area",
+  "harita": "2026-11-25T01:46:44.025Z",
+  "osm": 30,
+  "elenen": 30,
+  "sayi": 29
  },
  "AZ": {
   "kaynak": "geofabrik-pbf",
