@@ -1229,5 +1229,12 @@
   "elenen": 0,
   "sayi": 0,
   "tamam": "2026-11-25T17:44:17.253Z"
+ },
+ "MW": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-25T17:45:25.264Z",
+  "osm": 83,
+  "elenen": 2,
+  "sayi": 81
  }
 }
