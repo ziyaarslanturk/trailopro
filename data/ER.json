@@ -1,1 +1,1126 @@
-[{"id":"n6046032390","country_code":"ER","latitude":15.287302,"longitude":38.610819,"name":{"tr":null,"en":"Habala Camp","de":null,"ru":null,"ar":"مخيم هابالا"},"name_local":"Habala Camp مخيم هابالا","fee":null,"website":null,"phone":null,"notes":{"description":"KONUM: Eritre. İrtifa: 2060 m.\nYAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km).","description_i18n":{"tr":"KONUM: Eritre. İrtifa: 2060 m.","en":"LOCATION: Eritrea. Elevation: 2060 m.","de":"LAGE: Eritrea. Höhe: 2060 m.","ru":"РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2060 м.","ar":"الموقع: إريتريا. الارتفاع: 2060 م."},"note":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","note_i18n":{"tr":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","en":"Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.","de":"Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.","ru":"Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.","ar":"بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."}},"category_ids":[1],"zengin":{"surum":2,"tarih":"2026-11-24","konum":{"adres":"Eritre","il":null,"ilce":null,"koy":null,"ulke":null,"irtifa_m":2060},"olanaklar":[],"kisitlar":[],"kapasite":null,"calisma_saati":null,"sebeke":{"wifi":null,"yirmidort_yedi":null},"ucret":{"durum":null,"ayrinti":[]},"kritik_noktalar":[],"cevre":{"yerlesim":[{"ad":"ሕምብርቲ Himbirti حمبرتي","mesafe_m":13931,"enlem":15.255338,"boylam":38.736303},{"ad":"Bambuco","mesafe_m":14269,"enlem":15.187189,"boylam":38.694681}]},"doga":{},"koruma_alani":null,"hakkinda":null,"iletisim":{"sosyal":[],"eposta":[]},"osm_notu":null,"ek_notlar":[],"kaynak":{"tarih":"2026-11-24","kaynaklar":["OSM","Open-Meteo","GBIF"],"dogrulandi":false,"eksik_adimlar":[],"deneme":{},"alanlar":{"kritik_noktalar":"osm","cevre":"osm","koruma_alani":"osm","doga":"gbif"}}}},{"id":"n6039588486","country_code":"ER","latitude":15.233159,"longitude":38.875537,"name":{"tr":null,"en":"adi gombolo","de":null,"ru":null,"ar":null},"name_local":"adi gombolo","fee":null,"website":null,"phone":null,"notes":{"description":"KONUM: Eritre. İrtifa: 2280 m.\nYAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan).","description_i18n":{"tr":"KONUM: Eritre. İrtifa: 2280 m.\nYAKIN ÇEVRE: Akaryakıt: Total (7,5 km). Sağlık: St Mary's Psychiatric Hospital Sembel مستشفى سانت ماري للأمراض النفسية سمبل (8,0 km). Yerleşim: Adi Q عدي قادات (3,4 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km).","en":"LOCATION: Eritrea. Elevation: 2280 m.\nNEARBY: Fuel: Total (7.5 km). Healthcare: St Mary's Psychiatric Hospital Sembel (8.0 km). Settlement: Adi Q (3.4 km), Adi Guadad (4.2 km). Sights: second home (9.3 km).","de":"LAGE: Eritrea. Höhe: 2280 m.\nUMGEBUNG: Tankstelle: Total (7,5 km). Gesundheit: St Mary's Psychiatric Hospital Sembel مستشفى سانت ماري للأمراض النفسية سمبل (8,0 km). Ort: Adi Q عدي قادات (3,4 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Sehenswürdigkeiten: second home (9,3 km).","ru":"РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2280 м.\nРЯДОМ: АЗС: Total (7,5 км). Медицина: St Mary's Psychiatric Hospital Sembel مستشفى سانت ماري للأمراض النفسية سمبل (8,0 км). Населённый пункт: Adi Q عدي قادات (3,4 км), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 км). Достопримечательности: second home (9,3 км).","ar":"الموقع: إريتريا. الارتفاع: 2280 م.\nبالقرب من: وقود: Total (7.5 كم). صحة: مستشفى سانت ماري للأمراض النفسية سمبل (8.0 كم). منطقة سكنية: عدي قادات (3.4 كم)، Abardae ኣባርዳእ (6.1 كم). معالم: second home (9.3 كم)."},"note":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","note_i18n":{"tr":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","en":"Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.","de":"Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.","ru":"Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.","ar":"بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."}},"category_ids":[1],"zengin":{"surum":2,"tarih":"2026-11-24","konum":{"adres":"Eritre","il":null,"ilce":null,"koy":null,"ulke":null,"irtifa_m":2280},"olanaklar":[],"kisitlar":[],"kapasite":null,"calisma_saati":null,"sebeke":{"wifi":null,"yirmidort_yedi":null},"ucret":{"durum":null,"ayrinti":[]},"kritik_noktalar":[{"tur":"market","ad":"Market","mesafe_m":8476,"enlem":15.307696,"boylam":38.857023},{"tur":"market","ad":"sofi","mesafe_m":9861,"enlem":15.305504,"boylam":38.929257},{"tur":"akaryakit","ad":"ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات","mesafe_m":9569,"enlem":15.301114,"boylam":38.930734},{"tur":"saglik","ad":"Fre Selam Clinic","mesafe_m":11467,"enlem":15.325605,"boylam":38.923975}],"cevre":{"yerlesim":[{"ad":"Adi Q عدي قادات","mesafe_m":3347,"enlem":15.25004,"boylam":38.901412},{"ad":"Adi Guadat ዓዲ ጓዕዳድ عدي قادات","mesafe_m":4204,"enlem":15.264037,"boylam":38.89839}],"gorulecek":[{"ad":"second home","mesafe_m":9309,"enlem":15.30539,"boylam":38.920097}]},"doga":{"kuslar":[{"bilimsel":"Ploceus galbula","tr":"Yemen Dokumacısı","en":"Rüppell's Weaver"},{"bilimsel":"Falco tinnunculus","tr":"Kerkenez","en":"Eurasian Kestrel"},{"bilimsel":"Spilopelia senegalensis","tr":"Küçük Kumru","en":"Laughing Dove"},{"bilimsel":"Oenanthe pleschanka","tr":"Alaca Kuyrukkakan","en":"Pied Wheatear"},{"bilimsel":"Falco biarmicus","tr":"Bıyıklı Doğan","en":"Lanner Falcon"}]},"koruma_alani":null,"hakkinda":null,"iletisim":{"sosyal":[],"eposta":[]},"osm_notu":null,"ek_notlar":[],"kaynak":{"tarih":"2026-11-24","kaynaklar":["OSM","Open-Meteo","GBIF"],"dogrulandi":false,"eksik_adimlar":[],"deneme":{},"alanlar":{"kritik_noktalar":"osm","cevre":"osm","koruma_alani":"osm","doga":"gbif"}}}},{"id":"n10352933110","country_code":"ER","latitude":15.524519,"longitude":39.589419,"name":{"tr":null,"en":null,"de":null,"ru":null,"ar":null},"name_local":"Ghedem Naval Training center","fee":null,"website":null,"phone":null,"notes":{"description":"KONUM: Eritre. İrtifa: 4 m.\nYAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km).","description_i18n":{"tr":"KONUM: Eritre. İrtifa: 4 m.\nYAKIN ÇEVRE: Su/plaj: Plaj (283 m). Yerleşim: هابرنتا (786 m), غدن (6,9 km).","en":"LOCATION: Eritrea. Elevation: 4 m.\nNEARBY: Water/beach: Beach (283 m). Settlement: Habrenta (786 m), Gheden (6.9 km).","de":"LAGE: Eritrea. Höhe: 4 m.\nUMGEBUNG: Wasser/Strand: Strand (283 m). Ort: هابرنتا (786 m), غدن (6,9 km).","ru":"РАСПОЛОЖЕНИЕ: Эритрея. Высота: 4 м.\nРЯДОМ: Вода/пляж: Пляж (283 м). Населённый пункт: هابرنتا (786 м), غدن (6,9 км).","ar":"الموقع: إريتريا. الارتفاع: 4 م.\nبالقرب من: شاطئ/مياه: شاطئ (283 م). منطقة سكنية: هابرنتا (786 م)، غدن (6.9 كم)."},"note":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","note_i18n":{"tr":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","en":"Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.","de":"Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.","ru":"Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.","ar":"بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."}},"category_ids":[1],"zengin":{"surum":2,"tarih":"2026-11-24","konum":{"adres":"Eritre","il":null,"ilce":null,"koy":null,"ulke":null,"irtifa_m":4},"olanaklar":[],"kisitlar":[],"kapasite":null,"calisma_saati":null,"sebeke":{"wifi":null,"yirmidort_yedi":null},"ucret":{"durum":null,"ayrinti":[]},"kritik_noktalar":[],"cevre":{"yerlesim":[{"ad":"هابرنتا","mesafe_m":782,"enlem":15.517571,"boylam":39.588051},{"ad":"غدن","mesafe_m":6884,"enlem":15.502506,"boylam":39.529387}]},"doga":{},"koruma_alani":null,"hakkinda":null,"iletisim":{"sosyal":[],"eposta":[]},"osm_notu":null,"ek_notlar":[],"kaynak":{"tarih":"2026-11-24","kaynaklar":["OSM","Open-Meteo","GBIF"],"dogrulandi":false,"eksik_adimlar":[],"deneme":{},"alanlar":{"kritik_noktalar":"osm","cevre":"osm","koruma_alani":"osm","doga":"gbif"}}}},{"id":"n5840993086","country_code":"ER","latitude":15.331148,"longitude":38.920877,"name":{"tr":null,"en":null,"de":null,"ru":null,"ar":null},"name_local":"መዓስከር ደንደን","fee":null,"website":null,"phone":null,"notes":{"description":"KONUM: Eritre. İrtifa: 2342 m.\nYAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası).","description_i18n":{"tr":"KONUM: Eritre. İrtifa: 2342 m.\nYAKIN ÇEVRE: Market: سوپرمارکت غيروي (446 m), Haddas Gebretu (586 m). Akaryakıt: Akaryakıt istasyonu (700 m). Sağlık: መካነ ህይወት ሆስፒታል (700 m). Yerleşim: Asmara (1,5 km), ኦና ጉዶ / Ona Gudo (5,2 km). Görülecek: Fiat Tagliero فيات تاغليرو (627 m), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (723 m), titi Internet cafe (957 m). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (579 m).","en":"LOCATION: Eritrea. Elevation: 2342 m.\nNEARBY: Shop: سوپرمارکت غيروي (446 m), Haddas Gebretu Supermarket (586 m). Fuel: Fuel station (700 m). Healthcare: Mekane Hiwot Hospital (700 m). Settlement: Asmara (1.5 km), ኦና ጉዶ / Ona Gudo (5.2 km). Sights: Fiat Tagliero (627 m), Nation Museum of Eritrea (723 m), titi Internet cafe (957 m). Nearby lodging: ቃኘው ሻለቃ kagnew sefet (579 m).","de":"LAGE: Eritrea. Höhe: 2342 m.\nUMGEBUNG: Einkaufen: سوپرمارکت غيروي (446 m), Haddas Gebretu (586 m). Tankstelle: Tankstelle (700 m). Gesundheit: መካነ ህይወት ሆስፒታል (700 m). Ort: Asmara (1,5 km), ኦና ጉዶ / Ona Gudo (5,2 km). Sehenswürdigkeiten: Fiat Tagliero فيات تاغليرو (627 m), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (723 m), titi Internet cafe (957 m). Unterkunft: ቃኘው ሻለቃ kagnew sefet (579 m).","ru":"РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2342 м.\nРЯДОМ: Магазин: سوپرمارکت غيروي (446 м), Haddas Gebretu (586 м). АЗС: АЗС (700 м). Медицина: መካነ ህይወት ሆስፒታል (700 м). Населённый пункт: Асмэра (1,5 км), ኦና ጉዶ / Ona Gudo (5,2 км). Достопримечательности: Fiat Tagliero فيات تاغليرو (627 м), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (723 м), titi Internet cafe (957 м). Жильё рядом: ቃኘው ሻለቃ kagnew sefet (579 м).","ar":"الموقع: إريتريا. الارتفاع: 2342 م.\nبالقرب من: متجر: سوپرمارکت غيروي (446 م)، Haddas Gebretu (586 م). وقود: محطة وقود (700 م). صحة: مستشفى ميكان هيوت (700 م). منطقة سكنية: أسمرة (1.5 كم)، ኦና ጉዶ / Ona Gudo (5.2 كم). معالم: فيات تاغليرو (627 م)، متحف إرتريا الوطني (723 م)، titi Internet cafe (957 م). إقامة قريبة: ቃኘው ሻለቃ kagnew sefet (579 م)."},"note":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","note_i18n":{"tr":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","en":"Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.","de":"Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.","ru":"Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.","ar":"بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."}},"category_ids":[1],"zengin":{"surum":2,"tarih":"2026-11-24","konum":{"adres":"Eritre","il":null,"ilce":null,"koy":null,"ulke":null,"irtifa_m":2342},"olanaklar":[],"kisitlar":[],"kapasite":null,"calisma_saati":null,"sebeke":{"wifi":null,"yirmidort_yedi":null},"ucret":{"durum":null,"ayrinti":[]},"kritik_noktalar":[{"tur":"market","ad":"Asmara Grande أسمرة كبير","mesafe_m":399,"enlem":15.332234,"boylam":38.924422},{"tur":"market","ad":"سوپرمارکت غيروي","mesafe_m":446,"enlem":15.332413,"boylam":38.924821},{"tur":"akaryakit","ad":"Akaryakıt","mesafe_m":700,"enlem":15.32933,"boylam":38.927124},{"tur":"saglik","ad":"Fre Selam Clinic","mesafe_m":697,"enlem":15.325605,"boylam":38.923975}],"cevre":{"yerlesim":[{"ad":"ዞባ ማእከል","mesafe_m":512,"enlem":15.333333,"boylam":38.916667},{"ad":"ኣስመራ Asmara أسمرة","mesafe_m":1533,"enlem":15.338967,"boylam":38.932676}],"gorulecek":[{"ad":"Officina Fiat","mesafe_m":517,"enlem":15.327165,"boylam":38.923403},{"ad":"titi Internet cafe","mesafe_m":958,"enlem":15.328406,"boylam":38.929341},{"ad":"Hewenet","mesafe_m":1017,"enlem":15.337952,"boylam":38.92725}],"yakin_tesis":[{"ad":"ቃኘው ሻለቃ kagnew sefet","mesafe_m":576,"enlem":15.326157,"boylam":38.919351},{"ad":"t","mesafe_m":788,"enlem":15.335101,"boylam":38.914771}]},"doga":{"kuslar":[{"bilimsel":"Ploceus baglafecht","tr":"Baglafeht Dokumacısı","en":"Baglafecht Weaver"},{"bilimsel":"Ploceus cucullatus","tr":"Köy Dokumacısı","en":"Village Weaver"}],"bitkiler":[{"bilimsel":"Hordeum vulgare","tr":"Arpa","en":"Local"},{"bilimsel":"Cicer cuneatum","tr":null,"en":null},{"bilimsel":"Tagetes minuta","tr":null,"en":null},{"bilimsel":"Foeniculum vulgare","tr":null,"en":null},{"bilimsel":"Mirabilis jalapa","tr":"Akşamsefası","en":null}]},"koruma_alani":null,"hakkinda":null,"iletisim":{"sosyal":[],"eposta":[]},"osm_notu":null,"ek_notlar":[],"kaynak":{"tarih":"2026-11-24","kaynaklar":["OSM","Open-Meteo","GBIF"],"dogrulandi":false,"eksik_adimlar":[],"deneme":{},"alanlar":{"kritik_noktalar":"osm","cevre":"osm","koruma_alani":"osm","doga":"gbif"}}}},{"id":"n11226064437","country_code":"ER","latitude":15.323969,"longitude":38.907587,"name":{"tr":null,"en":null,"de":null,"ru":null,"ar":null},"name_local":null,"fee":null,"website":null,"phone":null,"notes":{"description":"KONUM: Eritre. İrtifa: 2326 m.\nYAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus.","description_i18n":{"tr":"KONUM: Eritre. İrtifa: 2326 m.\nYAKIN ÇEVRE: Market: Alfa (1,2 km), Alpha (1,3 km). Akaryakıt: Tamoil (1,3 km). Sağlık: ሆስፒታል ሰምበል (1,6 km). Yerleşim: Asmara (3,2 km), ኦና ጉዶ / Ona Gudo (3,9 km). Görülecek: Fiat Tagliero فيات تاغليرو (2,0 km), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (2,4 km), San Francisco سان فرانسيسكو (2,4 km). Yakın tesis: Lion Hotel فندق الأسد (995 m).","en":"LOCATION: Eritrea. Elevation: 2326 m.\nNEARBY: Shop: Alfa Supermarket (1.2 km), Alpha (1.3 km). Fuel: Tamoil (1.3 km). Healthcare: Sembel Hospital (1.6 km). Settlement: Asmara (3.2 km), ኦና ጉዶ / Ona Gudo (3.9 km). Sights: Fiat Tagliero (2.0 km), Nation Museum of Eritrea (2.4 km), San Francisco (2.4 km). Nearby lodging: Lion Hotel (995 m).","de":"LAGE: Eritrea. Höhe: 2326 m.\nUMGEBUNG: Einkaufen: Alfa (1,2 km), Alpha (1,3 km). Tankstelle: Tamoil (1,3 km). Gesundheit: ሆስፒታል ሰምበል (1,6 km). Ort: Asmara (3,2 km), ኦና ጉዶ / Ona Gudo (3,9 km). Sehenswürdigkeiten: Fiat Tagliero فيات تاغليرو (2,0 km), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (2,4 km), San Francisco سان فرانسيسكو (2,4 km). Unterkunft: Lion Hotel فندق الأسد (995 m).","ru":"РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2326 м.\nРЯДОМ: Магазин: Alfa (1,2 км), Alpha (1,3 км). АЗС: Tamoil (1,3 км). Медицина: ሆስፒታል ሰምበል (1,6 км). Населённый пункт: Асмэра (3,2 км), ኦና ጉዶ / Ona Gudo (3,9 км). Достопримечательности: Fiat Tagliero فيات تاغليرو (2,0 км), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (2,4 км), San Francisco سان فرانسيسكو (2,4 км). Жильё рядом: Lion Hotel فندق الأسد (995 м).","ar":"الموقع: إريتريا. الارتفاع: 2326 م.\nبالقرب من: متجر: Alfa (1.2 كم)، Alpha (1.3 كم). وقود: Tamoil (1.3 كم). صحة: مستشفى سمبل (1.6 كم). منطقة سكنية: أسمرة (3.2 كم)، ኦና ጉዶ / Ona Gudo (3.9 كم). معالم: فيات تاغليرو (2.0 كم)، متحف إرتريا الوطني (2.4 كم)، سان فرانسيسكو (2.4 كم). إقامة قريبة: فندق الأسد (995 م)."},"note":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","note_i18n":{"tr":"Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.","en":"Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.","de":"Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.","ru":"Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.","ar":"بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."}},"category_ids":[2],"zengin":{"surum":2,"tarih":"2026-11-24","konum":{"adres":"Eritre","il":null,"ilce":null,"koy":null,"ulke":null,"irtifa_m":2326},"olanaklar":[],"kisitlar":[],"kapasite":null,"calisma_saati":null,"sebeke":{"wifi":null,"yirmidort_yedi":null},"ucret":{"durum":null,"ayrinti":[]},"kritik_noktalar":[{"tur":"market","ad":"Sabur Printing Service","mesafe_m":847,"enlem":15.316952,"boylam":38.910756},{"tur":"market","ad":"Alfa","mesafe_m":1230,"enlem":15.322469,"boylam":38.918935},{"tur":"akaryakit","ad":"Tamoil","mesafe_m":1319,"enlem":15.323521,"boylam":38.91986},{"tur":"saglik","ad":"Fre Selam Clinic","mesafe_m":1769,"enlem":15.325605,"boylam":38.923975}],"cevre":{"yerlesim":[{"ad":"ዞባ ማእከል","mesafe_m":1422,"enlem":15.333333,"boylam":38.916667},{"ad":"ኣስመራ Asmara أسمرة","mesafe_m":3163,"enlem":15.338967,"boylam":38.932676}],"gorulecek":[{"ad":"Officina Fiat","mesafe_m":1734,"enlem":15.327165,"boylam":38.923403},{"ad":"titi Internet cafe","mesafe_m":2386,"enlem":15.328406,"boylam":38.929341},{"ad":"second home","mesafe_m":2454,"enlem":15.30539,"boylam":38.920097}],"yakin_tesis":[{"ad":"Lion Hotel فندق الأسد","mesafe_m":996,"enlem":15.324507,"boylam":38.916852}]},"doga":{"kuslar":[{"bilimsel":"Ploceus baglafecht","tr":"Baglafeht Dokumacısı","en":"Baglafecht Weaver"},{"bilimsel":"Ploceus cucullatus","tr":"Köy Dokumacısı","en":"Village Weaver"},{"bilimsel":"Milvus migrans","tr":"kara caylak","en":"Black Kite"},{"bilimsel":"Columba guinea","tr":"Çilli Güvercin","en":"Speckled Pigeon"},{"bilimsel":"Spilopelia senegalensis","tr":"Küçük Kumru","en":"Laughing Dove"}],"bitkiler":[{"bilimsel":"Solanum villosum","tr":null,"en":null},{"bilimsel":"Digitaria abyssinica","tr":null,"en":null},{"bilimsel":"Medicago polymorpha","tr":"Erken Yonca","en":null},{"bilimsel":"Argemone ochroleuca","tr":null,"en":null},{"bilimsel":"Rumex nervosus","tr":null,"en":null}]},"koruma_alani":null,"hakkinda":null,"iletisim":{"sosyal":[],"eposta":[]},"osm_notu":null,"ek_notlar":[],"kaynak":{"tarih":"2026-11-24","kaynaklar":["OSM","Open-Meteo","GBIF"],"dogrulandi":false,"eksik_adimlar":[],"deneme":{},"alanlar":{"kritik_noktalar":"osm","cevre":"osm","koruma_alani":"osm","doga":"gbif"}}}}]
+[
+  {
+    "id": "n6046032390",
+    "country_code": "ER",
+    "latitude": 15.287302,
+    "longitude": 38.610819,
+    "name": {
+      "tr": null,
+      "en": "Habala Camp",
+      "de": null,
+      "ru": null,
+      "ar": "مخيم هابالا"
+    },
+    "name_local": "Habala Camp مخيم هابالا",
+    "fee": null,
+    "website": null,
+    "phone": null,
+    "notes": {
+      "description": "KONUM: Eritre. İrtifa: 2060 m.\nYAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km).",
+      "description_i18n": {
+        "tr": "KONUM: Eritre. İrtifa: 2060 m.",
+        "en": "LOCATION: Eritrea. Elevation: 2060 m.",
+        "de": "LAGE: Eritrea. Höhe: 2060 m.",
+        "ru": "РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2060 м.",
+        "ar": "الموقع: إريتريا. الارتفاع: 2060 م."
+      },
+      "note": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "note_i18n": {
+        "tr": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+        "en": "Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.",
+        "de": "Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.",
+        "ru": "Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.",
+        "ar": "بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."
+      }
+    },
+    "category_ids": [
+      1
+    ],
+    "zengin": {
+      "surum": 2,
+      "tarih": "2026-11-24",
+      "konum": {
+        "adres": "Eritre",
+        "il": null,
+        "ilce": null,
+        "koy": null,
+        "ulke": null,
+        "irtifa_m": 2060
+      },
+      "olanaklar": [],
+      "kisitlar": [],
+      "kapasite": null,
+      "calisma_saati": null,
+      "sebeke": {
+        "wifi": null,
+        "yirmidort_yedi": null
+      },
+      "ucret": {
+        "durum": null,
+        "ayrinti": []
+      },
+      "kritik_noktalar": [],
+      "cevre": {
+        "yerlesim": [
+          {
+            "ad": "ሕምብርቲ Himbirti حمبرتي",
+            "mesafe_m": 13931,
+            "enlem": 15.255338,
+            "boylam": 38.736303
+          },
+          {
+            "ad": "Bambuco",
+            "mesafe_m": 14269,
+            "enlem": 15.187189,
+            "boylam": 38.694681
+          }
+        ]
+      },
+      "doga": {},
+      "koruma_alani": null,
+      "hakkinda": null,
+      "iletisim": {
+        "sosyal": [],
+        "eposta": []
+      },
+      "osm_notu": null,
+      "ek_notlar": [],
+      "kaynak": {
+        "tarih": "2026-11-24",
+        "kaynaklar": [
+          "OSM",
+          "Open-Meteo",
+          "GBIF"
+        ],
+        "dogrulandi": false,
+        "eksik_adimlar": [],
+        "deneme": {},
+        "alanlar": {
+          "kritik_noktalar": "osm",
+          "cevre": "osm",
+          "koruma_alani": "osm",
+          "doga": "gbif"
+        }
+      }
+    },
+    "nameJson": {
+      "en": "Habala Camp",
+      "ar": "مخيم هابالا",
+      "tr": "Habala Camp مخيم هابالا",
+      "local": "Habala Camp مخيم هابالا",
+      "de": "Habala Camp مخيم هابالا",
+      "es": "Habala Camp مخيم هابالا",
+      "fr": "Habala Camp مخيم هابالا"
+    },
+    "nearbyJson": "[{\"type\": \"SIGHT\", \"name\": \"ሕምብርቲ Himbirti حمبرتي (13.9 km)\", \"lat\": 15.255338, \"lng\": 38.736303, \"km\": 13.93}, {\"type\": \"SIGHT\", \"name\": \"Bambuco (14.3 km)\", \"lat\": 15.187189, \"lng\": 38.694681, \"km\": 14.27}]",
+    "nearby": [
+      {
+        "type": "SIGHT",
+        "name": "ሕምብርቲ Himbirti حمبرتي (13.9 km)",
+        "lat": 15.255338,
+        "lng": 38.736303,
+        "km": 13.93
+      },
+      {
+        "type": "SIGHT",
+        "name": "Bambuco (14.3 km)",
+        "lat": 15.187189,
+        "lng": 38.694681,
+        "km": 14.27
+      }
+    ],
+    "notes_5lang": {
+      "tr": "KONUM: Eritre. İrtifa: 2060 m. YAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "en": "KONUM: Eritre. İrtifa: 2060 m. YAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "de": "KONUM: Eritre. İrtifa: 2060 m. YAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "es": "KONUM: Eritre. İrtifa: 2060 m. YAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "fr": "KONUM: Eritre. İrtifa: 2060 m. YAKIN ÇEVRE: Yerleşim: ሕምብርቲ Himbirti حمبرتي (13,9 km), Bambuco (14,3 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı."
+    }
+  },
+  {
+    "id": "n6039588486",
+    "country_code": "ER",
+    "latitude": 15.233159,
+    "longitude": 38.875537,
+    "name": {
+      "tr": null,
+      "en": "adi gombolo",
+      "de": null,
+      "ru": null,
+      "ar": null
+    },
+    "name_local": "adi gombolo",
+    "fee": null,
+    "website": null,
+    "phone": null,
+    "notes": {
+      "description": "KONUM: Eritre. İrtifa: 2280 m.\nYAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan).",
+      "description_i18n": {
+        "tr": "KONUM: Eritre. İrtifa: 2280 m.\nYAKIN ÇEVRE: Akaryakıt: Total (7,5 km). Sağlık: St Mary's Psychiatric Hospital Sembel مستشفى سانت ماري للأمراض النفسية سمبل (8,0 km). Yerleşim: Adi Q عدي قادات (3,4 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km).",
+        "en": "LOCATION: Eritrea. Elevation: 2280 m.\nNEARBY: Fuel: Total (7.5 km). Healthcare: St Mary's Psychiatric Hospital Sembel (8.0 km). Settlement: Adi Q (3.4 km), Adi Guadad (4.2 km). Sights: second home (9.3 km).",
+        "de": "LAGE: Eritrea. Höhe: 2280 m.\nUMGEBUNG: Tankstelle: Total (7,5 km). Gesundheit: St Mary's Psychiatric Hospital Sembel مستشفى سانت ماري للأمراض النفسية سمبل (8,0 km). Ort: Adi Q عدي قادات (3,4 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Sehenswürdigkeiten: second home (9,3 km).",
+        "ru": "РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2280 м.\nРЯДОМ: АЗС: Total (7,5 км). Медицина: St Mary's Psychiatric Hospital Sembel مستشفى سانت ماري للأمراض النفسية سمبل (8,0 км). Населённый пункт: Adi Q عدي قادات (3,4 км), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 км). Достопримечательности: second home (9,3 км).",
+        "ar": "الموقع: إريتريا. الارتفاع: 2280 م.\nبالقرب من: وقود: Total (7.5 كم). صحة: مستشفى سانت ماري للأمراض النفسية سمبل (8.0 كم). منطقة سكنية: عدي قادات (3.4 كم)، Abardae ኣባርዳእ (6.1 كم). معالم: second home (9.3 كم)."
+      },
+      "note": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "note_i18n": {
+        "tr": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+        "en": "Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.",
+        "de": "Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.",
+        "ru": "Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.",
+        "ar": "بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."
+      }
+    },
+    "category_ids": [
+      1
+    ],
+    "zengin": {
+      "surum": 2,
+      "tarih": "2026-11-24",
+      "konum": {
+        "adres": "Eritre",
+        "il": null,
+        "ilce": null,
+        "koy": null,
+        "ulke": null,
+        "irtifa_m": 2280
+      },
+      "olanaklar": [],
+      "kisitlar": [],
+      "kapasite": null,
+      "calisma_saati": null,
+      "sebeke": {
+        "wifi": null,
+        "yirmidort_yedi": null
+      },
+      "ucret": {
+        "durum": null,
+        "ayrinti": []
+      },
+      "kritik_noktalar": [
+        {
+          "tur": "market",
+          "ad": "Market",
+          "mesafe_m": 8476,
+          "enlem": 15.307696,
+          "boylam": 38.857023
+        },
+        {
+          "tur": "market",
+          "ad": "sofi",
+          "mesafe_m": 9861,
+          "enlem": 15.305504,
+          "boylam": 38.929257
+        },
+        {
+          "tur": "akaryakit",
+          "ad": "ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات",
+          "mesafe_m": 9569,
+          "enlem": 15.301114,
+          "boylam": 38.930734
+        },
+        {
+          "tur": "saglik",
+          "ad": "Fre Selam Clinic",
+          "mesafe_m": 11467,
+          "enlem": 15.325605,
+          "boylam": 38.923975
+        }
+      ],
+      "cevre": {
+        "yerlesim": [
+          {
+            "ad": "Adi Q عدي قادات",
+            "mesafe_m": 3347,
+            "enlem": 15.25004,
+            "boylam": 38.901412
+          },
+          {
+            "ad": "Adi Guadat ዓዲ ጓዕዳድ عدي قادات",
+            "mesafe_m": 4204,
+            "enlem": 15.264037,
+            "boylam": 38.89839
+          }
+        ],
+        "gorulecek": [
+          {
+            "ad": "second home",
+            "mesafe_m": 9309,
+            "enlem": 15.30539,
+            "boylam": 38.920097
+          }
+        ]
+      },
+      "doga": {
+        "kuslar": [
+          {
+            "bilimsel": "Ploceus galbula",
+            "tr": "Yemen Dokumacısı",
+            "en": "Rüppell's Weaver"
+          },
+          {
+            "bilimsel": "Falco tinnunculus",
+            "tr": "Kerkenez",
+            "en": "Eurasian Kestrel"
+          },
+          {
+            "bilimsel": "Spilopelia senegalensis",
+            "tr": "Küçük Kumru",
+            "en": "Laughing Dove"
+          },
+          {
+            "bilimsel": "Oenanthe pleschanka",
+            "tr": "Alaca Kuyrukkakan",
+            "en": "Pied Wheatear"
+          },
+          {
+            "bilimsel": "Falco biarmicus",
+            "tr": "Bıyıklı Doğan",
+            "en": "Lanner Falcon"
+          }
+        ]
+      },
+      "koruma_alani": null,
+      "hakkinda": null,
+      "iletisim": {
+        "sosyal": [],
+        "eposta": []
+      },
+      "osm_notu": null,
+      "ek_notlar": [],
+      "kaynak": {
+        "tarih": "2026-11-24",
+        "kaynaklar": [
+          "OSM",
+          "Open-Meteo",
+          "GBIF"
+        ],
+        "dogrulandi": false,
+        "eksik_adimlar": [],
+        "deneme": {},
+        "alanlar": {
+          "kritik_noktalar": "osm",
+          "cevre": "osm",
+          "koruma_alani": "osm",
+          "doga": "gbif"
+        }
+      }
+    },
+    "nameJson": {
+      "en": "adi gombolo",
+      "tr": "adi gombolo",
+      "local": "adi gombolo",
+      "de": "adi gombolo",
+      "es": "adi gombolo",
+      "fr": "adi gombolo"
+    },
+    "nearbyJson": "[{\"type\": \"MARKET\", \"name\": \"Market (8.5 km)\", \"lat\": 15.307696, \"lng\": 38.857023, \"km\": 8.48}, {\"type\": \"MARKET\", \"name\": \"sofi (9.9 km)\", \"lat\": 15.305504, \"lng\": 38.929257, \"km\": 9.86}, {\"type\": \"FUEL\", \"name\": \"ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9.6 km)\", \"lat\": 15.301114, \"lng\": 38.930734, \"km\": 9.57}, {\"type\": \"HEALTH\", \"name\": \"Fre Selam Clinic (11.5 km)\", \"lat\": 15.325605, \"lng\": 38.923975, \"km\": 11.47}, {\"type\": \"SIGHT\", \"name\": \"Adi Q عدي قادات (3.3 km)\", \"lat\": 15.25004, \"lng\": 38.901412, \"km\": 3.35}, {\"type\": \"SIGHT\", \"name\": \"Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4.2 km)\", \"lat\": 15.264037, \"lng\": 38.89839, \"km\": 4.2}, {\"type\": \"SIGHT\", \"name\": \"second home (9.3 km)\", \"lat\": 15.30539, \"lng\": 38.920097, \"km\": 9.31}]",
+    "nearby": [
+      {
+        "type": "MARKET",
+        "name": "Market (8.5 km)",
+        "lat": 15.307696,
+        "lng": 38.857023,
+        "km": 8.48
+      },
+      {
+        "type": "MARKET",
+        "name": "sofi (9.9 km)",
+        "lat": 15.305504,
+        "lng": 38.929257,
+        "km": 9.86
+      },
+      {
+        "type": "FUEL",
+        "name": "ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9.6 km)",
+        "lat": 15.301114,
+        "lng": 38.930734,
+        "km": 9.57
+      },
+      {
+        "type": "HEALTH",
+        "name": "Fre Selam Clinic (11.5 km)",
+        "lat": 15.325605,
+        "lng": 38.923975,
+        "km": 11.47
+      },
+      {
+        "type": "SIGHT",
+        "name": "Adi Q عدي قادات (3.3 km)",
+        "lat": 15.25004,
+        "lng": 38.901412,
+        "km": 3.35
+      },
+      {
+        "type": "SIGHT",
+        "name": "Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4.2 km)",
+        "lat": 15.264037,
+        "lng": 38.89839,
+        "km": 4.2
+      },
+      {
+        "type": "SIGHT",
+        "name": "second home (9.3 km)",
+        "lat": 15.30539,
+        "lng": 38.920097,
+        "km": 9.31
+      }
+    ],
+    "ground": "SAND",
+    "notes_5lang": {
+      "tr": "KONUM: Eritre. İrtifa: 2280 m. YAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "en": "KONUM: Eritre. İrtifa: 2280 m. YAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "de": "KONUM: Eritre. İrtifa: 2280 m. YAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "es": "KONUM: Eritre. İrtifa: 2280 m. YAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "fr": "KONUM: Eritre. İrtifa: 2280 m. YAKIN ÇEVRE: Market: Market (8,5 km), sofi (9,9 km). Akaryakıt: ብሎኮ ጎዳይፍ፡ Bus Station محطة حافلات (9,6 km). Sağlık: Fre Selam Clinic (11,5 km). Yerleşim: Adi Q عدي قادات (3,3 km), Adi Guadat ዓዲ ጓዕዳድ عدي قادات (4,2 km). Görülecek: second home (9,3 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus galbula (Yemen Dokumacısı), Falco tinnunculus (Kerkenez), Spilopelia senegalensis (Küçük Kumru), Oenanthe pleschanka (Alaca Kuyrukkakan), Falco biarmicus (Bıyıklı Doğan). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı."
+    }
+  },
+  {
+    "id": "n10352933110",
+    "country_code": "ER",
+    "latitude": 15.524519,
+    "longitude": 39.589419,
+    "name": {
+      "tr": null,
+      "en": null,
+      "de": null,
+      "ru": null,
+      "ar": null
+    },
+    "name_local": "Ghedem Naval Training center",
+    "fee": null,
+    "website": null,
+    "phone": null,
+    "notes": {
+      "description": "KONUM: Eritre. İrtifa: 4 m.\nYAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km).",
+      "description_i18n": {
+        "tr": "KONUM: Eritre. İrtifa: 4 m.\nYAKIN ÇEVRE: Su/plaj: Plaj (283 m). Yerleşim: هابرنتا (786 m), غدن (6,9 km).",
+        "en": "LOCATION: Eritrea. Elevation: 4 m.\nNEARBY: Water/beach: Beach (283 m). Settlement: Habrenta (786 m), Gheden (6.9 km).",
+        "de": "LAGE: Eritrea. Höhe: 4 m.\nUMGEBUNG: Wasser/Strand: Strand (283 m). Ort: هابرنتا (786 m), غدن (6,9 km).",
+        "ru": "РАСПОЛОЖЕНИЕ: Эритрея. Высота: 4 м.\nРЯДОМ: Вода/пляж: Пляж (283 м). Населённый пункт: هابرنتا (786 м), غدن (6,9 км).",
+        "ar": "الموقع: إريتريا. الارتفاع: 4 م.\nبالقرب من: شاطئ/مياه: شاطئ (283 م). منطقة سكنية: هابرنتا (786 م)، غدن (6.9 كم)."
+      },
+      "note": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "note_i18n": {
+        "tr": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+        "en": "Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.",
+        "de": "Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.",
+        "ru": "Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.",
+        "ar": "بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."
+      }
+    },
+    "category_ids": [
+      1
+    ],
+    "zengin": {
+      "surum": 2,
+      "tarih": "2026-11-24",
+      "konum": {
+        "adres": "Eritre",
+        "il": null,
+        "ilce": null,
+        "koy": null,
+        "ulke": null,
+        "irtifa_m": 4
+      },
+      "olanaklar": [],
+      "kisitlar": [],
+      "kapasite": null,
+      "calisma_saati": null,
+      "sebeke": {
+        "wifi": null,
+        "yirmidort_yedi": null
+      },
+      "ucret": {
+        "durum": null,
+        "ayrinti": []
+      },
+      "kritik_noktalar": [],
+      "cevre": {
+        "yerlesim": [
+          {
+            "ad": "هابرنتا",
+            "mesafe_m": 782,
+            "enlem": 15.517571,
+            "boylam": 39.588051
+          },
+          {
+            "ad": "غدن",
+            "mesafe_m": 6884,
+            "enlem": 15.502506,
+            "boylam": 39.529387
+          }
+        ]
+      },
+      "doga": {},
+      "koruma_alani": null,
+      "hakkinda": null,
+      "iletisim": {
+        "sosyal": [],
+        "eposta": []
+      },
+      "osm_notu": null,
+      "ek_notlar": [],
+      "kaynak": {
+        "tarih": "2026-11-24",
+        "kaynaklar": [
+          "OSM",
+          "Open-Meteo",
+          "GBIF"
+        ],
+        "dogrulandi": false,
+        "eksik_adimlar": [],
+        "deneme": {},
+        "alanlar": {
+          "kritik_noktalar": "osm",
+          "cevre": "osm",
+          "koruma_alani": "osm",
+          "doga": "gbif"
+        }
+      }
+    },
+    "nameJson": {
+      "tr": "Ghedem Naval Training center",
+      "local": "Ghedem Naval Training center",
+      "en": "Ghedem Naval Training center",
+      "de": "Ghedem Naval Training center",
+      "es": "Ghedem Naval Training center",
+      "fr": "Ghedem Naval Training center"
+    },
+    "nearbyJson": "[{\"type\": \"SIGHT\", \"name\": \"هابرنتا (782 m)\", \"lat\": 15.517571, \"lng\": 39.588051, \"km\": 0.78}, {\"type\": \"SIGHT\", \"name\": \"غدن (6.9 km)\", \"lat\": 15.502506, \"lng\": 39.529387, \"km\": 6.88}]",
+    "nearby": [
+      {
+        "type": "SIGHT",
+        "name": "هابرنتا (782 m)",
+        "lat": 15.517571,
+        "lng": 39.588051,
+        "km": 0.78
+      },
+      {
+        "type": "SIGHT",
+        "name": "غدن (6.9 km)",
+        "lat": 15.502506,
+        "lng": 39.529387,
+        "km": 6.88
+      }
+    ],
+    "notes_5lang": {
+      "tr": "KONUM: Eritre. İrtifa: 4 m. YAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "en": "KONUM: Eritre. İrtifa: 4 m. YAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "de": "KONUM: Eritre. İrtifa: 4 m. YAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "es": "KONUM: Eritre. İrtifa: 4 m. YAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "fr": "KONUM: Eritre. İrtifa: 4 m. YAKIN ÇEVRE: Yerleşim: هابرنتا (782 m), غدن (6,9 km). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı."
+    }
+  },
+  {
+    "id": "n5840993086",
+    "country_code": "ER",
+    "latitude": 15.331148,
+    "longitude": 38.920877,
+    "name": {
+      "tr": null,
+      "en": null,
+      "de": null,
+      "ru": null,
+      "ar": null
+    },
+    "name_local": "መዓስከር ደንደን",
+    "fee": null,
+    "website": null,
+    "phone": null,
+    "notes": {
+      "description": "KONUM: Eritre. İrtifa: 2342 m.\nYAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası).",
+      "description_i18n": {
+        "tr": "KONUM: Eritre. İrtifa: 2342 m.\nYAKIN ÇEVRE: Market: سوپرمارکت غيروي (446 m), Haddas Gebretu (586 m). Akaryakıt: Akaryakıt istasyonu (700 m). Sağlık: መካነ ህይወት ሆስፒታል (700 m). Yerleşim: Asmara (1,5 km), ኦና ጉዶ / Ona Gudo (5,2 km). Görülecek: Fiat Tagliero فيات تاغليرو (627 m), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (723 m), titi Internet cafe (957 m). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (579 m).",
+        "en": "LOCATION: Eritrea. Elevation: 2342 m.\nNEARBY: Shop: سوپرمارکت غيروي (446 m), Haddas Gebretu Supermarket (586 m). Fuel: Fuel station (700 m). Healthcare: Mekane Hiwot Hospital (700 m). Settlement: Asmara (1.5 km), ኦና ጉዶ / Ona Gudo (5.2 km). Sights: Fiat Tagliero (627 m), Nation Museum of Eritrea (723 m), titi Internet cafe (957 m). Nearby lodging: ቃኘው ሻለቃ kagnew sefet (579 m).",
+        "de": "LAGE: Eritrea. Höhe: 2342 m.\nUMGEBUNG: Einkaufen: سوپرمارکت غيروي (446 m), Haddas Gebretu (586 m). Tankstelle: Tankstelle (700 m). Gesundheit: መካነ ህይወት ሆስፒታል (700 m). Ort: Asmara (1,5 km), ኦና ጉዶ / Ona Gudo (5,2 km). Sehenswürdigkeiten: Fiat Tagliero فيات تاغليرو (627 m), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (723 m), titi Internet cafe (957 m). Unterkunft: ቃኘው ሻለቃ kagnew sefet (579 m).",
+        "ru": "РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2342 м.\nРЯДОМ: Магазин: سوپرمارکت غيروي (446 м), Haddas Gebretu (586 м). АЗС: АЗС (700 м). Медицина: መካነ ህይወት ሆስፒታል (700 м). Населённый пункт: Асмэра (1,5 км), ኦና ጉዶ / Ona Gudo (5,2 км). Достопримечательности: Fiat Tagliero فيات تاغليرو (627 м), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (723 м), titi Internet cafe (957 м). Жильё рядом: ቃኘው ሻለቃ kagnew sefet (579 м).",
+        "ar": "الموقع: إريتريا. الارتفاع: 2342 م.\nبالقرب من: متجر: سوپرمارکت غيروي (446 م)، Haddas Gebretu (586 م). وقود: محطة وقود (700 م). صحة: مستشفى ميكان هيوت (700 م). منطقة سكنية: أسمرة (1.5 كم)، ኦና ጉዶ / Ona Gudo (5.2 كم). معالم: فيات تاغليرو (627 م)، متحف إرتريا الوطني (723 م)، titi Internet cafe (957 م). إقامة قريبة: ቃኘው ሻለቃ kagnew sefet (579 م)."
+      },
+      "note": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "note_i18n": {
+        "tr": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+        "en": "Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.",
+        "de": "Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.",
+        "ru": "Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.",
+        "ar": "بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."
+      }
+    },
+    "category_ids": [
+      1
+    ],
+    "zengin": {
+      "surum": 2,
+      "tarih": "2026-11-24",
+      "konum": {
+        "adres": "Eritre",
+        "il": null,
+        "ilce": null,
+        "koy": null,
+        "ulke": null,
+        "irtifa_m": 2342
+      },
+      "olanaklar": [],
+      "kisitlar": [],
+      "kapasite": null,
+      "calisma_saati": null,
+      "sebeke": {
+        "wifi": null,
+        "yirmidort_yedi": null
+      },
+      "ucret": {
+        "durum": null,
+        "ayrinti": []
+      },
+      "kritik_noktalar": [
+        {
+          "tur": "market",
+          "ad": "Asmara Grande أسمرة كبير",
+          "mesafe_m": 399,
+          "enlem": 15.332234,
+          "boylam": 38.924422
+        },
+        {
+          "tur": "market",
+          "ad": "سوپرمارکت غيروي",
+          "mesafe_m": 446,
+          "enlem": 15.332413,
+          "boylam": 38.924821
+        },
+        {
+          "tur": "akaryakit",
+          "ad": "Akaryakıt",
+          "mesafe_m": 700,
+          "enlem": 15.32933,
+          "boylam": 38.927124
+        },
+        {
+          "tur": "saglik",
+          "ad": "Fre Selam Clinic",
+          "mesafe_m": 697,
+          "enlem": 15.325605,
+          "boylam": 38.923975
+        }
+      ],
+      "cevre": {
+        "yerlesim": [
+          {
+            "ad": "ዞባ ማእከል",
+            "mesafe_m": 512,
+            "enlem": 15.333333,
+            "boylam": 38.916667
+          },
+          {
+            "ad": "ኣስመራ Asmara أسمرة",
+            "mesafe_m": 1533,
+            "enlem": 15.338967,
+            "boylam": 38.932676
+          }
+        ],
+        "gorulecek": [
+          {
+            "ad": "Officina Fiat",
+            "mesafe_m": 517,
+            "enlem": 15.327165,
+            "boylam": 38.923403
+          },
+          {
+            "ad": "titi Internet cafe",
+            "mesafe_m": 958,
+            "enlem": 15.328406,
+            "boylam": 38.929341
+          },
+          {
+            "ad": "Hewenet",
+            "mesafe_m": 1017,
+            "enlem": 15.337952,
+            "boylam": 38.92725
+          }
+        ],
+        "yakin_tesis": [
+          {
+            "ad": "ቃኘው ሻለቃ kagnew sefet",
+            "mesafe_m": 576,
+            "enlem": 15.326157,
+            "boylam": 38.919351
+          },
+          {
+            "ad": "t",
+            "mesafe_m": 788,
+            "enlem": 15.335101,
+            "boylam": 38.914771
+          }
+        ]
+      },
+      "doga": {
+        "kuslar": [
+          {
+            "bilimsel": "Ploceus baglafecht",
+            "tr": "Baglafeht Dokumacısı",
+            "en": "Baglafecht Weaver"
+          },
+          {
+            "bilimsel": "Ploceus cucullatus",
+            "tr": "Köy Dokumacısı",
+            "en": "Village Weaver"
+          }
+        ],
+        "bitkiler": [
+          {
+            "bilimsel": "Hordeum vulgare",
+            "tr": "Arpa",
+            "en": "Local"
+          },
+          {
+            "bilimsel": "Cicer cuneatum",
+            "tr": null,
+            "en": null
+          },
+          {
+            "bilimsel": "Tagetes minuta",
+            "tr": null,
+            "en": null
+          },
+          {
+            "bilimsel": "Foeniculum vulgare",
+            "tr": null,
+            "en": null
+          },
+          {
+            "bilimsel": "Mirabilis jalapa",
+            "tr": "Akşamsefası",
+            "en": null
+          }
+        ]
+      },
+      "koruma_alani": null,
+      "hakkinda": null,
+      "iletisim": {
+        "sosyal": [],
+        "eposta": []
+      },
+      "osm_notu": null,
+      "ek_notlar": [],
+      "kaynak": {
+        "tarih": "2026-11-24",
+        "kaynaklar": [
+          "OSM",
+          "Open-Meteo",
+          "GBIF"
+        ],
+        "dogrulandi": false,
+        "eksik_adimlar": [],
+        "deneme": {},
+        "alanlar": {
+          "kritik_noktalar": "osm",
+          "cevre": "osm",
+          "koruma_alani": "osm",
+          "doga": "gbif"
+        }
+      }
+    },
+    "nameJson": {
+      "tr": "መዓስከር ደንደን",
+      "local": "መዓስከር ደንደን",
+      "en": "መዓስከር ደንደን",
+      "de": "መዓስከር ደንደን",
+      "es": "መዓስከር ደንደን",
+      "fr": "መዓስከር ደንደን"
+    },
+    "nearbyJson": "[{\"type\": \"MARKET\", \"name\": \"Asmara Grande أسمرة كبير (399 m)\", \"lat\": 15.332234, \"lng\": 38.924422, \"km\": 0.4}, {\"type\": \"MARKET\", \"name\": \"سوپرمارکت غيروي (446 m)\", \"lat\": 15.332413, \"lng\": 38.924821, \"km\": 0.45}, {\"type\": \"FUEL\", \"name\": \"Akaryakıt (700 m)\", \"lat\": 15.32933, \"lng\": 38.927124, \"km\": 0.7}, {\"type\": \"HEALTH\", \"name\": \"Fre Selam Clinic (697 m)\", \"lat\": 15.325605, \"lng\": 38.923975, \"km\": 0.7}, {\"type\": \"SIGHT\", \"name\": \"ዞባ ማእከል (512 m)\", \"lat\": 15.333333, \"lng\": 38.916667, \"km\": 0.51}, {\"type\": \"SIGHT\", \"name\": \"ኣስመራ Asmara أسمرة (1.5 km)\", \"lat\": 15.338967, \"lng\": 38.932676, \"km\": 1.53}, {\"type\": \"SIGHT\", \"name\": \"Officina Fiat (517 m)\", \"lat\": 15.327165, \"lng\": 38.923403, \"km\": 0.52}, {\"type\": \"SIGHT\", \"name\": \"titi Internet cafe (958 m)\", \"lat\": 15.328406, \"lng\": 38.929341, \"km\": 0.96}, {\"type\": \"SIGHT\", \"name\": \"Hewenet (1.0 km)\", \"lat\": 15.337952, \"lng\": 38.92725, \"km\": 1.02}, {\"type\": \"CAMP\", \"name\": \"ቃኘው ሻለቃ kagnew sefet (576 m)\", \"lat\": 15.326157, \"lng\": 38.919351, \"km\": 0.58}, {\"type\": \"CAMP\", \"name\": \"t (788 m)\", \"lat\": 15.335101, \"lng\": 38.914771, \"km\": 0.79}]",
+    "nearby": [
+      {
+        "type": "MARKET",
+        "name": "Asmara Grande أسمرة كبير (399 m)",
+        "lat": 15.332234,
+        "lng": 38.924422,
+        "km": 0.4
+      },
+      {
+        "type": "MARKET",
+        "name": "سوپرمارکت غيروي (446 m)",
+        "lat": 15.332413,
+        "lng": 38.924821,
+        "km": 0.45
+      },
+      {
+        "type": "FUEL",
+        "name": "Akaryakıt (700 m)",
+        "lat": 15.32933,
+        "lng": 38.927124,
+        "km": 0.7
+      },
+      {
+        "type": "HEALTH",
+        "name": "Fre Selam Clinic (697 m)",
+        "lat": 15.325605,
+        "lng": 38.923975,
+        "km": 0.7
+      },
+      {
+        "type": "SIGHT",
+        "name": "ዞባ ማእከል (512 m)",
+        "lat": 15.333333,
+        "lng": 38.916667,
+        "km": 0.51
+      },
+      {
+        "type": "SIGHT",
+        "name": "ኣስመራ Asmara أسمرة (1.5 km)",
+        "lat": 15.338967,
+        "lng": 38.932676,
+        "km": 1.53
+      },
+      {
+        "type": "SIGHT",
+        "name": "Officina Fiat (517 m)",
+        "lat": 15.327165,
+        "lng": 38.923403,
+        "km": 0.52
+      },
+      {
+        "type": "SIGHT",
+        "name": "titi Internet cafe (958 m)",
+        "lat": 15.328406,
+        "lng": 38.929341,
+        "km": 0.96
+      },
+      {
+        "type": "SIGHT",
+        "name": "Hewenet (1.0 km)",
+        "lat": 15.337952,
+        "lng": 38.92725,
+        "km": 1.02
+      },
+      {
+        "type": "CAMP",
+        "name": "ቃኘው ሻለቃ kagnew sefet (576 m)",
+        "lat": 15.326157,
+        "lng": 38.919351,
+        "km": 0.58
+      },
+      {
+        "type": "CAMP",
+        "name": "t (788 m)",
+        "lat": 15.335101,
+        "lng": 38.914771,
+        "km": 0.79
+      }
+    ],
+    "ground": "SAND",
+    "notes_5lang": {
+      "tr": "KONUM: Eritre. İrtifa: 2342 m. YAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "en": "KONUM: Eritre. İrtifa: 2342 m. YAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "de": "KONUM: Eritre. İrtifa: 2342 m. YAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "es": "KONUM: Eritre. İrtifa: 2342 m. YAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "fr": "KONUM: Eritre. İrtifa: 2342 m. YAKIN ÇEVRE: Market: Asmara Grande أسمرة كبير (399 m), سوپرمارکت غيروي (446 m). Akaryakıt: Akaryakıt (700 m). Sağlık: Fre Selam Clinic (697 m). Yerleşim: ዞባ ማእከል (512 m), ኣስመራ Asmara أسمرة (1,5 km). Görülecek: Officina Fiat (517 m), titi Internet cafe (958 m), Hewenet (1,0 km). Yakın tesis: ቃኘው ሻለቃ kagnew sefet (576 m), t (788 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı). Bitkiler: Hordeum vulgare (Arpa), Cicer cuneatum, Tagetes minuta, Foeniculum vulgare, Mirabilis jalapa (Akşamsefası). Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı."
+    }
+  },
+  {
+    "id": "n11226064437",
+    "country_code": "ER",
+    "latitude": 15.323969,
+    "longitude": 38.907587,
+    "name": {
+      "tr": null,
+      "en": null,
+      "de": null,
+      "ru": null,
+      "ar": null
+    },
+    "name_local": null,
+    "fee": null,
+    "website": null,
+    "phone": null,
+    "notes": {
+      "description": "KONUM: Eritre. İrtifa: 2326 m.\nYAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus.",
+      "description_i18n": {
+        "tr": "KONUM: Eritre. İrtifa: 2326 m.\nYAKIN ÇEVRE: Market: Alfa (1,2 km), Alpha (1,3 km). Akaryakıt: Tamoil (1,3 km). Sağlık: ሆስፒታል ሰምበል (1,6 km). Yerleşim: Asmara (3,2 km), ኦና ጉዶ / Ona Gudo (3,9 km). Görülecek: Fiat Tagliero فيات تاغليرو (2,0 km), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (2,4 km), San Francisco سان فرانسيسكو (2,4 km). Yakın tesis: Lion Hotel فندق الأسد (995 m).",
+        "en": "LOCATION: Eritrea. Elevation: 2326 m.\nNEARBY: Shop: Alfa Supermarket (1.2 km), Alpha (1.3 km). Fuel: Tamoil (1.3 km). Healthcare: Sembel Hospital (1.6 km). Settlement: Asmara (3.2 km), ኦና ጉዶ / Ona Gudo (3.9 km). Sights: Fiat Tagliero (2.0 km), Nation Museum of Eritrea (2.4 km), San Francisco (2.4 km). Nearby lodging: Lion Hotel (995 m).",
+        "de": "LAGE: Eritrea. Höhe: 2326 m.\nUMGEBUNG: Einkaufen: Alfa (1,2 km), Alpha (1,3 km). Tankstelle: Tamoil (1,3 km). Gesundheit: ሆስፒታል ሰምበል (1,6 km). Ort: Asmara (3,2 km), ኦና ጉዶ / Ona Gudo (3,9 km). Sehenswürdigkeiten: Fiat Tagliero فيات تاغليرو (2,0 km), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (2,4 km), San Francisco سان فرانسيسكو (2,4 km). Unterkunft: Lion Hotel فندق الأسد (995 m).",
+        "ru": "РАСПОЛОЖЕНИЕ: Эритрея. Высота: 2326 м.\nРЯДОМ: Магазин: Alfa (1,2 км), Alpha (1,3 км). АЗС: Tamoil (1,3 км). Медицина: ሆስፒታል ሰምበል (1,6 км). Населённый пункт: Асмэра (3,2 км), ኦና ጉዶ / Ona Gudo (3,9 км). Достопримечательности: Fiat Tagliero فيات تاغليرو (2,0 км), ሃገራዊ ቤተ መዘክር متحف إرتريا الوطني (2,4 км), San Francisco سان فرانسيسكو (2,4 км). Жильё рядом: Lion Hotel فندق الأسد (995 м).",
+        "ar": "الموقع: إريتريا. الارتفاع: 2326 م.\nبالقرب من: متجر: Alfa (1.2 كم)، Alpha (1.3 كم). وقود: Tamoil (1.3 كم). صحة: مستشفى سمبل (1.6 كم). منطقة سكنية: أسمرة (3.2 كم)، ኦና ጉዶ / Ona Gudo (3.9 كم). معالم: فيات تاغليرو (2.0 كم)، متحف إرتريا الوطني (2.4 كم)، سان فرانسيسكو (2.4 كم). إقامة قريبة: فندق الأسد (995 م)."
+      },
+      "note": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "note_i18n": {
+        "tr": "Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+        "en": "Basic compilation (2026-11-24): OSM, Open-Meteo. Needs verification.",
+        "de": "Basisdaten (2026-11-24): OSM, Open-Meteo. Bitte überprüfen.",
+        "ru": "Базовая сводка (2026-11-24): OSM, Open-Meteo. Требует проверки.",
+        "ar": "بيانات أساسية (2026-11-24): OSM, Open-Meteo. يُرجى التحقق."
+      }
+    },
+    "category_ids": [
+      2
+    ],
+    "zengin": {
+      "surum": 2,
+      "tarih": "2026-11-24",
+      "konum": {
+        "adres": "Eritre",
+        "il": null,
+        "ilce": null,
+        "koy": null,
+        "ulke": null,
+        "irtifa_m": 2326
+      },
+      "olanaklar": [],
+      "kisitlar": [],
+      "kapasite": null,
+      "calisma_saati": null,
+      "sebeke": {
+        "wifi": null,
+        "yirmidort_yedi": null
+      },
+      "ucret": {
+        "durum": null,
+        "ayrinti": []
+      },
+      "kritik_noktalar": [
+        {
+          "tur": "market",
+          "ad": "Sabur Printing Service",
+          "mesafe_m": 847,
+          "enlem": 15.316952,
+          "boylam": 38.910756
+        },
+        {
+          "tur": "market",
+          "ad": "Alfa",
+          "mesafe_m": 1230,
+          "enlem": 15.322469,
+          "boylam": 38.918935
+        },
+        {
+          "tur": "akaryakit",
+          "ad": "Tamoil",
+          "mesafe_m": 1319,
+          "enlem": 15.323521,
+          "boylam": 38.91986
+        },
+        {
+          "tur": "saglik",
+          "ad": "Fre Selam Clinic",
+          "mesafe_m": 1769,
+          "enlem": 15.325605,
+          "boylam": 38.923975
+        }
+      ],
+      "cevre": {
+        "yerlesim": [
+          {
+            "ad": "ዞባ ማእከል",
+            "mesafe_m": 1422,
+            "enlem": 15.333333,
+            "boylam": 38.916667
+          },
+          {
+            "ad": "ኣስመራ Asmara أسمرة",
+            "mesafe_m": 3163,
+            "enlem": 15.338967,
+            "boylam": 38.932676
+          }
+        ],
+        "gorulecek": [
+          {
+            "ad": "Officina Fiat",
+            "mesafe_m": 1734,
+            "enlem": 15.327165,
+            "boylam": 38.923403
+          },
+          {
+            "ad": "titi Internet cafe",
+            "mesafe_m": 2386,
+            "enlem": 15.328406,
+            "boylam": 38.929341
+          },
+          {
+            "ad": "second home",
+            "mesafe_m": 2454,
+            "enlem": 15.30539,
+            "boylam": 38.920097
+          }
+        ],
+        "yakin_tesis": [
+          {
+            "ad": "Lion Hotel فندق الأسد",
+            "mesafe_m": 996,
+            "enlem": 15.324507,
+            "boylam": 38.916852
+          }
+        ]
+      },
+      "doga": {
+        "kuslar": [
+          {
+            "bilimsel": "Ploceus baglafecht",
+            "tr": "Baglafeht Dokumacısı",
+            "en": "Baglafecht Weaver"
+          },
+          {
+            "bilimsel": "Ploceus cucullatus",
+            "tr": "Köy Dokumacısı",
+            "en": "Village Weaver"
+          },
+          {
+            "bilimsel": "Milvus migrans",
+            "tr": "kara caylak",
+            "en": "Black Kite"
+          },
+          {
+            "bilimsel": "Columba guinea",
+            "tr": "Çilli Güvercin",
+            "en": "Speckled Pigeon"
+          },
+          {
+            "bilimsel": "Spilopelia senegalensis",
+            "tr": "Küçük Kumru",
+            "en": "Laughing Dove"
+          }
+        ],
+        "bitkiler": [
+          {
+            "bilimsel": "Solanum villosum",
+            "tr": null,
+            "en": null
+          },
+          {
+            "bilimsel": "Digitaria abyssinica",
+            "tr": null,
+            "en": null
+          },
+          {
+            "bilimsel": "Medicago polymorpha",
+            "tr": "Erken Yonca",
+            "en": null
+          },
+          {
+            "bilimsel": "Argemone ochroleuca",
+            "tr": null,
+            "en": null
+          },
+          {
+            "bilimsel": "Rumex nervosus",
+            "tr": null,
+            "en": null
+          }
+        ]
+      },
+      "koruma_alani": null,
+      "hakkinda": null,
+      "iletisim": {
+        "sosyal": [],
+        "eposta": []
+      },
+      "osm_notu": null,
+      "ek_notlar": [],
+      "kaynak": {
+        "tarih": "2026-11-24",
+        "kaynaklar": [
+          "OSM",
+          "Open-Meteo",
+          "GBIF"
+        ],
+        "dogrulandi": false,
+        "eksik_adimlar": [],
+        "deneme": {},
+        "alanlar": {
+          "kritik_noktalar": "osm",
+          "cevre": "osm",
+          "koruma_alani": "osm",
+          "doga": "gbif"
+        }
+      }
+    },
+    "nameJson": {
+      "tr": "Kamp Alanı",
+      "local": "Kamp Alanı",
+      "en": "Camp Alanı",
+      "de": "Camping Alanı",
+      "es": "Campamento Alanı",
+      "fr": "Camping Alanı"
+    },
+    "nearbyJson": "[{\"type\": \"MARKET\", \"name\": \"Sabur Printing Service (847 m)\", \"lat\": 15.316952, \"lng\": 38.910756, \"km\": 0.85}, {\"type\": \"MARKET\", \"name\": \"Alfa (1.2 km)\", \"lat\": 15.322469, \"lng\": 38.918935, \"km\": 1.23}, {\"type\": \"FUEL\", \"name\": \"Tamoil (1.3 km)\", \"lat\": 15.323521, \"lng\": 38.91986, \"km\": 1.32}, {\"type\": \"HEALTH\", \"name\": \"Fre Selam Clinic (1.8 km)\", \"lat\": 15.325605, \"lng\": 38.923975, \"km\": 1.77}, {\"type\": \"SIGHT\", \"name\": \"ዞባ ማእከል (1.4 km)\", \"lat\": 15.333333, \"lng\": 38.916667, \"km\": 1.42}, {\"type\": \"SIGHT\", \"name\": \"ኣስመራ Asmara أسمرة (3.2 km)\", \"lat\": 15.338967, \"lng\": 38.932676, \"km\": 3.16}, {\"type\": \"SIGHT\", \"name\": \"Officina Fiat (1.7 km)\", \"lat\": 15.327165, \"lng\": 38.923403, \"km\": 1.73}, {\"type\": \"SIGHT\", \"name\": \"titi Internet cafe (2.4 km)\", \"lat\": 15.328406, \"lng\": 38.929341, \"km\": 2.39}, {\"type\": \"SIGHT\", \"name\": \"second home (2.5 km)\", \"lat\": 15.30539, \"lng\": 38.920097, \"km\": 2.45}, {\"type\": \"CAMP\", \"name\": \"Lion Hotel فندق الأسد (996 m)\", \"lat\": 15.324507, \"lng\": 38.916852, \"km\": 1.0}]",
+    "nearby": [
+      {
+        "type": "MARKET",
+        "name": "Sabur Printing Service (847 m)",
+        "lat": 15.316952,
+        "lng": 38.910756,
+        "km": 0.85
+      },
+      {
+        "type": "MARKET",
+        "name": "Alfa (1.2 km)",
+        "lat": 15.322469,
+        "lng": 38.918935,
+        "km": 1.23
+      },
+      {
+        "type": "FUEL",
+        "name": "Tamoil (1.3 km)",
+        "lat": 15.323521,
+        "lng": 38.91986,
+        "km": 1.32
+      },
+      {
+        "type": "HEALTH",
+        "name": "Fre Selam Clinic (1.8 km)",
+        "lat": 15.325605,
+        "lng": 38.923975,
+        "km": 1.77
+      },
+      {
+        "type": "SIGHT",
+        "name": "ዞባ ማእከል (1.4 km)",
+        "lat": 15.333333,
+        "lng": 38.916667,
+        "km": 1.42
+      },
+      {
+        "type": "SIGHT",
+        "name": "ኣስመራ Asmara أسمرة (3.2 km)",
+        "lat": 15.338967,
+        "lng": 38.932676,
+        "km": 3.16
+      },
+      {
+        "type": "SIGHT",
+        "name": "Officina Fiat (1.7 km)",
+        "lat": 15.327165,
+        "lng": 38.923403,
+        "km": 1.73
+      },
+      {
+        "type": "SIGHT",
+        "name": "titi Internet cafe (2.4 km)",
+        "lat": 15.328406,
+        "lng": 38.929341,
+        "km": 2.39
+      },
+      {
+        "type": "SIGHT",
+        "name": "second home (2.5 km)",
+        "lat": 15.30539,
+        "lng": 38.920097,
+        "km": 2.45
+      },
+      {
+        "type": "CAMP",
+        "name": "Lion Hotel فندق الأسد (996 m)",
+        "lat": 15.324507,
+        "lng": 38.916852,
+        "km": 1.0
+      }
+    ],
+    "ground": "SAND",
+    "caravanOk": true,
+    "notes_5lang": {
+      "tr": "KONUM: Eritre. İrtifa: 2326 m. YAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus. Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "en": "KONUM: Eritre. İrtifa: 2326 m. YAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus. Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "de": "KONUM: Eritre. İrtifa: 2326 m. YAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus. Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "es": "KONUM: Eritre. İrtifa: 2326 m. YAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus. Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı.",
+      "fr": "KONUM: Eritre. İrtifa: 2326 m. YAKIN ÇEVRE: Market: Sabur Printing Service (847 m), Alfa (1,2 km). Akaryakıt: Tamoil (1,3 km). Sağlık: Fre Selam Clinic (1,8 km). Yerleşim: ዞባ ማእከል (1,4 km), ኣስመራ Asmara أسمرة (3,2 km). Görülecek: Officina Fiat (1,7 km), titi Internet cafe (2,4 km), second home (2,5 km). Yakın tesis: Lion Hotel فندق الأسد (996 m). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Ploceus baglafecht (Baglafeht Dokumacısı), Ploceus cucullatus (Köy Dokumacısı), Milvus migrans (kara caylak), Columba guinea (Çilli Güvercin), Spilopelia senegalensis (Küçük Kumru). Bitkiler: Solanum villosum, Digitaria abyssinica, Medicago polymorpha (Erken Yonca), Argemone ochroleuca, Rumex nervosus. Temel derleme (2026-11-24): OSM, Open-Meteo. Doğrulanmalı."
+    }
+  }
+]
