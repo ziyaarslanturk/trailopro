@@ -1145,6 +1145,12 @@
    "sha256": "044f042ba1d1554604f6845ec10aeb7367b94fab6e981522c2b3bd631cdba610",
    "size": 28745,
    "updated": "2026-11-26T20:30:23Z"
+  },
+  "SM": {
+   "count": 4,
+   "sha256": "f017659c4761fae562127c79e7116baff633a25fafd1abfdf4abf26b963d5388",
+   "size": 3875,
+   "updated": "2026-11-26T20:30:28Z"
   }
  }
 }
