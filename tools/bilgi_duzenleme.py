@@ -1,30 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-TRAILO PRO - Bilgi Düzenleme Aracı (KML Entegrasyonu & 100m Mesafe Filtreli)
+TRAILO PRO - Bilgi Düzenleme Aracı (Kritik Yakın Noktalar & Kart Mesafeleri Destekli)
 
-Bu araç data/ klasöründeki tüm ülke JSON dosyalarını sırayla işler:
+Bu araç data/ klasörü altındaki ülke JSON dosyalarını sırayla işler:
 1. SIRA: Türkiye'den (TR.json) başlar, ardından tüm ülkeleri sırayla işler.
 2. SÜREKLİ DÖNGÜ: Bütün ülkeler bittiğinde tekrar Türkiye'ye döner ve sürekli çalışır.
-3. KML HARİTA ENTEGRASYONU (TR.json için):
-   - KML dosyasındaki kamp alanlarını okur.
-   - Mevcut TR.json noktaları ile mesafe karşılaştırması (Haversine) yapar.
-   - 100 metreden yakın olan noktaları ATLAR (eklemez).
-   - 100 metreden uzak yeni noktaları Trailo PRO mimarisine (5 dilde nameJson, notes_5lang, kritik yakın noktalar, tesis kartları) uygun olarak ekler.
-4. KATEGORİLENDİRME & DÜZENLEME:
-   - Düz metin açıklamalarını ve 'zengin' verilerini Trailo PRO bilgi kartlarına aktarır.
-5. KURAL 1: Yalan bilgi eklenmez. Yalnızca kaynakta geçen veya zengin veride bulunan gerçekler aktarılır.
-6. KURAL 2: Düzelttiği metinler dışında hiçbir bilgi (koordinat, id, vb.) silinmez.
-7. HATA YÖNETİMİ: Hiçbir hata senaryosunda durmaz; hatalı kaydı/dosyayı atlayıp devam eder.
+3. KATEGORİLENDİRME, KRİTİK YAKIN NOKTALAR & MESAFE DÜZENLEME:
+   - 'zengin.kritik_noktalar' ve 'zengin.cevre' altındaki tüm noktaları (su, tuvalet, market, eczane, akaryakıt, plaj, yerleşim)
+     mesafeleriyle birlikte (örn. "İçme suyu (500 m)", "Tuvalet (100 m)") 'nearbyJson' ve 'nearby' dizisine aktarır.
+   - Kamp alanı bilgi kartlarında (İçme suyu, Tuvalet, Duş vb.):
+     Mesafe varsa: "Var (500 m)", "Var (100 m)" bilgisi eklenir.
+     Mesafe yoksa: Yalnızca "Var" (true / BASIC) olarak kalır.
+   - 5 Dilde İsim (nameJson: tr, en, de, es, fr) ve Notlar (notes_5lang) üretilir.
+4. KURAL 1: Yalan bilgi eklenmez. Yalnızca kaynakta geçen veya zengin veride bulunan gerçekler aktarılır.
+5. KURAL 2: Düzelttiği metinler dışında hiçbir bilgi (koordinat, id, vb.) silinmez.
+6. HATA YÖNETİMİ: Hiçbir hata senaryosunda durmaz; hatalı kaydı/dosyayı atlayıp devam eder.
 """
 
 import json
 import os
 import re
 import sys
-import math
-import hashlib
-import xml.etree.ElementTree as ET
 import traceback
 from pathlib import Path
 
@@ -36,7 +33,6 @@ except Exception:
 DATA_DIZIN = KOK_DIZIN / "data"
 STATE_DIZIN = KOK_DIZIN / "state"
 DURUM_DOSYASI = STATE_DIZIN / "bilgi_duzenleme_durum.json"
-KML_DOSYA_YOLU = Path("/home/arslanturk/Masaüstü/Türkiye Kamp Alanı Haritası.kml.xml")
 
 NAME_TRANSLATION_RULES = {
     "kamp": {"en": "Camp", "de": "Camping", "es": "Campamento", "fr": "Camping"},
@@ -64,15 +60,6 @@ TUR_HARITASI = {
     "yerlesim": "SIGHT",
     "yakin_tesis": "CAMP"
 }
-
-
-def haversine_metre(lat1, lon1, lat2, lon2):
-    R = 6371000.0  # Dünya yarıçapı (metre)
-    phi1, phi2 = math.radians(lat1), math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dlambda = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2)**2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2)**2
-    return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
 def durum_oku():
@@ -361,122 +348,6 @@ def spot_duzenle(spot):
         return spot
 
 
-def kml_harita_birlesim(mevcut_tr_spots):
-    """
-    KML dosyasındaki kamp alanlarını okur; 100m yakında başka bir nokta VARSA ATLAR.
-    100m'den UZAK ise Trailo PRO mimarisine uygun üreterek listenin sonuna ekler.
-    """
-    if not KML_DOSYA_YOLU.exists():
-        print(f"[KML BULUNAMADI] {KML_DOSYA_YOLU} - KML birleştirme atlanıyor.")
-        return mevcut_tr_spots
-
-    print(f"\n[KML ENTEGRASYONU] KML harita dosyası işleniyor: {KML_DOSYA_YOLU.name}")
-
-    try:
-        tree = ET.parse(KML_DOSYA_YOLU)
-        root = tree.getroot()
-        ns = {'kml': 'http://www.opengis.net/kml/2.2'}
-        placemarks = root.findall('.//kml:Placemark', ns)
-
-        existing_coords = []
-        for s in mevcut_tr_spots:
-            if isinstance(s, dict) and s.get("latitude") and s.get("longitude"):
-                existing_coords.append((s["latitude"], s["longitude"]))
-
-        yeni_eklenenler = []
-        atlanan = 0
-
-        for pm in placemarks:
-            name_e = pm.find('kml:name', ns)
-            coords_e = pm.find('.//kml:coordinates', ns)
-            desc_e = pm.find('kml:description', ns)
-
-            if coords_e is None or not coords_e.text:
-                continue
-            c_parts = coords_e.text.strip().split(',')
-            if len(c_parts) < 2:
-                continue
-            try:
-                lng = float(c_parts[0])
-                lat = float(c_parts[1])
-            except ValueError:
-                continue
-
-            # 100 Metre Yakınlık Kontrolü
-            is_close = False
-            for ex_lat, ex_lng in existing_coords:
-                if haversine_metre(lat, lng, ex_lat, ex_lng) <= 100.0:
-                    is_close = True
-                    break
-
-            if is_close:
-                atlanan += 1
-                continue
-
-            # 100m'den uzak yeni nokta -> Mimarimize uygun üret
-            name_txt = name_e.text.strip() if name_e is not None and name_e.text else 'Kamp Alanı'
-            desc_txt = desc_e.text.strip() if desc_e is not None and desc_e.text else ''
-
-            slug = hashlib.md5(f'{name_txt}_{lat:.5f}_{lng:.5f}'.encode('utf-8')).hexdigest()[:10]
-            spot_id = f'TR:kml_{slug}'
-
-            fee_val = None
-            m_low = (name_txt + ' ' + desc_txt).lower()
-            if 'ücretli' in m_low or 'ucretli' in m_low or 'paid' in m_low:
-                fee_val = 'yes'
-            elif 'ücretsiz' in m_low or 'ucretsiz' in m_low or 'free' in m_low:
-                fee_val = 'no'
-
-            raw_spot = {
-                'id': spot_id,
-                'country_code': 'TR',
-                'latitude': lat,
-                'longitude': lng,
-                'name': {'tr': name_txt, 'local': name_txt},
-                'name_local': name_txt,
-                'fee': fee_val,
-                'website': None,
-                'phone': None,
-                'notes': {
-                    'description': desc_txt,
-                    'note': 'KML Harita İçe Aktarımı (Kampciyiz.com)'
-                },
-                'category_ids': [1],
-                'zengin': {
-                    'surum': 1,
-                    'tarih': '2026-11-26',
-                    'konum': {
-                        'adres': name_txt,
-                        'il': None,
-                        'ilce': None,
-                        'koy': None,
-                        'ulke': 'Türkiye',
-                        'irtifa_m': None
-                    },
-                    'olanaklar': [],
-                    'kisitlar': [],
-                    'kaynak': {
-                        'tarih': '2026-11-26',
-                        'kaynaklar': ['KML', 'Kampciyiz.com'],
-                        'dogrulandi': False
-                    }
-                }
-            }
-
-            formatted = spot_duzenle(raw_spot)
-            yeni_eklenenler.append(formatted)
-            existing_coords.append((lat, lng))
-
-        print(f"[KML SONUÇ] 100 metreden yakın olduğu için atlanan: {atlanan}")
-        print(f"[KML SONUÇ] 100m uzaklıktaki yeni eklenen kamp alanı sayısı: {len(yeni_eklenenler)}")
-
-        return mevcut_tr_spots + yeni_eklenenler
-    except Exception as e:
-        print(f"[KML BİRLEŞTİRMA HATA] {e}")
-        traceback.print_exc()
-        return mevcut_tr_spots
-
-
 def ulke_dosyasi_isleme(dosya_yolu):
     if not dosya_yolu.exists():
         print(f"[DOSYA YOK] {dosya_yolu}")
@@ -489,10 +360,6 @@ def ulke_dosyasi_isleme(dosya_yolu):
 
         is_list = isinstance(ham_veri, list)
         spots = ham_veri if is_list else (ham_veri.get("spots") or ham_veri.get("campsites") or [])
-
-        # Eğer Türkiye işleniyorsa KML Harita Birleştirme çalıştır
-        if dosya_yolu.stem.upper() == "TR":
-            spots = kml_harita_birlesim(spots)
 
         duzenlenmis = []
         basarili = 0
@@ -525,7 +392,7 @@ def ulke_dosyasi_isleme(dosya_yolu):
 
 def ana_dongu():
     print("=" * 60)
-    print("   TRAILO PRO - BİLGİ DÜZENLEME ARACI (KML + KRİTİK NOKTALAR ENTEGRELİ)   ")
+    print("   TRAILO PRO - BİLGİ DÜZENLEME ARACI (TEMİZ SÜREKLİ DÖNGÜ)   ")
     print("=" * 60)
 
     ulkeler = []
