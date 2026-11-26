@@ -1,1 +1,224 @@
-[{"id":"n7192173286","country_code":"FK","latitude":-51.381067,"longitude":-59.361003,"name":{"tr":null,"en":null,"de":null,"ru":null,"ar":null},"name_local":"White Rock House","fee":null,"website":null,"phone":null,"notes":{"description":"KONUM: Falkland Adaları.\nYAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı).","description_i18n":{"tr":"KONUM: Falkland Adaları.\nYAKIN ÇEVRE: Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km).","en":"LOCATION: Falkland Islands.\nNEARBY: Peak: Tamar Point (3.9 km), Goat Hill (4.0 km).","de":"LAGE: Falklandinseln.\nUMGEBUNG: Gipfel: Tamar Point (3,9 km), Goat Hill (4,0 km).","ru":"РАСПОЛОЖЕНИЕ: Фолклендские о-ва.\nРЯДОМ: Вершина: Tamar Point (3,9 км), Goat Hill (4,0 км).","ar":"الموقع: جزر فوكلاند.\nبالقرب من: قمة: Tamar Point (3.9 كم)، Goat Hill (4.0 كم)."},"note":"Temel derleme (2026-11-24): OSM. Doğrulanmalı.","note_i18n":{"tr":"Temel derleme (2026-11-24): OSM. Doğrulanmalı.","en":"Basic compilation (2026-11-24): OSM. Needs verification.","de":"Basisdaten (2026-11-24): OSM. Bitte überprüfen.","ru":"Базовая сводка (2026-11-24): OSM. Требует проверки.","ar":"بيانات أساسية (2026-11-24): OSM. يُرجى التحقق."}},"category_ids":[1],"zengin":{"surum":2,"tarih":"2026-11-24","konum":{"adres":"Falkland Adaları","il":null,"ilce":null,"koy":null,"ulke":null,"irtifa_m":null},"olanaklar":[],"kisitlar":[],"kapasite":null,"calisma_saati":null,"sebeke":{"wifi":null,"yirmidort_yedi":null},"ucret":{"durum":null,"ayrinti":[]},"kritik_noktalar":[],"cevre":{"yerlesim":[{"ad":"Tamar Point","mesafe_m":6605,"enlem":-51.339217,"boylam":-59.428827}],"zirve":[{"ad":"Tamar Point","mesafe_m":3922,"enlem":-51.350363,"boylam":-59.389284},{"ad":"Goat Hill","mesafe_m":3999,"enlem":-51.396536,"boylam":-59.30896}],"gorulecek":[{"ad":"Ozbirn Point","mesafe_m":3434,"enlem":-51.369098,"boylam":-59.315398},{"ad":"Ruins Point","mesafe_m":4912,"enlem":-51.359103,"boylam":-59.422447},{"ad":"Tamar Point","mesafe_m":4957,"enlem":-51.343849,"boylam":-59.400786}]},"doga":{"kuslar":[{"bilimsel":"Thalassarche melanophris","tr":"Kara Kaşlı Albatros","en":"Black-browed Albatross"},{"bilimsel":"Leucophaeus scoresbii","tr":"Yunus Martısı","en":"Dolphin Gull"},{"bilimsel":"Tachyeres brachypterus","tr":"Falkland Forsa Ördeği","en":"Falkland Steamer-Duck"},{"bilimsel":"Leucocarbo atriceps","tr":"Mavi Gözlü Karabatak","en":"Imperial Cormorant"},{"bilimsel":"Chloephaga picta","tr":"Macellan Kazı","en":"Upland Goose"}]},"koruma_alani":null,"hakkinda":null,"iletisim":{"sosyal":[],"eposta":[]},"osm_notu":null,"ek_notlar":[],"kaynak":{"tarih":"2026-11-24","kaynaklar":["OSM","GBIF"],"dogrulandi":false,"eksik_adimlar":[],"deneme":{},"alanlar":{"kritik_noktalar":"osm","cevre":"osm","koruma_alani":"osm","doga":"gbif"}}}}]
+[
+  {
+    "id": "n7192173286",
+    "country_code": "FK",
+    "latitude": -51.381067,
+    "longitude": -59.361003,
+    "name": {
+      "tr": null,
+      "en": null,
+      "de": null,
+      "ru": null,
+      "ar": null
+    },
+    "name_local": "White Rock House",
+    "fee": null,
+    "website": null,
+    "phone": null,
+    "notes": {
+      "description": "KONUM: Falkland Adaları.\nYAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km).\nDOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı).",
+      "description_i18n": {
+        "tr": "KONUM: Falkland Adaları.\nYAKIN ÇEVRE: Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km).",
+        "en": "LOCATION: Falkland Islands.\nNEARBY: Peak: Tamar Point (3.9 km), Goat Hill (4.0 km).",
+        "de": "LAGE: Falklandinseln.\nUMGEBUNG: Gipfel: Tamar Point (3,9 km), Goat Hill (4,0 km).",
+        "ru": "РАСПОЛОЖЕНИЕ: Фолклендские о-ва.\nРЯДОМ: Вершина: Tamar Point (3,9 км), Goat Hill (4,0 км).",
+        "ar": "الموقع: جزر فوكلاند.\nبالقرب من: قمة: Tamar Point (3.9 كم)، Goat Hill (4.0 كم)."
+      },
+      "note": "Temel derleme (2026-11-24): OSM. Doğrulanmalı.",
+      "note_i18n": {
+        "tr": "Temel derleme (2026-11-24): OSM. Doğrulanmalı.",
+        "en": "Basic compilation (2026-11-24): OSM. Needs verification.",
+        "de": "Basisdaten (2026-11-24): OSM. Bitte überprüfen.",
+        "ru": "Базовая сводка (2026-11-24): OSM. Требует проверки.",
+        "ar": "بيانات أساسية (2026-11-24): OSM. يُرجى التحقق."
+      }
+    },
+    "category_ids": [
+      1
+    ],
+    "zengin": {
+      "surum": 2,
+      "tarih": "2026-11-24",
+      "konum": {
+        "adres": "Falkland Adaları",
+        "il": null,
+        "ilce": null,
+        "koy": null,
+        "ulke": null,
+        "irtifa_m": null
+      },
+      "olanaklar": [],
+      "kisitlar": [],
+      "kapasite": null,
+      "calisma_saati": null,
+      "sebeke": {
+        "wifi": null,
+        "yirmidort_yedi": null
+      },
+      "ucret": {
+        "durum": null,
+        "ayrinti": []
+      },
+      "kritik_noktalar": [],
+      "cevre": {
+        "yerlesim": [
+          {
+            "ad": "Tamar Point",
+            "mesafe_m": 6605,
+            "enlem": -51.339217,
+            "boylam": -59.428827
+          }
+        ],
+        "zirve": [
+          {
+            "ad": "Tamar Point",
+            "mesafe_m": 3922,
+            "enlem": -51.350363,
+            "boylam": -59.389284
+          },
+          {
+            "ad": "Goat Hill",
+            "mesafe_m": 3999,
+            "enlem": -51.396536,
+            "boylam": -59.30896
+          }
+        ],
+        "gorulecek": [
+          {
+            "ad": "Ozbirn Point",
+            "mesafe_m": 3434,
+            "enlem": -51.369098,
+            "boylam": -59.315398
+          },
+          {
+            "ad": "Ruins Point",
+            "mesafe_m": 4912,
+            "enlem": -51.359103,
+            "boylam": -59.422447
+          },
+          {
+            "ad": "Tamar Point",
+            "mesafe_m": 4957,
+            "enlem": -51.343849,
+            "boylam": -59.400786
+          }
+        ]
+      },
+      "doga": {
+        "kuslar": [
+          {
+            "bilimsel": "Thalassarche melanophris",
+            "tr": "Kara Kaşlı Albatros",
+            "en": "Black-browed Albatross"
+          },
+          {
+            "bilimsel": "Leucophaeus scoresbii",
+            "tr": "Yunus Martısı",
+            "en": "Dolphin Gull"
+          },
+          {
+            "bilimsel": "Tachyeres brachypterus",
+            "tr": "Falkland Forsa Ördeği",
+            "en": "Falkland Steamer-Duck"
+          },
+          {
+            "bilimsel": "Leucocarbo atriceps",
+            "tr": "Mavi Gözlü Karabatak",
+            "en": "Imperial Cormorant"
+          },
+          {
+            "bilimsel": "Chloephaga picta",
+            "tr": "Macellan Kazı",
+            "en": "Upland Goose"
+          }
+        ]
+      },
+      "koruma_alani": null,
+      "hakkinda": null,
+      "iletisim": {
+        "sosyal": [],
+        "eposta": []
+      },
+      "osm_notu": null,
+      "ek_notlar": [],
+      "kaynak": {
+        "tarih": "2026-11-24",
+        "kaynaklar": [
+          "OSM",
+          "GBIF"
+        ],
+        "dogrulandi": false,
+        "eksik_adimlar": [],
+        "deneme": {},
+        "alanlar": {
+          "kritik_noktalar": "osm",
+          "cevre": "osm",
+          "koruma_alani": "osm",
+          "doga": "gbif"
+        }
+      }
+    },
+    "nameJson": {
+      "tr": "White Rock House",
+      "local": "White Rock House",
+      "en": "White Rock House",
+      "de": "White Rock House",
+      "es": "White Rock House",
+      "fr": "White Rock House"
+    },
+    "nearbyJson": "[{\"type\": \"SIGHT\", \"name\": \"Tamar Point (6.6 km)\", \"lat\": -51.339217, \"lng\": -59.428827, \"km\": 6.61}, {\"type\": \"MARKET\", \"name\": \"Tamar Point (3.9 km)\", \"lat\": -51.350363, \"lng\": -59.389284, \"km\": 3.92}, {\"type\": \"MARKET\", \"name\": \"Goat Hill (4.0 km)\", \"lat\": -51.396536, \"lng\": -59.30896, \"km\": 4.0}, {\"type\": \"SIGHT\", \"name\": \"Ozbirn Point (3.4 km)\", \"lat\": -51.369098, \"lng\": -59.315398, \"km\": 3.43}, {\"type\": \"SIGHT\", \"name\": \"Ruins Point (4.9 km)\", \"lat\": -51.359103, \"lng\": -59.422447, \"km\": 4.91}, {\"type\": \"SIGHT\", \"name\": \"Tamar Point (5.0 km)\", \"lat\": -51.343849, \"lng\": -59.400786, \"km\": 4.96}]",
+    "nearby": [
+      {
+        "type": "SIGHT",
+        "name": "Tamar Point (6.6 km)",
+        "lat": -51.339217,
+        "lng": -59.428827,
+        "km": 6.61
+      },
+      {
+        "type": "MARKET",
+        "name": "Tamar Point (3.9 km)",
+        "lat": -51.350363,
+        "lng": -59.389284,
+        "km": 3.92
+      },
+      {
+        "type": "MARKET",
+        "name": "Goat Hill (4.0 km)",
+        "lat": -51.396536,
+        "lng": -59.30896,
+        "km": 4.0
+      },
+      {
+        "type": "SIGHT",
+        "name": "Ozbirn Point (3.4 km)",
+        "lat": -51.369098,
+        "lng": -59.315398,
+        "km": 3.43
+      },
+      {
+        "type": "SIGHT",
+        "name": "Ruins Point (4.9 km)",
+        "lat": -51.359103,
+        "lng": -59.422447,
+        "km": 4.91
+      },
+      {
+        "type": "SIGHT",
+        "name": "Tamar Point (5.0 km)",
+        "lat": -51.343849,
+        "lng": -59.400786,
+        "km": 4.96
+      }
+    ],
+    "trash": true,
+    "caravanOk": true,
+    "notes_5lang": {
+      "tr": "KONUM: Falkland Adaları. YAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı). Temel derleme (2026-11-24): OSM. Doğrulanmalı.",
+      "en": "KONUM: Falkland Adaları. YAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı). Temel derleme (2026-11-24): OSM. Doğrulanmalı.",
+      "de": "KONUM: Falkland Adaları. YAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı). Temel derleme (2026-11-24): OSM. Doğrulanmalı.",
+      "es": "KONUM: Falkland Adaları. YAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı). Temel derleme (2026-11-24): OSM. Doğrulanmalı.",
+      "fr": "KONUM: Falkland Adaları. YAKIN ÇEVRE: Yerleşim: Tamar Point (6,6 km). Zirve: Tamar Point (3,9 km), Goat Hill (4,0 km). Görülecek: Ozbirn Point (3,4 km), Ruins Point (4,9 km), Tamar Point (5,0 km). DOĞA (çevredeki gözlem kayıtları, bilimsel ad): Kuşlar: Thalassarche melanophris (Kara Kaşlı Albatros), Leucophaeus scoresbii (Yunus Martısı), Tachyeres brachypterus (Falkland Forsa Ördeği), Leucocarbo atriceps (Mavi Gözlü Karabatak), Chloephaga picta (Macellan Kazı). Temel derleme (2026-11-24): OSM. Doğrulanmalı."
+    }
+  }
+]
