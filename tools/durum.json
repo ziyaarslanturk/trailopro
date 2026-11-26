@@ -967,8 +967,12 @@
   "tamam": "2026-11-25T14:35:56.213Z"
  },
  "KR": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-25T20:16:11.538Z"
+  "sonDeneme": "2026-11-25T20:16:11.538Z",
+  "kaynak": "overpass-area",
+  "harita": "2026-11-26T07:49:47.254Z",
+  "osm": 980,
+  "elenen": 979,
+  "sayi": 923
  },
  "KW": {
   "kaynak": "osm-fr-pbf",
