@@ -1516,5 +1516,12 @@
   "elenen": 6,
   "sayi": 170,
   "tamam": "2026-11-26T14:00:21.467Z"
+ },
+ "RU": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-26T14:11:06.676Z",
+  "osm": 20585,
+  "elenen": 18500,
+  "sayi": 18559
  }
 }
