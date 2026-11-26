@@ -1428,5 +1428,12 @@
   "osm": 2109,
   "elenen": 2042,
   "sayi": 1969
+ },
+ "PM": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-26T13:44:32.945Z",
+  "osm": 3,
+  "elenen": 0,
+  "sayi": 3
  }
 }
