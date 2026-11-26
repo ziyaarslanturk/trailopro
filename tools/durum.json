@@ -1739,5 +1739,12 @@
   "elenen": 30,
   "sayi": 546,
   "tamam": "2026-11-26T20:42:10.042Z"
+ },
+ "TK": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-26T20:42:14.438Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  }
 }
