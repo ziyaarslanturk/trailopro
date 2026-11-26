@@ -6,7 +6,7 @@ TRAILO PRO - Yeni Bilgi Düzenleme Botu
 - Düz metin içerisindeki (hastane, eczane, market, karakol vb.) yakın yerleri tespit edip facilities dizisine ekler.
 - Kritik noktalara navigasyon bağlantısı (lat, lng, navUrl) ve mesafe kutucuğu için veri ekler. 
 - Orijinal metinlere dokunmaz. 
-- 5 dile çeviri/destek sağlar. 
+- Türkçe, İngilizce, Almanca, Rusça ve Arapça (tr, en, de, ru, ar) dil desteği sağlar. (nameJson, notes_5lang, ve detaylar).
 - Dosyaları sıkıştırarak (minified JSON) kaydeder. 
 - Türkiye'den (TR.json) başlar, hatalarda durmaz. 
 """ 
@@ -25,43 +25,82 @@ DATA_DIZIN = KOK_DIZIN / "data"
 STATE_DIZIN = KOK_DIZIN / "state" 
 DURUM_DOSYASI = STATE_DIZIN / "yeni_bot_durum.json" 
 
-LANGS = ["tr", "en", "de", "es", "fr"] 
+LANGS = ["tr", "en", "de", "ru", "ar"] 
+
+# Name translation rules for the nameJson field
+NAME_TRANSLATION_RULES = {
+    "kamp": {"en": "Camp", "de": "Camping", "ru": "Лагерь", "ar": "مخيم"},
+    "kamp alanı": {"en": "Campsite", "de": "Campingplatz", "ru": "Кемпинг", "ar": "موقع التخييم"},
+    "doğa kampı": {"en": "Nature Camp", "de": "Naturcamping", "ru": "Природный лагерь", "ar": "مخيم طبيعي"},
+    "karavan kampı": {"en": "Caravan Camp", "de": "Wohnmobilstellplatz", "ru": "Караван Парк", "ar": "مخيم القوافل"},
+    "çadır kampı": {"en": "Tent Campsite", "de": "Zeltplatz", "ru": "Палаточный лагерь", "ar": "مخيم الخيام"},
+    "otopark": {"en": "Parking", "de": "Parkplatz", "ru": "Парковка", "ar": "موقف سيارات"},
+    "şelale": {"en": "Waterfall", "de": "Wasserfall", "ru": "Водопад", "ar": "شلال"},
+    "koy": {"en": "Cove / Bay", "de": "Bucht", "ru": "Бухта", "ar": "خليج"},
+    "plaj": {"en": "Beach", "de": "Strand", "ru": "Пляж", "ar": "شاطئ"},
+    "yayla": {"en": "Plateau", "de": "Hochebene", "ru": "Плато", "ar": "هضبة"},
+    "milli park": {"en": "National Park", "de": "Nationalpark", "ru": "Национальный парк", "ar": "حديقة وطنية"},
+    "tabiat parkı": {"en": "Nature Park", "de": "Naturpark", "ru": "Природный парк", "ar": "منتزه طبيعي"},
+}
+
 DICT_TRANSLATE = { 
-    "Tuvalet": {"en": "Toilet", "de": "Toilette", "es": "Baño", "fr": "Toilettes"}, 
-    "Duş": {"en": "Shower", "de": "Dusche", "es": "Ducha", "fr": "Douche"}, 
-    "İçme Suyu": {"en": "Drinking Water", "de": "Trinkwasser", "es": "Agua Potable", "fr": "Eau Potable"}, 
-    "Toprak zemin": {"en": "Dirt ground", "de": "Erdboden", "es": "Suelo de tierra", "fr": "Sol en terre"}, 
-    "Çim zemin": {"en": "Grass ground", "de": "Grasboden", "es": "Suelo de hierba", "fr": "Sol en herbe"}, 
-    "Çakıl zemin": {"en": "Gravel ground", "de": "Kiesboden", "es": "Suelo de grava", "fr": "Sol en gravier"}, 
-    "Asfalt zemin": {"en": "Asphalt ground", "de": "Asphaltboden", "es": "Suelo de asfalto", "fr": "Sol en asphalte"}, 
-    "Kum zemin": {"en": "Sand ground", "de": "Sandboden", "es": "Suelo de arena", "fr": "Sol de sable"}, 
-    "Ormanlık alan": {"en": "Forest area", "de": "Waldgebiet", "es": "Área forestal", "fr": "Zone forestière"}, 
-    "Dağlık alan": {"en": "Mountainous area", "de": "Bergiges Gebiet", "es": "Zona montañosa", "fr": "Zone montagneuse"}, 
-    "Şebeke var": {"en": "Network available", "de": "Netz verfügbar", "es": "Red disponible", "fr": "Réseau disponible"}, 
-    "Şebeke zayıf veya yok": {"en": "Weak/No network", "de": "Schwaches/Kein Netz", "es": "Red débil/nula", "fr": "Réseau faible/aucun"}, 
-    "Araçla ulaşım": {"en": "Vehicle access", "de": "Zufahrt mit dem Fahrzeug", "es": "Acceso en vehículo", "fr": "Accès en véhicule"}, 
-    "Toplu taşıma": {"en": "Public transport", "de": "Öffentliche Verkehrsmittel", "es": "Transporte público", "fr": "Transports en commun"}, 
-    "Sadece yaya": {"en": "Pedestrian only", "de": "Nur für Fußgänger", "es": "Solo peatonal", "fr": "Piétons uniquement"}, 
-    "Ücretsiz kamp": {"en": "Free camping", "de": "Kostenloses Camping", "es": "Acampada libre", "fr": "Camping gratuit"}, 
-    "Ücretli kamp": {"en": "Paid camping", "de": "Kostenpflichtiges Camping", "es": "Camping de pago", "fr": "Camping payant"}, 
-    "Ateş yakılabilir": {"en": "Fire allowed", "de": "Feuer erlaubt", "es": "Fuego permitido", "fr": "Feu autorisé"}, 
-    "Ateş yakmak yasak": {"en": "Fire banned", "de": "Feuer verboten", "es": "Fuego prohibido", "fr": "Feu interdit"}, 
-    "Yaban hayatı aktif": {"en": "Wildlife active", "de": "Wildtiere aktiv", "es": "Vida silvestre activa", "fr": "Faune active"}, 
-    "Güvenlik/Jandarma devriyesi var": {"en": "Security/Patrol available", "de": "Sicherheitsdienst/Patrouille vorhanden", "es": "Seguridad/Patrulla disponible", "fr": "Sécurité/Patrouille disponible"},
-    "Hastane": {"en": "Hospital", "de": "Krankenhaus", "es": "Hospital", "fr": "Hôpital"},
-    "Eczane": {"en": "Pharmacy", "de": "Apotheke", "es": "Farmacia", "fr": "Pharmacie"},
-    "Market": {"en": "Market/Grocery", "de": "Markt/Lebensmittel", "es": "Mercado", "fr": "Marché"},
-    "Karakol": {"en": "Police Station", "de": "Polizeiwache", "es": "Estación de policía", "fr": "Commissariat"},
-    "Akaryakıt İstasyonu": {"en": "Gas Station", "de": "Tankstelle", "es": "Gasolinera", "fr": "Station-service"},
-    "Yeme İçme": {"en": "Food/Restaurant", "de": "Restaurant/Café", "es": "Restaurante/Café", "fr": "Restaurant/Café"},
-    "İçme Suyu Kaynağı": {"en": "Water Source", "de": "Wasserquelle", "es": "Fuente de agua", "fr": "Source d'eau"}
+    "Tuvalet": {"en": "Toilet", "de": "Toilette", "ru": "Туалет", "ar": "مرحاض"}, 
+    "Duş": {"en": "Shower", "de": "Dusche", "ru": "Душ", "ar": "دش"}, 
+    "İçme Suyu": {"en": "Drinking Water", "de": "Trinkwasser", "ru": "Питьевая вода", "ar": "ماء صالح للشرب"}, 
+    "Toprak zemin": {"en": "Dirt ground", "de": "Erdboden", "ru": "Грунтовая поверхность", "ar": "أرض ترابية"}, 
+    "Çim zemin": {"en": "Grass ground", "de": "Grasboden", "ru": "Травяное покрытие", "ar": "أرض عشبية"}, 
+    "Çakıl zemin": {"en": "Gravel ground", "de": "Kiesboden", "ru": "Гравийное покрытие", "ar": "أرض حصوية"}, 
+    "Asfalt zemin": {"en": "Asphalt ground", "de": "Asphaltboden", "ru": "Асфальтовое покрытие", "ar": "أرض إسفلتية"}, 
+    "Kum zemin": {"en": "Sand ground", "de": "Sandboden", "ru": "Песчаное покрытие", "ar": "أرض رملية"}, 
+    "Ormanlık alan": {"en": "Forest area", "de": "Waldgebiet", "ru": "Лесная зона", "ar": "منطقة غابات"}, 
+    "Dağlık alan": {"en": "Mountainous area", "de": "Bergiges Gebiet", "ru": "Горная местность", "ar": "منطقة جبلية"}, 
+    "Şebeke var": {"en": "Network available", "de": "Netz verfügbar", "ru": "Есть связь", "ar": "تتوفر شبكة"}, 
+    "Şebeke zayıf veya yok": {"en": "Weak/No network", "de": "Schwaches/Kein Netz", "ru": "Слабая связь/Нет связи", "ar": "شبكة ضعيفة / لا توجد شبكة"}, 
+    "Araçla ulaşım": {"en": "Vehicle access", "de": "Zufahrt mit dem Fahrzeug", "ru": "Подъезд на автомобиле", "ar": "وصول بالسيارة"}, 
+    "Toplu taşıma": {"en": "Public transport", "de": "Öffentliche Verkehrsmittel", "ru": "Общественный транспорт", "ar": "نقل عام"}, 
+    "Sadece yaya": {"en": "Pedestrian only", "de": "Nur für Fußgänger", "ru": "Только пешком", "ar": "للمشاة فقط"}, 
+    "Ücretsiz kamp": {"en": "Free camping", "de": "Kostenloses Camping", "ru": "Бесплатный кемпинг", "ar": "تخييم مجاني"}, 
+    "Ücretli kamp": {"en": "Paid camping", "de": "Kostenpflichtiges Camping", "ru": "Платный кемпинг", "ar": "تخييم مدفوع"}, 
+    "Ateş yakılabilir": {"en": "Fire allowed", "de": "Feuer erlaubt", "ru": "Разведение костра разрешено", "ar": "مسموح بإشعال النار"}, 
+    "Ateş yakmak yasak": {"en": "Fire banned", "de": "Feuer verboten", "ru": "Разведение костра запрещено", "ar": "ممنوع إشعال النار"}, 
+    "Yaban hayatı aktif": {"en": "Wildlife active", "de": "Wildtiere aktiv", "ru": "Активная дикая природа", "ar": "حياة برية نشطة"}, 
+    "Güvenlik/Jandarma devriyesi var": {"en": "Security/Patrol available", "de": "Sicherheitsdienst/Patrouille vorhanden", "ru": "Охрана/Патруль", "ar": "يتوفر أمن/دورية"},
+    "Hastane": {"en": "Hospital", "de": "Krankenhaus", "ru": "Больница", "ar": "مستشفى"},
+    "Eczane": {"en": "Pharmacy", "de": "Apotheke", "ru": "Аптека", "ar": "صيدلية"},
+    "Market": {"en": "Market/Grocery", "de": "Markt/Lebensmittel", "ru": "Магазин", "ar": "سوق/بقالة"},
+    "Karakol": {"en": "Police Station", "de": "Polizeiwache", "ru": "Полицейский участок", "ar": "مخفر شرطة"},
+    "Akaryakıt İstasyonu": {"en": "Gas Station", "de": "Tankstelle", "ru": "Заправочная станция", "ar": "محطة وقود"},
+    "Yeme İçme": {"en": "Food/Restaurant", "de": "Restaurant/Café", "ru": "Еда/Ресторан", "ar": "مطعم/مقهى"},
+    "İçme Suyu Kaynağı": {"en": "Water Source", "de": "Wasserquelle", "ru": "Источник воды", "ar": "مصدر مياه"}
 } 
+
+def ad_5dille_olustur(mevcut_names, ad_local):
+    out = {}
+    if isinstance(mevcut_names, dict):
+        for k, v in mevcut_names.items():
+            if isinstance(k, str) and isinstance(v, str) and v.strip():
+                out[k.lower()] = v.strip()
+    
+    ana_ad = ad_local or out.get("tr") or out.get("en") or out.get("local") or "Kamp Alanı"
+    out["tr"] = out.get("tr") or ana_ad
+    out["local"] = ad_local or out.get("local") or ana_ad
+    
+    ana_ad_lower = ana_ad.lower()
+    for lang in LANGS[1:]: # en, de, ru, ar
+        if lang not in out or not out[lang]:
+            ceviri = ana_ad
+            for kalip, cev_dict in NAME_TRANSLATION_RULES.items():
+                if kalip in ana_ad_lower and lang in cev_dict:
+                    ceviri = re.sub(re.escape(kalip), cev_dict[lang], ceviri, flags=re.IGNORECASE)
+            out[lang] = ceviri
+            
+    return out
 
 def translate_dict(text_tr): 
     if not text_tr: 
         return {} 
     out = {"tr": text_tr} 
-    for lang in ["en", "de", "es", "fr"]: 
+    for lang in LANGS[1:]: # en, de, ru, ar
         out[lang] = DICT_TRANSLATE.get(text_tr, {}).get(lang, text_tr) 
     return out 
 
@@ -176,6 +215,11 @@ def process_spot(spot):
     try: 
         new_spot = dict(spot) 
         
+        # Name Json Oluşturma (5 Dil)
+        mevcut_names = new_spot.get("name")
+        ad_local = new_spot.get("name_local") or (mevcut_names if isinstance(mevcut_names, str) else "")
+        new_spot["nameJson"] = ad_5dille_olustur(mevcut_names if isinstance(mevcut_names, dict) else {}, ad_local)
+
         # Orijinal metinler birleşimi 
         notes_obj = spot.get("notes", {}) 
         notes_str = str(spot.get("note", "")) + " " + str(spot.get("description", "")) 
@@ -187,6 +231,16 @@ def process_spot(spot):
             
         full_text = notes_str.strip() 
         
+        # Notes 5lang oluşturma (5 Dil) - Orijinal metni tüm dillere kopyalıyoruz
+        if full_text:
+            new_spot["notes_5lang"] = {
+                "tr": full_text,
+                "en": full_text,
+                "de": full_text,
+                "ru": full_text,
+                "ar": full_text
+            }
+
         # Satır aralarından bilgi çıkarma 
         ex = extract_info_from_text(full_text) 
         
