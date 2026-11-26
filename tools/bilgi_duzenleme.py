@@ -1,48 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-TRAILO PRO - Bilgi Düzenleme (Information Structurer & Formatter)
+TRAILO PRO - Bilgi Düzenleme Aracı (Tekil & Temiz Sürüm)
 
-Bu araç, data/ klasöründeki tüm ülke JSON dosyalarını sırayla işler:
-1. YEDEKLEME: Çalışmadan önce data/ klasörünü root dizine yedek_data/ olarak kopyalar.
-2. SIRA: Türkiye'den (TR.json) başlar, ardından tüm ülkeleri sırayla işler.
-3. SÜREKLİ DÖNGÜ: Bütün ülkeler bittiğinde tekrar Türkiye'ye döner ve sürekli döngü halinde çalışır.
-4. KATEGORİLERE AYIRMA & DÜZENLEME:
+Bu araç data/ klasörü altındaki ülke JSON dosyalarını sırayla işler:
+1. SIRA: Türkiye'den (TR.json) başlar, ardından tüm ülkeleri sırayla işler.
+2. SÜREKLİ DÖNGÜ: Bütün ülkeler bittiğinde tekrar Türkiye'ye döner ve sürekli çalışır.
+3. KATEGORİLENDİRME & DÜZENLEME:
+   - Var olan data/ dosyasını okur, doğrudan düzenleyerek yine data/ altındaki yerine kaydeder.
    - Düz metin açıklamalarını ve 'zengin' verilerini Trailo PRO bilgi kartlarına aktarır:
-     Tesisler (WC, duş, sıcak su, içme suyu, elektrik, çöp, karavan atık, mutfak, kapasite)
-     Doğa & Zemin (zemin türü, eğim, gölgelik, su kenarı, rüzgar koruması)
-     Ulaşım (yol türü, karavan uygunluğu, otopark)
-     Kurallar (ücret, ateş, avcılık, balıkçılık, evcil hayvan)
-     Şebeke (wifi, operatörler)
-     Güvenlik (tehditler/hazards, yaban hayatı, kene, bekçi, kamera)
-     İletişim (web, telefon, sosyal medya)
-     5 Dilde İsim (nameJson: tr, en, de, es, fr) ve Notlar (notes: tr, en, de, es, fr)
-5. KURAL 1: Yalan bilgi eklenmez. Yalnızca kaynakta geçen veya zengin veride bulunan gerçekler aktarılır.
-6. KURAL 2: Düzelttiği metinler dışında hiçbir bilgi (koordinat, id, fotoğraflar, vb.) silinmez.
-7. HATA YÖNETİMİ: Hiçbir hata senaryosunda durmaz; hatalı kaydı/dosyayı atlayıp alternatif yollarla devam eder.
+     - Tesisler (WC, duş, sıcak su, içme suyu, elektrik, çöp, karavan atık, mutfak)
+     - Doğa & Zemin (zemin türü, eğim, gölgelik, su kenarı)
+     - Ulaşım (yol türü, karavan uygunluğu, otopark)
+     - Kurallar (ücret, ateş, evcil hayvan)
+     - Güvenlik (tehditler/hazards, yaban hayatı)
+     - 5 Dilde İsim (nameJson: tr, en, de, es, fr) ve Açıklama Metinleri
+4. KURAL 1: Yalan bilgi eklenmez. Yalnızca kaynakta veya zengin veride geçen gerçekler kartlara aktarılır.
+5. KURAL 2: Düzelttiği metinler dışında hiçbir bilgi (koordinat, id, vb.) silinmez.
+6. HATA YÖNETİMİ: Hiçbir hata senaryosunda durmaz; hatalı kaydı/dosyayı atlayıp devam eder.
 """
 
 import json
 import os
 import re
-import shutil
 import sys
 import traceback
 from pathlib import Path
 
-# Proje kök dizini
 try:
     KOK_DIZIN = Path(__file__).resolve().parent.parent
 except Exception:
     KOK_DIZIN = Path.cwd()
 
 DATA_DIZIN = KOK_DIZIN / "data"
-YEDEK_DIZIN = KOK_DIZIN / "yedek_data"
 STATE_DIZIN = KOK_DIZIN / "state"
 DURUM_DOSYASI = STATE_DIZIN / "bilgi_duzenleme_durum.json"
-
-# Sözlükler ve 5 Dil Çeviri Yardımcıları
-DIL_LISTESI = ["tr", "en", "de", "es", "fr"]
 
 NAME_TRANSLATION_RULES = {
     "kamp": {"en": "Camp", "de": "Camping", "es": "Campamento", "fr": "Camping"},
@@ -60,30 +52,18 @@ NAME_TRANSLATION_RULES = {
 }
 
 
-def data_yedekle():
-    """Başlamadan önce data/ klasörünü yedek_data/ olarak ana dizine kopyalar."""
-    try:
-        if DATA_DIZIN.exists():
-            shutil.copytree(DATA_DIZIN, YEDEK_DIZIN, dirs_exist_ok=True)
-            print(f"[YEDEK OK] data/ klasörü '{YEDEK_DIZIN.name}' alanına başarıyla yedeklendi.")
-    except Exception as e:
-        print(f"[YEDEK UYARI] Yedekleme esnasında hata (işleme devam ediliyor): {e}")
-
-
 def durum_oku():
-    """Önceki çalışma durumunu okur veya varsayılan oluşturur."""
     try:
         STATE_DIZIN.mkdir(parents=True, exist_ok=True)
         if DURUM_DOSYASI.exists():
             with open(DURUM_DOSYASI, "r", encoding="utf-8") as f:
                 return json.load(f)
     except Exception as e:
-        print(f"[DURUM OKU HATA] {e}")
+        print(f"[DURUM HATA] {e}")
     return {"son_ulke": "", "tur_sayisi": 1, "islenen_ulkeler": []}
 
 
 def durum_kaydet(durum):
-    """Çalışma durumunu güvenli şekilde kaydeder."""
     try:
         STATE_DIZIN.mkdir(parents=True, exist_ok=True)
         gecici = DURUM_DOSYASI.with_suffix(".tmp")
@@ -91,7 +71,7 @@ def durum_kaydet(durum):
             json.dump(durum, f, ensure_ascii=False, indent=2)
         gecici.replace(DURUM_DOSYASI)
     except Exception as e:
-        print(f"[DURUM KAYDET HATA] {e}")
+        print(f"[KAYDET HATA] {e}")
 
 
 def metin_temizle(s):
@@ -101,7 +81,6 @@ def metin_temizle(s):
 
 
 def ad_5dille_olustur(mevcut_names, ad_local):
-    """Kural 1 & 2'ye uygun olarak 5 dilde isim nesnesi (nameJson) üretir."""
     out = {}
     if isinstance(mevcut_names, dict):
         for k, v in mevcut_names.items():
@@ -112,7 +91,6 @@ def ad_5dille_olustur(mevcut_names, ad_local):
     out["tr"] = out.get("tr") or ana_ad
     out["local"] = ad_local or out.get("local") or ana_ad
 
-    # İngilizce, Almanca, İspanyolca, Fransızca türetme/çevirme
     ana_ad_lower = ana_ad.lower()
     for lang in ["en", "de", "es", "fr"]:
         if lang not in out or not out[lang]:
@@ -126,27 +104,21 @@ def ad_5dille_olustur(mevcut_names, ad_local):
 
 
 def metin_ipucu_cikart(metin, zengin_obj):
-    """
-    Düz metinden ve 'zengin' objesinden KURAL 1'e sadık kalarak gerçek tesis, doğa, kural ve güvenlik ipuçlarını toplar.
-    Kural 1: Yalan bilgi olmayacak.
-    Kural 2: Bilgi silinmeyecek.
-    """
     m_low = metin.lower()
     m_words = set(re.findall(r"\w+", m_low))
-
     ipucu = {}
 
     def yok_mu(k):
         return any(f"{k} yok" in m_low or f"no {k}" in m_low or f"{k}siz" in m_low or f"kein {k}" in m_low for k in [k])
 
-    # 1. Tesisler
+    # Tesisler
     if any(w in m_words or phrase in m_low for w in ["duş", "dus", "shower", "dusche", "душ"] for phrase in ["duş", "shower"]) and not yok_mu("duş"):
         ipucu["shower"] = True
-    if any(phrase in m_low for phrase in ["elektrik", "electric", "electricity", "strom", "электр"]) and not yok_mu("elektrik"):
+    if any(phrase in m_low for phrase in ["elektrik", "electric", "electricity", "strom"]) and not yok_mu("elektrik"):
         ipucu["electric"] = True
-    if any(phrase in m_low for phrase in ["içme suyu", "cesme", "çeşme", "drinking water", "tap water", "trinkwasser", "питьев"]) and not yok_mu("su"):
+    if any(phrase in m_low for phrase in ["içme suyu", "cesme", "çeşme", "drinking water", "tap water", "trinkwasser"]) and not yok_mu("su"):
         ipucu["drinkingWater"] = True
-    if any(w in m_words or phrase in m_low for w in ["tuvalet", "wc", "toilet", "restroom", "туалет"] for phrase in ["tuvalet", "wc"]):
+    if any(w in m_words or phrase in m_low for w in ["tuvalet", "wc", "toilet", "restroom"] for phrase in ["tuvalet", "wc"]):
         ipucu["wc"] = "BASIC"
     if any(phrase in m_low for phrase in ["sıcak su", "sicak su", "hot water", "warmwasser"]):
         ipucu["hotWater"] = True
@@ -157,12 +129,12 @@ def metin_ipucu_cikart(metin, zengin_obj):
     if any(phrase in m_low for phrase in ["karavan atık", "chemical toilet", "dump station"]):
         ipucu["caravanDump"] = True
 
-    # 2. Doğa & Zemin
+    # Doğa & Zemin
     if any(phrase in m_low for phrase in ["çim", "cim", "grass", "lawn"]):
         ipucu["ground"] = "GRASS"
     elif any(phrase in m_low for phrase in ["toprak", "dirt", "soil"]):
         ipucu["ground"] = "DIRT"
-    elif any(phrase in m_low for phrase in ["beton", "asfalt", "concrete", "paved"]):
+    elif any(phrase in m_low for phrase in ["beton", "asfalt", "concrete"]):
         ipucu["ground"] = "CONCRETE"
     elif any(phrase in m_low for phrase in ["çakıl", "cakil", "gravel"]):
         ipucu["ground"] = "GRAVEL"
@@ -178,30 +150,30 @@ def metin_ipucu_cikart(metin, zengin_obj):
     elif any(phrase in m_low for phrase in ["nehir", "dere", "river", "stream"]):
         ipucu["waterside"] = "RIVER"
 
-    if any(phrase in m_low for phrase in ["gölge", "golge", "shade", "shadow"]):
+    if any(phrase in m_low for phrase in ["gölge", "golge", "shade"]):
         ipucu["shade"] = "PARTIAL"
 
-    # 3. Ulaşım & Kurallar
+    # Ulaşım & Kurallar
     if any(phrase in m_low for phrase in ["karavan", "caravan", "rv"]):
         ipucu["caravanOk"] = True
     if any(phrase in m_low for phrase in ["otopark", "parking"]):
         ipucu["parking"] = True
-    if any(phrase in m_low for phrase in ["ücretsiz", "ucretsiz", "free", "kostenlos", "0 tl"]):
+    if any(phrase in m_low for phrase in ["ücretsiz", "ucretsiz", "free", "kostenlos"]):
         ipucu["fee"] = "FREE"
-    elif any(phrase in m_low for phrase in ["ücretli", "ucretli", "paid", "kostenpflichtig"]):
+    elif any(phrase in m_low for phrase in ["ücretli", "ucretli", "paid"]):
         ipucu["fee"] = "PAID"
 
-    if any(phrase in m_low for phrase in ["ateş yasak", "ates yasak", "no fire", "fire banned", "feuer verboten"]):
+    if any(phrase in m_low for phrase in ["ateş yasak", "ates yasak", "no fire", "fire banned"]):
         ipucu["fire"] = "BANNED"
-    elif any(phrase in m_low for phrase in ["ateş serbest", "ates serbest", "ateş yakılabilir"]):
+    elif any(phrase in m_low for phrase in ["ateş serbest", "ates serbest"]):
         ipucu["fire"] = "FREE"
 
     if any(phrase in m_low for phrase in ["evcil hayvan", "pet friendly", "pets allowed"]):
         ipucu["pets"] = True
-    if any(phrase in m_low for phrase in ["wifi", "kablosuz internet", "wlan"]):
+    if any(phrase in m_low for phrase in ["wifi", "kablosuz internet"]):
         ipucu["wifi"] = True
 
-    # 4. Tehditler (Hazards)
+    # Tehditler (Hazards)
     hz = []
     if any(phrase in m_low for phrase in ["şiddetli rüzgar", "ruzgar", "strong wind"]):
         hz.append("WIND")
@@ -214,7 +186,7 @@ def metin_ipucu_cikart(metin, zengin_obj):
     if hz:
         ipucu["hazards"] = ",".join(hz)
 
-    # 5. 'zengin' nesnesinden ekstra kritik nokta verilerini çekme
+    # 'zengin' objesinden kritik nokta kontrolü
     if isinstance(zengin_obj, dict):
         kritik = zengin_obj.get("kritik_noktalar") or []
         for kn in kritik:
@@ -230,16 +202,13 @@ def metin_ipucu_cikart(metin, zengin_obj):
 
 
 def spot_duzenle(spot):
-    """Tek bir kamp noktasını hatasız şekilde Trailo PRO mimarisine uyarlar."""
     try:
         yeni = json.loads(json.dumps(spot))
 
-        # 1. 5 Dilde İsim Düzenlemesi (nameJson)
         mevcut_names = yeni.get("name")
         ad_local = yeni.get("name_local") or (mevcut_names if isinstance(mevcut_names, str) else "")
         yeni["nameJson"] = ad_5dille_olustur(mevcut_names if isinstance(mevcut_names, dict) else {}, ad_local)
 
-        # 2. Açıklama ve Notlar (notes / description)
         notes_obj = yeni.get("notes") or {}
         metin_paragrafi = ""
         if isinstance(notes_obj, dict):
@@ -250,10 +219,8 @@ def spot_duzenle(spot):
         notes_txt = str(yeni.get("note") or "") + " " + str(yeni.get("description") or "")
         tam_metin = metin_temizle(metin_paragrafi + " " + notes_txt)
 
-        # 3. İpuçlarını ve Kart Bilgilerini Çıkart
         ipucu = metin_ipucu_cikart(tam_metin, yeni.get("zengin"))
 
-        # 4. İpuçlarını Uygulama Kategorilerine Eşle
         if "shower" in ipucu and not yeni.get("shower"):
             yeni["shower"] = True
         if "electric" in ipucu and not yeni.get("electric"):
@@ -291,7 +258,6 @@ def spot_duzenle(spot):
         if "hazards" in ipucu and not yeni.get("hazards"):
             yeni["hazards"] = ipucu["hazards"]
 
-        # 5. 5 Dilde Not/Açıklama Sözlüğü Oluştur
         if tam_metin:
             yeni["notes_5lang"] = {
                 "tr": tam_metin,
@@ -303,12 +269,11 @@ def spot_duzenle(spot):
 
         return yeni
     except Exception as e:
-        print(f"[SPOT HATA] Kayıt düzenleme atlandı ({spot.get('id', 'bilinmeyen')}): {e}")
+        print(f"[SPOT HATA] Kayıt atlandı ({spot.get('id', 'bilinmeyen')}): {e}")
         return spot
 
 
 def ulke_dosyasi_isleme(dosya_yolu):
-    """Bir ülke JSON dosyasını okur, tüm kamp alanlarını düzenler ve atomik olarak yazar."""
     if not dosya_yolu.exists():
         print(f"[DOSYA YOK] {dosya_yolu}")
         return False
@@ -342,30 +307,24 @@ def ulke_dosyasi_isleme(dosya_yolu):
             json.dump(cikti, f, ensure_ascii=False, indent=2)
         gecici_dosya.replace(dosya_yolu)
 
-        print(f"[BAŞARILI] {dosya_yolu.name}: Toplam {len(spots)} kayıttan {basarili} kadarı kategorilendirildi ve güncellendi.")
+        print(f"[BAŞARILI] {dosya_yolu.name}: Toplam {len(spots)} kayıttan {basarili} kadarı düzenlendi ve kaydedildi.")
         return True
     except Exception as e:
-        print(f"[ULKE DOSYASI HATA] {dosya_yolu.name} işlenirken hata oluştu: {e}")
+        print(f"[HATA] {dosya_yolu.name} işlenirken hata oluştu: {e}")
         traceback.print_exc()
         return False
 
 
 def ana_dongu():
-    """Tüm ülkeleri Türkiye'den (TR.json) başlayarak sırayla işler ve döngüyü sürdürür."""
     print("=" * 60)
-    print("   TRAILO PRO - BİLGİ DÜZENLEME ARACI BAŞLATILDI   ")
+    print("   TRAILO PRO - BİLGİ DÜZENLEME ARACI (TEMİZ DÖNGÜ)   ")
     print("=" * 60)
 
-    # 1. YEDEK ALMA
-    data_yedekle()
-
-    # 2. ÜLKE LİSTESİNİ OLUŞTURMA
     ulkeler = []
     if DATA_DIZIN.exists():
         for p in sorted(DATA_DIZIN.glob("*.json")):
             if p.name != "manifest.json":
-                u = p.stem.upper()
-                ulkeler.append(u)
+                ulkeler.append(p.stem.upper())
 
     if not ulkeler:
         print("[HATA] data/ klasöründe işlenecek ülke dosyası bulunamadı!")
@@ -375,9 +334,6 @@ def ana_dongu():
         ulkeler.remove("TR")
         ulkeler.insert(0, "TR")
 
-    print(f"[ÜLKE LİSTESİ] Toplam {len(ulkeler)} ülke işlenecek: {ulkeler[:10]} ...")
-
-    # 3. DURUM OKU
     durum = durum_oku()
     son_ulke = durum.get("son_ulke", "")
     tur = durum.get("tur_sayisi", 1)
@@ -389,13 +345,11 @@ def ana_dongu():
             tur += 1
 
     hedef_ulke = ulkeler[baslangic_idx]
-    print(f"\n[DÖNGÜ BİLGİSİ] Tur #{tur} | Sıradaki Ülke: {hedef_ulke} (İndeks: {baslangic_idx + 1}/{len(ulkeler)})")
+    print(f"\n[DÖNGÜ] Tur #{tur} | Sıradaki Ülke: {hedef_ulke} ({baslangic_idx + 1}/{len(ulkeler)})")
 
-    # 4. ÜLKEYİ İŞLE
     dosya = DATA_DIZIN / f"{hedef_ulke}.json"
     ok = ulke_dosyasi_isleme(dosya)
 
-    # 5. DURUM GÜNCELLE VE KAYDET
     durum["son_ulke"] = hedef_ulke
     durum["tur_sayisi"] = tur
     if hedef_ulke not in durum.get("islenen_ulkeler", []):
@@ -404,14 +358,14 @@ def ana_dongu():
     durum_kaydet(durum)
 
     print("\n" + "=" * 60)
-    print(f" [TAMAMLANDI] {hedef_ulke} başarıyla işlendi. Sıradaki işlem için hazır.")
+    print(f" [TAMAMLANDI] {hedef_ulke} başarıyla düzenlendi ve kaydedildi.")
     print("=" * 60)
 
 
 if __name__ == "__main__":
     try:
         ana_dongu()
-    except Exception as general_exc:
-        print(f"[GENEL HATA] Beklenmeyen hata oluştu: {general_exc}")
+    except Exception as e:
+        print(f"[GENEL HATA] {e}")
         traceback.print_exc()
         sys.exit(0)
