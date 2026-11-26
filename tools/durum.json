@@ -1595,5 +1595,12 @@
   "elenen": 23,
   "sayi": 308,
   "tamam": "2026-11-26T19:45:11.881Z"
+ },
+ "SJ": {
+  "kaynak": "overpass-iso",
+  "harita": "2026-11-26T19:50:01.207Z",
+  "osm": 38,
+  "elenen": 0,
+  "sayi": 38
  }
 }
