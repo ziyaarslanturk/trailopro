@@ -31,7 +31,11 @@ import traceback
 from pathlib import Path
 
 # Proje kök dizini
-KOK_DIZIN = Path(__file__).resolve().parent.parent
+try:
+    KOK_DIZIN = Path(__file__).resolve().parent.parent
+except Exception:
+    KOK_DIZIN = Path.cwd()
+
 DATA_DIZIN = KOK_DIZIN / "data"
 YEDEK_DIZIN = KOK_DIZIN / "yedek_data"
 STATE_DIZIN = KOK_DIZIN / "state"
@@ -108,14 +112,13 @@ def ad_5dille_olustur(mevcut_names, ad_local):
     out["tr"] = out.get("tr") or ana_ad
     out["local"] = ad_local or out.get("local") or ana_ad
 
-    # İngilizce, Almanca, İspanyolca, Fransızca türetme/çevirme (sadece bilinen güvenli kalıplardan)
+    # İngilizce, Almanca, İspanyolca, Fransızca türetme/çevirme
     ana_ad_lower = ana_ad.lower()
     for lang in ["en", "de", "es", "fr"]:
         if lang not in out or not out[lang]:
             ceviri = ana_ad
             for kalip, cev_dict in NAME_TRANSLATION_RULES.items():
                 if kalip in ana_ad_lower and lang in cev_dict:
-                    # Güvenli kalıp değişimi
                     ceviri = re.sub(re.escape(kalip), cev_dict[lang], ceviri, flags=re.IGNORECASE)
             out[lang] = ceviri
 
@@ -133,7 +136,6 @@ def metin_ipucu_cikart(metin, zengin_obj):
 
     ipucu = {}
 
-    # Olumsuz ifadelerin kontrolü (örn: "duş yok", "no shower", "elektriksiz")
     def yok_mu(k):
         return any(f"{k} yok" in m_low or f"no {k}" in m_low or f"{k}siz" in m_low or f"kein {k}" in m_low for k in [k])
 
@@ -212,7 +214,7 @@ def metin_ipucu_cikart(metin, zengin_obj):
     if hz:
         ipucu["hazards"] = ",".join(hz)
 
-    # 5. 'zengin' nesnesinden ekstra kritik nokta verilerini çekme (Kritik noktalar: içme suyu, tuvalet vs.)
+    # 5. 'zengin' nesnesinden ekstra kritik nokta verilerini çekme
     if isinstance(zengin_obj, dict):
         kritik = zengin_obj.get("kritik_noktalar") or []
         for kn in kritik:
@@ -230,7 +232,6 @@ def metin_ipucu_cikart(metin, zengin_obj):
 def spot_duzenle(spot):
     """Tek bir kamp noktasını hatasız şekilde Trailo PRO mimarisine uyarlar."""
     try:
-        # KURAL 2: Orijinal kaydın derin kopyasını al (Hiçbir alan kaybolmayacak)
         yeni = json.loads(json.dumps(spot))
 
         # 1. 5 Dilde İsim Düzenlemesi (nameJson)
@@ -252,7 +253,7 @@ def spot_duzenle(spot):
         # 3. İpuçlarını ve Kart Bilgilerini Çıkart
         ipucu = metin_ipucu_cikart(tam_metin, yeni.get("zengin"))
 
-        # 4. İpuçlarını Uygulama Kategorilerine Eşle (Var olan değerleri koruyarak)
+        # 4. İpuçlarını Uygulama Kategorilerine Eşle
         if "shower" in ipucu and not yeni.get("shower"):
             yeni["shower"] = True
         if "electric" in ipucu and not yeni.get("electric"):
@@ -290,11 +291,11 @@ def spot_duzenle(spot):
         if "hazards" in ipucu and not yeni.get("hazards"):
             yeni["hazards"] = ipucu["hazards"]
 
-        # 5. 5 Dilde Not/Açıklama Sözlüğü Oluştur (notes)
+        # 5. 5 Dilde Not/Açıklama Sözlüğü Oluştur
         if tam_metin:
             yeni["notes_5lang"] = {
                 "tr": tam_metin,
-                "en": tam_metin,  # Gelecekte LLM çevirisi eklenebilir
+                "en": tam_metin,
                 "de": tam_metin,
                 "es": tam_metin,
                 "fr": tam_metin
@@ -303,7 +304,7 @@ def spot_duzenle(spot):
         return yeni
     except Exception as e:
         print(f"[SPOT HATA] Kayıt düzenleme atlandı ({spot.get('id', 'bilinmeyen')}): {e}")
-        return spot  # Hata durumunda ham kaydı koru (asla bozma)
+        return spot
 
 
 def ulke_dosyasi_isleme(dosya_yolu):
@@ -330,14 +331,12 @@ def ulke_dosyasi_isleme(dosya_yolu):
             else:
                 duzenlenmis.append(s)
 
-        # Çıktıyı hazırla
         if is_list:
             cikti = duzenlenmis
         else:
             ham_veri["spots"] = duzenlenmis
             cikti = ham_veri
 
-        # Atomik yazma (geçici dosyaya yazıp üzerine koyma)
         gecici_dosya = dosya_yolu.with_suffix(".tmp")
         with open(gecici_dosya, "w", encoding="utf-8") as f:
             json.dump(cikti, f, ensure_ascii=False, indent=2)
@@ -365,13 +364,13 @@ def ana_dongu():
     if DATA_DIZIN.exists():
         for p in sorted(DATA_DIZIN.glob("*.json")):
             if p.name != "manifest.json":
-                ulkeler.append(p.stem.uppercase() if hasattr(p.stem, "uppercase") else p.stem.upper())
+                u = p.stem.upper()
+                ulkeler.append(u)
 
     if not ulkeler:
         print("[HATA] data/ klasöründe işlenecek ülke dosyası bulunamadı!")
         return
 
-    # Türkiye'yi (TR) her zaman başa al
     if "TR" in ulkeler:
         ulkeler.remove("TR")
         ulkeler.insert(0, "TR")
@@ -383,7 +382,6 @@ def ana_dongu():
     son_ulke = durum.get("son_ulke", "")
     tur = durum.get("tur_sayisi", 1)
 
-    # İşlenecek sıradaki ülkeyi belirle
     baslangic_idx = 0
     if son_ulke in ulkeler:
         baslangic_idx = (ulkeler.index(son_ulke) + 1) % len(ulkeler)
@@ -416,4 +414,4 @@ if __name__ == "__main__":
     except Exception as general_exc:
         print(f"[GENEL HATA] Beklenmeyen hata oluştu: {general_exc}")
         traceback.print_exc()
-        sys.exit(0)  # Hata verse bile GitHub Actions / döngü kırılmasın
+        sys.exit(0)
