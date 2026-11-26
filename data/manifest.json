@@ -1193,6 +1193,12 @@
    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
    "size": 2,
    "updated": "2026-11-26T20:35:30Z"
+  },
+  "SY": {
+   "count": 226,
+   "sha256": "a189cc08e44af5ce85995b6cbfd60881f5e7fb7f4afa88e110b4e8c74d3b012f",
+   "size": 88058,
+   "updated": "2026-11-26T20:36:29Z"
   }
  }
 }
