@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-TRAILO PRO - Bilgi Düzenleme Aracı (Tekil & Temiz Sürüm)
+TRAILO PRO - Bilgi Düzenleme Aracı (Kritik Yakın Noktalar & Kart Mesafeleri Destekli)
 
 Bu araç data/ klasörü altındaki ülke JSON dosyalarını sırayla işler:
 1. SIRA: Türkiye'den (TR.json) başlar, ardından tüm ülkeleri sırayla işler.
 2. SÜREKLİ DÖNGÜ: Bütün ülkeler bittiğinde tekrar Türkiye'ye döner ve sürekli çalışır.
-3. KATEGORİLENDİRME & DÜZENLEME:
-   - Var olan data/ dosyasını okur, doğrudan düzenleyerek yine data/ altındaki yerine kaydeder.
-   - Düz metin açıklamalarını ve 'zengin' verilerini Trailo PRO bilgi kartlarına aktarır:
-     - Tesisler (WC, duş, sıcak su, içme suyu, elektrik, çöp, karavan atık, mutfak)
-     - Doğa & Zemin (zemin türü, eğim, gölgelik, su kenarı)
-     - Ulaşım (yol türü, karavan uygunluğu, otopark)
-     - Kurallar (ücret, ateş, evcil hayvan)
-     - Güvenlik (tehditler/hazards, yaban hayatı)
-     - 5 Dilde İsim (nameJson: tr, en, de, es, fr) ve Açıklama Metinleri
-4. KURAL 1: Yalan bilgi eklenmez. Yalnızca kaynakta veya zengin veride geçen gerçekler kartlara aktarılır.
+3. KATEGORİLENDİRME, KRİTİK YAKIN NOKTALAR & MESAFE DÜZENLEME:
+   - 'zengin.kritik_noktalar' ve 'zengin.cevre' altındaki tüm noktaları (su, tuvalet, market, eczane, akaryakıt, plaj, yerleşim)
+     mesafeleriyle birlikte (örn. "İçme suyu (500 m)", "Tuvalet (100 m)") 'nearbyJson' ve 'nearby' dizisine aktarır.
+   - Kamp alanı bilgi kartlarında (İçme suyu, Tuvalet, Duş vb.):
+     Mesafe varsa: "Var (500 m)", "Var (100 m)" bilgisi eklenir.
+     Mesafe yoksa: Yalnızca "Var" (true / BASIC) olarak kalır.
+   - 5 Dilde İsim (nameJson: tr, en, de, es, fr) ve Notlar (notes_5lang) üretilir.
+4. KURAL 1: Yalan bilgi eklenmez. Yalnızca kaynakta geçen veya zengin veride bulunan gerçekler aktarılır.
 5. KURAL 2: Düzelttiği metinler dışında hiçbir bilgi (koordinat, id, vb.) silinmez.
 6. HATA YÖNETİMİ: Hiçbir hata senaryosunda durmaz; hatalı kaydı/dosyayı atlayıp devam eder.
 """
@@ -51,6 +49,18 @@ NAME_TRANSLATION_RULES = {
     "tabiat parkı": {"en": "Nature Park", "de": "Naturpark", "es": "Parque Natural", "fr": "Parc Naturel"},
 }
 
+TUR_HARITASI = {
+    "icme_suyu": "WATER",
+    "tuvalet_dus": "WC",
+    "market": "MARKET",
+    "saglik": "HEALTH",
+    "akaryakit": "FUEL",
+    "su_plaj": "BEACH",
+    "gorulecek": "SIGHT",
+    "yerlesim": "SIGHT",
+    "yakin_tesis": "CAMP"
+}
+
 
 def durum_oku():
     try:
@@ -80,6 +90,14 @@ def metin_temizle(s):
     return re.sub(r"\s+", " ", s).strip()
 
 
+def mesafe_bicimlendir(m):
+    if not m or not isinstance(m, (int, float)) or m <= 0:
+        return ""
+    if m < 1000:
+        return f"{int(m)} m"
+    return f"{round(m / 1000.0, 1)} km"
+
+
 def ad_5dille_olustur(mevcut_names, ad_local):
     out = {}
     if isinstance(mevcut_names, dict):
@@ -101,6 +119,65 @@ def ad_5dille_olustur(mevcut_names, ad_local):
             out[lang] = ceviri
 
     return out
+
+
+def kritik_ve_cevre_noktalari_islem(zengin_obj):
+    """
+    zengin.kritik_noktalar ve zengin.cevre altındaki yerleri okuyarak nearbyJson dizisi ve
+    mesafe haritası döndürür.
+    """
+    if not isinstance(zengin_obj, dict):
+        return [], {}
+
+    nearby_list = []
+    mesafeler = {}
+
+    def ekle_nokta(tur, ad, mesafe_m, enlem=0.0, boylam=0.0):
+        t = TUR_HARITASI.get(tur, "MARKET")
+        m_str = mesafe_bicimlendir(mesafe_m)
+        ad_clean = ad.strip() if ad else "Yakın Nokta"
+        ad_full = f"{ad_clean} ({m_str})" if m_str else ad_clean
+
+        nearby_list.append({
+            "type": t,
+            "name": ad_full,
+            "lat": enlem or 0.0,
+            "lng": boylam or 0.0,
+            "km": round((mesafe_m or 0) / 1000.0, 2)
+        })
+
+        if tur not in mesafeler or (mesafe_m and mesafe_m < mesafeler[tur]):
+            mesafeler[tur] = mesafe_m
+
+    # 1. Kritik Noktalar
+    kritik = zengin_obj.get("kritik_noktalar") or []
+    if isinstance(kritik, list):
+        for kn in kritik:
+            if isinstance(kn, dict):
+                ekle_nokta(
+                    kn.get("tur"),
+                    kn.get("ad"),
+                    kn.get("mesafe_m"),
+                    kn.get("enlem") or kn.get("lat"),
+                    kn.get("boylam") or kn.get("lng") or kn.get("lon")
+                )
+
+    # 2. Çevre Noktaları (Plaj, Yerleşim, Görülecek vb.)
+    cevre = zengin_obj.get("cevre") or {}
+    if isinstance(cevre, dict):
+        for cat, arr in cevre.items():
+            if isinstance(arr, list):
+                for item in arr:
+                    if isinstance(item, dict):
+                        ekle_nokta(
+                            cat,
+                            item.get("ad"),
+                            item.get("mesafe_m"),
+                            item.get("enlem") or item.get("lat"),
+                            item.get("boylam") or item.get("lng") or item.get("lon")
+                        )
+
+    return nearby_list, mesafeler
 
 
 def metin_ipucu_cikart(metin, zengin_obj):
@@ -186,18 +263,6 @@ def metin_ipucu_cikart(metin, zengin_obj):
     if hz:
         ipucu["hazards"] = ",".join(hz)
 
-    # 'zengin' objesinden kritik nokta kontrolü
-    if isinstance(zengin_obj, dict):
-        kritik = zengin_obj.get("kritik_noktalar") or []
-        for kn in kritik:
-            if isinstance(kn, dict):
-                tur = kn.get("tur")
-                mesafe = kn.get("mesafe_m")
-                if tur == "icme_suyu" and (mesafe is None or mesafe <= 1500):
-                    ipucu["drinkingWater"] = True
-                if tur == "tuvalet_dus" and (mesafe is None or mesafe <= 1000):
-                    ipucu["wc"] = "BASIC"
-
     return ipucu
 
 
@@ -205,10 +270,12 @@ def spot_duzenle(spot):
     try:
         yeni = json.loads(json.dumps(spot))
 
+        # 1. 5 Dilde İsim Düzenlemesi (nameJson)
         mevcut_names = yeni.get("name")
         ad_local = yeni.get("name_local") or (mevcut_names if isinstance(mevcut_names, str) else "")
         yeni["nameJson"] = ad_5dille_olustur(mevcut_names if isinstance(mevcut_names, dict) else {}, ad_local)
 
+        # 2. Açıklama Metinleri
         notes_obj = yeni.get("notes") or {}
         metin_paragrafi = ""
         if isinstance(notes_obj, dict):
@@ -219,14 +286,37 @@ def spot_duzenle(spot):
         notes_txt = str(yeni.get("note") or "") + " " + str(yeni.get("description") or "")
         tam_metin = metin_temizle(metin_paragrafi + " " + notes_txt)
 
-        ipucu = metin_ipucu_cikart(tam_metin, yeni.get("zengin"))
+        # 3. Kritik Yakın Noktaları Çıkar ve 'nearbyJson' / 'nearby' Alanlarına Aktar
+        zengin_obj = yeni.get("zengin") or {}
+        nearby_list, mesafeler = kritik_ve_cevre_noktalari_islem(zengin_obj)
+
+        if nearby_list:
+            yeni["nearbyJson"] = json.dumps(nearby_list, ensure_ascii=False)
+            yeni["nearby"] = nearby_list
+
+        # 4. İpuçlarını ve Kart Bilgilerini Çıkart
+        ipucu = metin_ipucu_cikart(tam_metin, zengin_obj)
+
+        # 5. Kartlara Mesafe Detayı Ekleme (Mesafe varsa "Var (500 m)", yoksa "Var")
+        su_mesafe = mesafeler.get("icme_suyu")
+        su_m_str = mesafe_bicimlendir(su_mesafe)
+        if su_mesafe or ipucu.get("drinkingWater"):
+            yeni["drinkingWater"] = True
+            if su_m_str:
+                yeni["drinkingWaterNote"] = f"Var ({su_m_str})"
+
+        wc_mesafe = mesafeler.get("tuvalet_dus")
+        wc_m_str = mesafe_bicimlendir(wc_mesafe)
+        if wc_mesafe or ipucu.get("wc"):
+            if not yeni.get("wc") or yeni.get("wc") == "UNKNOWN":
+                yeni["wc"] = "BASIC"
+            if wc_m_str:
+                yeni["wcNote"] = f"Var ({wc_m_str})"
 
         if "shower" in ipucu and not yeni.get("shower"):
             yeni["shower"] = True
         if "electric" in ipucu and not yeni.get("electric"):
             yeni["electric"] = True
-        if "drinkingWater" in ipucu and not yeni.get("drinkingWater"):
-            yeni["drinkingWater"] = True
         if "hotWater" in ipucu and not yeni.get("hotWater"):
             yeni["hotWater"] = True
         if "trash" in ipucu and not yeni.get("trash"):
@@ -235,14 +325,14 @@ def spot_duzenle(spot):
             yeni["kitchen"] = True
         if "caravanDump" in ipucu and not yeni.get("caravanDump"):
             yeni["caravanDump"] = True
-        if "wc" in ipucu and (not yeni.get("wc") or yeni.get("wc") == "UNKNOWN"):
-            yeni["wc"] = ipucu["wc"]
+
         if "ground" in ipucu and (not yeni.get("ground") or yeni.get("ground") == "UNKNOWN"):
             yeni["ground"] = ipucu["ground"]
         if "waterside" in ipucu and (not yeni.get("waterside") or yeni.get("waterside") == "NONE"):
             yeni["waterside"] = ipucu["waterside"]
         if "shade" in ipucu and (not yeni.get("shade") or yeni.get("shade") == "UNKNOWN"):
             yeni["shade"] = ipucu["shade"]
+
         if "caravanOk" in ipucu and not yeni.get("caravanOk"):
             yeni["caravanOk"] = True
         if "parking" in ipucu and not yeni.get("parking"):
@@ -258,6 +348,7 @@ def spot_duzenle(spot):
         if "hazards" in ipucu and not yeni.get("hazards"):
             yeni["hazards"] = ipucu["hazards"]
 
+        # 6. 5 Dilde Not/Açıklama Sözlüğü Oluştur
         if tam_metin:
             yeni["notes_5lang"] = {
                 "tr": tam_metin,
@@ -307,7 +398,7 @@ def ulke_dosyasi_isleme(dosya_yolu):
             json.dump(cikti, f, ensure_ascii=False, indent=2)
         gecici_dosya.replace(dosya_yolu)
 
-        print(f"[BAŞARILI] {dosya_yolu.name}: Toplam {len(spots)} kayıttan {basarili} kadarı düzenlendi ve kaydedildi.")
+        print(f"[BAŞARILI] {dosya_yolu.name}: Toplam {len(spots)} kayıttan {basarili} kadarı kritik yakın noktalar ve mesafe bilgileriyle güncellendi.")
         return True
     except Exception as e:
         print(f"[HATA] {dosya_yolu.name} işlenirken hata oluştu: {e}")
@@ -317,7 +408,7 @@ def ulke_dosyasi_isleme(dosya_yolu):
 
 def ana_dongu():
     print("=" * 60)
-    print("   TRAILO PRO - BİLGİ DÜZENLEME ARACI (TEMİZ DÖNGÜ)   ")
+    print("   TRAILO PRO - BİLGİ DÜZENLEME ARACI (KRİTİK YAKIN NOKTALAR ENTEGRELİ)   ")
     print("=" * 60)
 
     ulkeler = []
