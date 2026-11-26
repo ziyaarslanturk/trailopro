@@ -1,0 +1,46 @@
+name: Yeni Veri Düzenleme Botu
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: trailopro-yeni-veri-botu
+  cancel-in-progress: false
+
+jobs:
+  bilgi-duzenleme:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Depoyu Klonla
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Python Kurulumu
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      
+      - name: Yeni Veri Botunu Çalıştır
+        run: |
+          python3 tools/yeni_veri_botu.py
+      
+      - name: Değişiklikleri Git'e Kaydet ve Push Et
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ state/
+          if git diff --staged --quiet; then
+            echo "Değişiklik yok, commit atlanıyor."
+          else
+            git commit -m "auto(data): yeni veri botu ile dosyalar sıkıştırıldı ve düzenlendi [skip ci]"
+            git push origin main
+          fi
