@@ -1,0 +1,75 @@
+name: Dünya kamp taraması
+
+on:
+  workflow_dispatch:
+    inputs:
+      mod:
+        description: "pilot = sadece LU, pilot/ klasörüne | tam = tüm dünya, data/ klasörüne"
+        default: pilot
+        type: choice
+        options: [pilot, tam]
+      ulkeler:
+        description: "İsteğe bağlı: virgülle ülke kodları (örn. AT,DE,US). Boşsa hepsi"
+        required: false
+        default: ""
+  schedule:
+    - cron: "17 */6 * * *"   # tam mod; bitene kadar kaldığı yerden devam eder
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dunya-tara
+  cancel-in-progress: false
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Osmium ve indirme araçlarını kur
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq osmium-tool curl
+
+      - name: Git kimliğini ayarla
+        run: |
+          git config user.name "trailopro-bot"
+          git config user.email "bot@users.noreply.github.com"
+
+      - name: Tara ve zenginleştir
+        env:
+          MOD: ${{ github.event.inputs.mod || 'tam' }}
+          ULKELER: ${{ github.event.inputs.ulkeler }}
+        run: |
+          ARGS="--mod $MOD --commit --sure 335"
+          if [ -n "$ULKELER" ]; then ARGS="$ARGS --ulkeler$ULKELER"; fi
+          node tools/dunya-tara.js $ARGS
+
+      - name: Pilot veya kalan çıktıları güvenle kaydet
+        if: always()
+        env:
+          MOD: ${{ github.event.inputs.mod || 'tam' }}
+        run: |
+          if [ "$MOD" = "pilot" ]; then
+            if [ -e pilot ]; then git add pilot; fi
+            if [ -f tools/durum-pilot.json ]; then git add tools/durum-pilot.json; fi
+          else
+            if [ -e data ]; then git add data; fi
+            if [ -f tools/durum.json ]; then git add tools/durum.json; fi
+          fi
+
+          if git diff --cached --quiet; then
+            echo "Commit edilecek ek değişiklik yok."
+            exit 0
+          fi
+
+          git commit -m "${MOD}: tarama çıktıları kaydedildi"
+          git pull --rebase -X theirs -q
+          git push -q
