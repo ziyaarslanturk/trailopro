@@ -1,5 +1,5 @@
 {
-  "son_ulke": "AO",
+  "son_ulke": "AR",
   "tur_sayisi": 1,
   "islenen_ulkeler": [
     "TR",
@@ -10,6 +10,7 @@
     "AI",
     "AL",
     "AM",
-    "AO"
+    "AO",
+    "AR"
   ]
 }
