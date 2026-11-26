@@ -23,6 +23,12 @@
    "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
    "size": 2,
    "updated": "2026-11-26T13:48:39Z"
+  },
+  "PR": {
+   "count": 32,
+   "sha256": "5dcc458456beaedaa1d50c06a64b52c2ecfb6ade5f841637440c4d9e58820931",
+   "size": 14164,
+   "updated": "2026-11-26T13:49:04Z"
   }
  }
 }
