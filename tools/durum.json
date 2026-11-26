@@ -1414,8 +1414,12 @@
   "sayi": 729
  },
  "PK": {
-  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-25T20:33:06.353Z"
+  "sonDeneme": "2026-11-25T20:33:06.353Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-26T13:42:10.856Z",
+  "osm": 370,
+  "elenen": 358,
+  "sayi": 281
  },
  "PL": {
   "kaynak": "overpass-area",
