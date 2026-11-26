@@ -1091,6 +1091,12 @@
    "sha256": "66bab86857a2d7660cab88d1632e2bcd7a19f2c309c95c034f6620e8065ee7e3",
    "size": 3368,
    "updated": "2026-11-26T19:23:59Z"
+  },
+  "SC": {
+   "count": 2,
+   "sha256": "71d69c93fe8c970edebfec9f63db97536b4e6a828ac25b4c413a872ee55eaa29",
+   "size": 710,
+   "updated": "2026-11-26T19:24:06Z"
   }
  }
 }
