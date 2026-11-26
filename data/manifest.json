@@ -1069,64 +1069,10 @@
    "updated": "2026-11-23T13:28:32Z"
   },
   "RU": {
-   "count": 16474,
-   "sha256": "9cbe33741fe87a134352ff7fde5f06b44e5973e97278525ee8acbc489fee1101",
-   "size": 4660709,
-   "updated": "2026-11-22T23:27:26Z"
-  },
-  "SA": {
-   "count": 258,
-   "sha256": "cfb1f4d9ea229fa36145f997b481e7cacea92df10850530489bc289ed4d3d46f",
-   "size": 1084716,
-   "updated": "2026-11-25T06:53:47Z"
-  },
-  "SE": {
-   "count": 2149,
-   "sha256": "420c361937341352786524a0729d1155c64e9a5d9c526844824c92cff65cb82b",
-   "size": 660801,
-   "updated": "2026-11-22T23:27:26Z"
-  },
-  "TN": {
-   "count": 56,
-   "sha256": "937e0ddcbafa5cc45bdb99e879b8cd114858049c91fcfde6bdb6b7da58a30247",
-   "size": 186845,
-   "updated": "2026-11-23T10:15:13Z"
-  },
-  "TR": {
-   "count": 2036,
-   "sha256": "c28e3ab8e9363abc6e90cf1b4d8aea104b9c7f38a1e7327ba16ccb2d7c86be9e",
-   "size": 7060332,
-   "updated": "2026-11-23T04:22:50Z"
-  },
-  "US_MIDWEST": {
-   "count": 10218,
-   "sha256": "b09e932404eff3009d37b31e68baba6639f044d2fa12c1ea88033b2d216633da",
-   "size": 3131593,
-   "updated": "2026-11-22T23:27:26Z"
-  },
-  "US_NORTHEAST": {
-   "count": 3502,
-   "sha256": "eae45dd00480ec6a930a5134e62cda93af8ee60406b6b517c9cd66f1f8027f45",
-   "size": 1112530,
-   "updated": "2026-11-22T23:27:26Z"
-  },
-  "US_PACIFIC": {
-   "count": 550,
-   "sha256": "bc4edcfdf30d367595feb398fe2cdb68ee3227eb12b5b5bacfce7c81078e59d3",
-   "size": 179145,
-   "updated": "2026-11-22T23:27:26Z"
-  },
-  "US_SOUTH": {
-   "count": 8739,
-   "sha256": "32343f6566a657dedc3e2b99bfe00357f2c42c417568b24328341af230bb55dd",
-   "size": 2667618,
-   "updated": "2026-11-22T23:27:26Z"
-  },
-  "US_WEST": {
-   "count": 17845,
-   "sha256": "8f5d251b6050da70bb275033839decf09dda9f76d4be9ab4b6ea22d0efef44b8",
-   "size": 5586706,
-   "updated": "2026-11-22T23:27:26Z"
+   "count": 18559,
+   "sha256": "02a4ef53896c08f21ad2e02e2540fc36161f5db1d63d20a9d0b3f65b9e27b2fb",
+   "size": 8484408,
+   "updated": "2026-11-26T15:03:28Z"
   }
  }
 }
