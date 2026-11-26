@@ -1699,5 +1699,12 @@
   "elenen": 0,
   "sayi": 16,
   "tamam": "2026-11-26T20:36:59.439Z"
+ },
+ "TC": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-26T20:37:04.007Z",
+  "osm": 1,
+  "elenen": 0,
+  "sayi": 1
  }
 }
