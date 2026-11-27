@@ -1,9 +1,10 @@
 {
-  "last_country": "AF.json",
+  "last_country": "AG.json",
   "processed": [
     "TR.json",
     "AD.json",
     "AE.json",
-    "AF.json"
+    "AF.json",
+    "AG.json"
   ]
 }
