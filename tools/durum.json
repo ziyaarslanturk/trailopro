@@ -1943,5 +1943,12 @@
   "elenen": 27,
   "sayi": 220,
   "tamam": "2026-11-27T17:04:33.272Z"
+ },
+ "VU": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T17:04:42.808Z",
+  "osm": 14,
+  "elenen": 1,
+  "sayi": 13
  }
 }
