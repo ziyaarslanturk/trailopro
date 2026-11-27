@@ -1979,5 +1979,12 @@
   "elenen": 4,
   "sayi": 94,
   "tamam": "2026-11-27T17:15:51.077Z"
+ },
+ "YT": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-27T17:15:56.781Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  }
 }
