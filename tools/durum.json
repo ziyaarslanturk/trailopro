@@ -1843,10 +1843,14 @@
   "sonDeneme": "2026-11-27T09:06:57.131Z"
  },
  "US_SOUTH": {
-  "kaynak": "overpass-iso+overpass-area+overpass-bbox",
-  "harita": "2026-11-27T10:18:12.370Z",
-  "osm": 10521,
-  "elenen": 10410,
-  "sayi": 8850
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-27T10:58:59.644Z"
+ },
+ "US_WEST": {
+  "kaynak": "overpass-area+overpass-iso",
+  "harita": "2026-11-27T11:34:54.500Z",
+  "osm": 17526,
+  "elenen": 17403,
+  "sayi": 17968
  }
 }
