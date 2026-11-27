@@ -1969,10 +1969,14 @@
   "tamam": "2026-11-27T17:05:23.579Z"
  },
  "XK": {
-  "kaynak": "overpass-area",
-  "harita": "2026-11-27T17:07:43.064Z",
-  "osm": 46,
-  "elenen": 1,
-  "sayi": 45
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-27T17:15:05.401Z"
+ },
+ "YE": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T17:15:24.035Z",
+  "osm": 98,
+  "elenen": 4,
+  "sayi": 94
  }
 }
