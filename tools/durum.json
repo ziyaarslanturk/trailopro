@@ -1786,5 +1786,12 @@
   "osm": 2462,
   "elenen": 565,
   "sayi": 2104
+ },
+ "TT": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-27T01:42:55.252Z",
+  "osm": 11,
+  "elenen": 1,
+  "sayi": 10
  }
 }
