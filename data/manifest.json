@@ -1308,6 +1308,12 @@
    "size": 538706,
    "updated": "2026-11-27T07:43:28Z"
   },
+  "US_MIDWEST": {
+   "count": 10262,
+   "sha256": "8532cc36881bb50cd6199b8c7a138de05cc560aa1d39cd54c7652c6b72686b40",
+   "size": 6670794,
+   "updated": "2026-11-27T14:06:14Z"
+  },
   "US_NORTHEAST": {
    "count": 3606,
    "sha256": "225baa00e5f4dc6afe401e983a1031c5a857db3539e4e7b15233034461525a3a",

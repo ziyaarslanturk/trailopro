@@ -1844,8 +1844,12 @@
   "tamam": "2026-11-27T13:51:44.386Z"
  },
  "US_MIDWEST": {
-  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-27T09:06:57.131Z"
+  "sonDeneme": "2026-11-27T09:06:57.131Z",
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T14:06:14.332Z",
+  "osm": 10852,
+  "elenen": 10808,
+  "sayi": 10262
  },
  "US_SOUTH": {
   "hata": "overpass.private.coffee: The operation was aborted due to timeout",
