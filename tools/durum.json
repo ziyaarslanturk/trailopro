@@ -1967,5 +1967,12 @@
   "elenen": 0,
   "sayi": 0,
   "tamam": "2026-11-27T17:05:23.579Z"
+ },
+ "XK": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-27T17:07:43.064Z",
+  "osm": 46,
+  "elenen": 1,
+  "sayi": 45
  }
 }
