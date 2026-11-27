@@ -1835,10 +1835,18 @@
   "tamam": "2026-11-27T07:43:28.050Z"
  },
  "US_NORTHEAST": {
-  "kaynak": "overpass-area",
-  "harita": "2026-11-27T08:08:33.861Z",
-  "osm": 3843,
-  "elenen": 3749,
-  "sayi": 3596
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-27T08:20:38.898Z"
+ },
+ "US_MIDWEST": {
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-27T09:06:57.131Z"
+ },
+ "US_SOUTH": {
+  "kaynak": "overpass-iso+overpass-area+overpass-bbox",
+  "harita": "2026-11-27T10:18:12.370Z",
+  "osm": 10521,
+  "elenen": 10410,
+  "sayi": 8850
  }
 }
