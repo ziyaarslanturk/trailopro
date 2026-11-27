@@ -1825,5 +1825,12 @@
   "osm": 3812,
   "elenen": 507,
   "sayi": 3305
+ },
+ "UG": {
+  "kaynak": "osm-fr-pbf",
+  "harita": "2026-11-27T07:43:24.796Z",
+  "osm": 285,
+  "elenen": 90,
+  "sayi": 195
  }
 }
