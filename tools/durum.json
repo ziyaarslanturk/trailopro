@@ -1959,5 +1959,12 @@
   "elenen": 0,
   "sayi": 0,
   "tamam": "2026-11-27T17:05:15.485Z"
+ },
+ "WS": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T17:05:22.002Z",
+  "osm": 0,
+  "elenen": 0,
+  "sayi": 0
  }
 }
