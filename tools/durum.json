@@ -91,7 +91,7 @@
   "elenen": 799,
   "sayi": 915,
   "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-27T17:41:35.847Z"
+  "sonDeneme": "2026-11-27T20:09:56.508Z"
  },
  "AU": {
   "sonDeneme": "2026-11-27T19:14:37.039Z",
@@ -1974,8 +1974,8 @@
   "tamam": "2026-11-27T17:05:23.579Z"
  },
  "XK": {
-  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
-  "sonDeneme": "2026-11-27T17:15:05.401Z"
+  "hata": "Nominatim HTTP 400",
+  "sonDeneme": "2026-11-27T19:30:54.244Z"
  },
  "YE": {
   "kaynak": "geofabrik-pbf",
