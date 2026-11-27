@@ -1,5 +1,5 @@
 {
-  "last_country": "BI.json",
+  "last_country": "BJ.json",
   "processed": [
     "TR.json",
     "AD.json",
@@ -24,6 +24,7 @@
     "BF.json",
     "BG.json",
     "BH.json",
-    "BI.json"
+    "BI.json",
+    "BJ.json"
   ]
 }
