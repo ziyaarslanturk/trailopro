@@ -1995,5 +1995,12 @@
   "elenen": 122,
   "sayi": 1216,
   "tamam": "2026-11-27T17:24:27.689Z"
+ },
+ "ZM": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T17:25:34.190Z",
+  "osm": 171,
+  "elenen": 9,
+  "sayi": 162
  }
 }
