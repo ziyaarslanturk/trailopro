@@ -1818,5 +1818,12 @@
   "elenen": 18,
   "sayi": 628,
   "tamam": "2026-11-27T01:58:04.158Z"
+ },
+ "UA": {
+  "kaynak": "overpass-area",
+  "harita": "2026-11-27T02:11:34.404Z",
+  "osm": 3812,
+  "elenen": 507,
+  "sayi": 3305
  }
 }
