@@ -1310,9 +1310,9 @@
   },
   "US_MIDWEST": {
    "count": 10262,
-   "sha256": "8532cc36881bb50cd6199b8c7a138de05cc560aa1d39cd54c7652c6b72686b40",
-   "size": 6670794,
-   "updated": "2026-11-27T14:06:14Z"
+   "sha256": "39b77ced181433a0e1094dc256cbc4fa2b577f5ed3e5565b674985be063303eb",
+   "size": 12104264,
+   "updated": "2026-11-27T14:07:39Z"
   },
   "US_NORTHEAST": {
    "count": 3606,
