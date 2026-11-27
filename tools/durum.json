@@ -1987,5 +1987,12 @@
   "elenen": 0,
   "sayi": 0,
   "tamam": "2026-11-27T17:15:58.205Z"
+ },
+ "ZA": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T17:18:59.411Z",
+  "osm": 1338,
+  "elenen": 122,
+  "sayi": 1216
  }
 }
