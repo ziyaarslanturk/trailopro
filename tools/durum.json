@@ -89,7 +89,9 @@
   "harita": "2026-11-24T02:13:30.462Z",
   "osm": 933,
   "elenen": 799,
-  "sayi": 915
+  "sayi": 915,
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-27T17:41:35.847Z"
  },
  "AU": {
   "sonDeneme": "2026-11-24T13:52:19.951Z",
@@ -298,7 +300,8 @@
   "harita": "2026-11-24T13:17:13.316Z",
   "osm": 3,
   "elenen": 0,
-  "sayi": 3
+  "sayi": 3,
+  "tamam": "2026-11-27T17:44:10.559Z"
  },
  "CD": {
   "kaynak": "osm-fr-pbf",
