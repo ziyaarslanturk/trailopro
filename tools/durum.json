@@ -94,12 +94,13 @@
   "sonDeneme": "2026-11-27T17:41:35.847Z"
  },
  "AU": {
-  "sonDeneme": "2026-11-24T13:52:19.951Z",
+  "sonDeneme": "2026-11-27T19:14:37.039Z",
   "kaynak": "overpass-area",
   "harita": "2026-11-24T19:33:21.140Z",
   "osm": 10319,
   "elenen": 10319,
-  "sayi": 9558
+  "sayi": 9558,
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout"
  },
  "AW": {
   "kaynak": "osm-fr-pbf",
