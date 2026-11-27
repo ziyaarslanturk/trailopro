@@ -1849,7 +1849,8 @@
   "harita": "2026-11-27T14:06:14.332Z",
   "osm": 10852,
   "elenen": 10808,
-  "sayi": 10262
+  "sayi": 10262,
+  "tamam": "2026-11-27T14:29:42.898Z"
  },
  "US_SOUTH": {
   "hata": "overpass.private.coffee: The operation was aborted due to timeout",
