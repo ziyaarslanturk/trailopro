@@ -2003,5 +2003,12 @@
   "elenen": 9,
   "sayi": 162,
   "tamam": "2026-11-27T17:26:25.731Z"
+ },
+ "ZW": {
+  "kaynak": "geofabrik-pbf",
+  "harita": "2026-11-27T17:27:24.848Z",
+  "osm": 279,
+  "elenen": 27,
+  "sayi": 252
  }
 }
