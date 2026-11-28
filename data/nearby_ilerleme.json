@@ -1,0 +1,19 @@
+{
+  "TR": {
+    "total": 2104,
+    "empty": 2,
+    "filled": 2102,
+    "types_added": {
+      "MARKET": 1826,
+      "PHARMACY": 1404,
+      "HOSPITAL": 1127,
+      "WATER": 1860,
+      "TOILET": 1622,
+      "FUEL": 1496,
+      "CLINIC": 677,
+      "CENTER": 1981,
+      "POLICE": 1616
+    },
+    "date": "2026-11-28T10:58:27.191069"
+  }
+}
