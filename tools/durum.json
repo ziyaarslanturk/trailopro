@@ -1977,8 +1977,12 @@
   "tamam": "2026-11-27T17:05:23.579Z"
  },
  "XK": {
-  "hata": "Nominatim HTTP 400",
-  "sonDeneme": "2026-11-27T19:30:54.244Z"
+  "sonDeneme": "2026-11-27T19:30:54.244Z",
+  "kaynak": "overpass-area",
+  "harita": "2026-11-28T01:41:12.773Z",
+  "osm": 46,
+  "elenen": 46,
+  "sayi": 45
  },
  "YE": {
   "kaynak": "geofabrik-pbf",
