@@ -94,7 +94,7 @@
   "sonDeneme": "2026-11-27T20:09:56.508Z"
  },
  "AU": {
-  "sonDeneme": "2026-11-27T19:14:37.039Z",
+  "sonDeneme": "2026-11-27T23:34:41.369Z",
   "kaynak": "overpass-area",
   "harita": "2026-11-24T19:33:21.140Z",
   "osm": 10319,
@@ -537,12 +537,13 @@
   "tamam": "2026-11-24T15:49:50.591Z"
  },
  "ES": {
-  "sonDeneme": "2026-11-24T15:58:14.004Z",
+  "sonDeneme": "2026-11-27T23:55:40.769Z",
   "kaynak": "overpass-area",
   "harita": "2026-11-25T04:35:13.578Z",
   "osm": 4302,
   "elenen": 4302,
-  "sayi": 4168
+  "sayi": 4168,
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout"
  },
  "ET": {
   "kaynak": "osm-fr-pbf",
@@ -913,7 +914,9 @@
   "harita": "2026-11-25T13:25:02.924Z",
   "osm": 6040,
   "elenen": 275,
-  "sayi": 5765
+  "sayi": 5765,
+  "hata": "overpass.private.coffee: The operation was aborted due to timeout",
+  "sonDeneme": "2026-11-28T00:05:48.893Z"
  },
  "KE": {
   "kaynak": "geofabrik-pbf",
