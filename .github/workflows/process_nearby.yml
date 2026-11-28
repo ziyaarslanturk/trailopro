@@ -1,0 +1,30 @@
+name: Process Nearby POIs
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/process_nearby.py'
+
+jobs:
+  process-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install osmium scipy
+
+      - name: Run script
+        run: python scripts/process_nearby.py
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "TR nearby alanı eklendi (type,name,lat,lng,km)"
+          file_pattern: "data/*.json"
